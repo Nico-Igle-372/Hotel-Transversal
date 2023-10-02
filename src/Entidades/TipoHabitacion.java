@@ -1,4 +1,5 @@
 package Entidades;
+
 public class TipoHabitacion {
     private int idTipo;
     private String nombre;
