@@ -86,6 +86,11 @@ public class Huesped {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "Huesped{" + "idHuesped=" + idHuesped + ", nombre=" + nombre + ", domicilio=" + domicilio + ", correo=" + correo + ", dni=" + dni + ", celular=" + celular + ", estado=" + estado + '}';
+    }
     
     
     
