@@ -108,7 +108,6 @@ public class ABMHuesped {
                 JOptionPane.showMessageDialog(null, " Huesped eliminado");
             }
             ps.close();
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " Error al dar de baja");
         }
@@ -127,10 +126,8 @@ public class ABMHuesped {
                 JOptionPane.showMessageDialog(null, " Huesped reingresado");
             }
             ps.close();
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " Error al dar de alta");
         }
-
     }
 }
