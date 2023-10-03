@@ -1,4 +1,3 @@
-
 package Entidades;
 
 public class Habitacion {
@@ -16,19 +15,28 @@ public class Habitacion {
         this.estado = estado;
     }
 
-    public int getidhabitacion() {
+    public Habitacion(TipoHabitacion tipoHabitacion, boolean estado) {
+
+        this.tipoHabitacion = tipoHabitacion;
+        this.estado = estado;
+    }
+
+    public int getidHabitacion() {
         return idHabitacion;
     }
 
+
     public void setIdHabitacion(int idHabitacion) {
         this.idHabitacion = idHabitacion;
+
+
     }
 
-    public TipoHabitacion getTipoHabitacion() {
+    public TipoHabitacion gettipoHabitacion() {
         return tipoHabitacion;
     }
 
-    public void setTipoHabitacion(TipoHabitacion tipoHabitacion) {
+    public void settipoHabitacion(TipoHabitacion tipoHabitacion) {
         this.tipoHabitacion = tipoHabitacion;
     }
 
