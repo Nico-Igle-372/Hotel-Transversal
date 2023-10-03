@@ -3,25 +3,25 @@ package Entidades;
 
 public class Habitacion {
     
-    private int idhabitacion;
+    private int idHabitacion;
     private TipoHabitacion tipoHabitacion;
     private boolean estado;  
 
     public Habitacion() {
     }
 
-    public Habitacion(int idhabitacion, TipoHabitacion tipoHabitacion, boolean estado) {
-        this.idhabitacion = idhabitacion;
+    public Habitacion(int idHabitacion, TipoHabitacion tipoHabitacion, boolean estado) {
+        this.idHabitacion = idHabitacion;
         this.tipoHabitacion = tipoHabitacion;
         this.estado = estado;
     }
 
     public int getidhabitacion() {
-        return idhabitacion;
+        return idHabitacion;
     }
 
-    public void setiDhabitacion(int iDhabitacion) {
-        this.idhabitacion = iDhabitacion;
+    public void setIdHabitacion(int idHabitacion) {
+        this.idHabitacion = idHabitacion;
     }
 
     public TipoHabitacion getTipoHabitacion() {
@@ -42,7 +42,7 @@ public class Habitacion {
 
     @Override
     public String toString() {
-        return "Habitacion{" + "idhabitacion=" + idhabitacion + ", tipoHabitacion=" + tipoHabitacion + ", estado=" + estado + '}';
+        return "Habitacion{" + "idHabitacion=" + idHabitacion + ", tipoHabitacion=" + tipoHabitacion + ", estado=" + estado + '}';
     }
 
   
