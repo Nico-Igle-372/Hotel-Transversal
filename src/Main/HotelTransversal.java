@@ -1,11 +1,8 @@
 package Main;
 
-
-
 import AccesoADatos.ABMHuesped;
 import AccesoADatos.Conexion;
 import Entidades.Huesped;
-
 
 public class HotelTransversal {
     public static void main(String[] args) {
