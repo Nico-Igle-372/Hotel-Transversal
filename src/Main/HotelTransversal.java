@@ -1,12 +1,12 @@
 package Main;
 
-<<<<<<< HEAD
-=======
+
+
 import AccesoADatos.ABMHuesped;
 import AccesoADatos.Conexion;
 import Entidades.Huesped;
 
->>>>>>> Franco
+
 public class HotelTransversal {
     public static void main(String[] args) {
         
