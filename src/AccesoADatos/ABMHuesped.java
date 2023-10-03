@@ -149,6 +149,30 @@ public class ABMHuesped {
         }
         
     }
+    
+    public void modificarHuesped(Huesped h){
+      String sql="UPDATE `huesped` SET `nombre`=?,`domicilio`=?,`correo`=?,`"
+              + "celular`=? WHERE dni=?";
+      PreparedStatement ps=null;
+        try {
+            ps=conn.prepareStatement(sql);
+            ps.setInt(5,h.getDni());
+            ps.setString(1,h.getNombre());
+            ps.setString(2, h.getDomicilio());
+            ps.setString(3, h.getCorreo());
+            ps.setLong(4, h.getCelular());
+            int registro=ps.executeUpdate();
+            if(registro==0){
+              JOptionPane.showMessageDialog(null," No se modifico el huesped");
+            }else{
+              JOptionPane.showMessageDialog(null," Se modifico el huesped");  
+            }
+            ps.close();
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null," Error al modificar huesped");
+        }
+      
+    }
    
     
 }

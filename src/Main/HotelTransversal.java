@@ -11,7 +11,7 @@ public class HotelTransversal {
     public static void main(String[] args) {
         
         Conexion con=new Conexion("jdbc:mariadb://localhost:3306/", "hotel31", "root", "");
-        Huesped h=new Huesped("Kerlin Joan","Coldaroli 949","Kerlin@gmail.com",38018000,154749769, true);
+        Huesped h=new Huesped("Kerlin Michael","Coldaroli 949","Kerlin@gmail.com",38018000,154749769, true);
         ABMHuesped abmH=new ABMHuesped();
 //        abmH.guardarHuesped(h);
 //        abmH.listarHuespedes();
@@ -19,6 +19,8 @@ public class HotelTransversal {
 //            System.out.println(listahues);
 //        }
 //            System.out.println(abmH.buscarHuesped(38018000));
-          abmH.altaHuesped(38018311);
+//          abmH.altaHuesped(38018311);
+
+        abmH.modificarHuesped(h);
     }
 }
