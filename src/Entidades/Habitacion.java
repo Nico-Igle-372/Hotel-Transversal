@@ -15,6 +15,11 @@ public class Habitacion {
         this.estado = estado;
     }
 
+    public Habitacion(TipoHabitacion tipoHabitacion, boolean estado) {
+        this.tipoHabitacion = tipoHabitacion;
+        this.estado = estado;
+    }
+
     public int getidhabitacion() {
         return idHabitacion;
     }
