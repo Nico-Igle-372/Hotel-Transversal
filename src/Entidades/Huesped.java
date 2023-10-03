@@ -1,7 +1,5 @@
-/*
-
-*/
 package Entidades;
+
 public class Huesped {
     
     private int idHuesped;
