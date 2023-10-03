@@ -10,8 +10,9 @@ public class Reserva {
    private LocalDate fechaEntrada;
    private LocalDate fechaSalida;
    private double importeTotal;
+   private boolean estado;
 
-    public Reserva(int idReserva, Huesped huesped, int cantPersonas, Habitacion habitacion, LocalDate fechaEntrada, LocalDate fechaSalida, double importeTotal) {
+    public Reserva(int idReserva, Huesped huesped, int cantPersonas, Habitacion habitacion, LocalDate fechaEntrada, LocalDate fechaSalida, double importeTotal, boolean estado) {
         this.idReserva = idReserva;
         this.huesped = huesped;
         this.cantPersonas = cantPersonas;
@@ -19,15 +20,17 @@ public class Reserva {
         this.fechaEntrada = fechaEntrada;
         this.fechaSalida = fechaSalida;
         this.importeTotal = importeTotal;
+        this.estado=estado;
     }
 
-    public Reserva(Huesped huesped, int cantPersonas, Habitacion habitacion, LocalDate fechaEntrada, LocalDate fechaSalida, double importeTotal) {
+    public Reserva(Huesped huesped, int cantPersonas, Habitacion habitacion, LocalDate fechaEntrada, LocalDate fechaSalida, double importeTotal,boolean estado) {
         this.huesped = huesped;
         this.cantPersonas = cantPersonas;
         this.habitacion = habitacion;
         this.fechaEntrada = fechaEntrada;
         this.fechaSalida = fechaSalida;
         this.importeTotal = importeTotal;
+        this.estado=estado;
     }
 
     public Reserva() {
@@ -88,6 +91,15 @@ public class Reserva {
     public void setImporteTotal(double importeTotal) {
         this.importeTotal = importeTotal;
     }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+    
 
     @Override
     public String toString() {
