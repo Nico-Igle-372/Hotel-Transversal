@@ -1,10 +1,9 @@
 package Entidades;
 
 public class Habitacion {
-    
     private int idHabitacion;
     private TipoHabitacion tipoHabitacion;
-    private boolean estado;  
+    private boolean estado;
 
     public Habitacion() {
     }
@@ -16,7 +15,6 @@ public class Habitacion {
     }
 
     public Habitacion(TipoHabitacion tipoHabitacion, boolean estado) {
-
         this.tipoHabitacion = tipoHabitacion;
         this.estado = estado;
     }
@@ -25,10 +23,8 @@ public class Habitacion {
         return idHabitacion;
     }
 
-
     public void setIdHabitacion(int idHabitacion) {
         this.idHabitacion = idHabitacion;
-
 
     }
 
@@ -52,10 +48,4 @@ public class Habitacion {
     public String toString() {
         return "Habitacion{" + "idHabitacion=" + idHabitacion + ", tipoHabitacion=" + tipoHabitacion + ", estado=" + estado + '}';
     }
-
-  
 }
-   
-    
-    
-

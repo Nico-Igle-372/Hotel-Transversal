@@ -1,0 +1,183 @@
+package AccesoADatos;
+
+import Entidades.Habitacion;
+import Entidades.TipoHabitacion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
+public class ABMHabitacion {
+
+    private Connection conn = null;
+
+    public ABMHabitacion() {
+        conn = Conexion.getConexion();
+    }
+
+    public void crearHabitacion(Habitacion habitacion) {
+        String sql = "INSERT INTO habitacion (idTipoHabitacion, estado) VALUES (?, ?)";
+        PreparedStatement ps = null;
+
+        try {
+            ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, habitacion.gettipoHabitacion().getIdTipo());
+            ps.setBoolean(2, true);
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                habitacion.setIdHabitacion(rs.getInt(1));
+                JOptionPane.showMessageDialog(null, "Habitacion creada");
+            } else {
+                JOptionPane.showMessageDialog(null, "Habitacion no creada");
+            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al crear habitacion");
+        }
+    }
+
+    public void ocuparHabitacion(int idH) {  // ocupar no solo por reserva sino tambien por fumagacion o refaccion
+        String sql = "UPDATE habitacion SET estado = 1 WHERE idHabitacion = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, idH);
+            int registro = ps.executeUpdate();
+            if (registro == 1) {
+                JOptionPane.showMessageDialog(null, "Habitacion a sido ocupada");
+            } else {
+                JOptionPane.showMessageDialog(null, "Esa habitacion no existe");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al ocupar la habitacion");
+        }
+    }
+
+    public void liberarHabitacion(int idH) {
+        String sql = "UPDATE habitacion SET estado = 0 WHERE idHabitacion = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, idH);
+            int registro = ps.executeUpdate();
+            if (registro == 1) {
+                JOptionPane.showMessageDialog(null, "Habitacion a sido liberada");
+            } else {
+                JOptionPane.showMessageDialog(null, "Esa habitacion no existe");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al liberar la habitacion");
+        }
+    }
+
+    public void modificarHabitacion(Habitacion habi) {
+        String sql = "UPDATE habitacion SET idTipoHabitacion = ? WHERE idHabitacion = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, habi.gettipoHabitacion().getIdTipo());
+            ps.setInt(2, habi.getidHabitacion());
+            int registro = ps.executeUpdate();
+            if (registro > 0) {
+                JOptionPane.showMessageDialog(null, "Habitacion modificada");
+            } else {
+                JOptionPane.showMessageDialog(null, "Habitacion no encontrada (?)");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al modificar la habitacion");
+        }
+    }
+
+    public TipoHabitacion buscarTipoHabitacion(int idTH) {
+        TipoHabitacion tipoH = new TipoHabitacion();
+        String sql = "SELECT * FROM tipodehabitacion WHERE idTipoHabitacion = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, idTH);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                tipoH.setIdTipo(idTH);
+                tipoH.setNombre(rs.getString("nombre"));
+                tipoH.setCapacidad(rs.getInt("capacidad"));
+                tipoH.setCantCamas(rs.getInt("cantCamas"));
+                tipoH.setTipoCamas(rs.getString("tipoCamas"));
+                tipoH.setPrecioNoche(rs.getDouble("precioNoche"));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar el tipo de habitacion");
+        }
+        return tipoH;
+    }
+
+    public Habitacion buscarHabitacion(int idH) {
+        Habitacion habi = new Habitacion();
+        String sql = "SELECT * FROM habitacion WHERE idHabitacion = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, idH);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                habi.setIdHabitacion(idH);
+                TipoHabitacion tipoH = buscarTipoHabitacion(rs.getInt("idTipoHabitacion"));
+                habi.settipoHabitacion(tipoH);
+                habi.setEstado(rs.getBoolean("estado"));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al modificar la habitacion");
+        }
+        return habi;
+    }
+
+    public void cambiarPrecio(int idTH, double precio) {
+        String sql = "UPDATE tipodehabitacion SET precioNoche = ? WHERE idTipoHabitacion = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setDouble(1, precio);
+            ps.setInt(2, idTH);
+            int registro = ps.executeUpdate();
+            if (registro > 0) {
+                JOptionPane.showMessageDialog(null, "Precio modificado");
+            } else {
+                JOptionPane.showMessageDialog(null, "Tipo de Habitacion inexistente");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al cambiar el precio");
+        }
+    }
+
+    public List<Habitacion> listarPorTipo(int idTH) {
+        List<Habitacion> habitaciones = new ArrayList<>();
+        TipoHabitacion tipoH = buscarTipoHabitacion(idTH);
+        String sql = "SELECT * FROM habitacion WHERE idTipoHabitacion = ? AND estado = 1";
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, idTH);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Habitacion habi = new Habitacion();
+                habi.setIdHabitacion(rs.getInt("idHabitacion"));
+                habi.settipoHabitacion(tipoH);
+                habi.setEstado(rs.getBoolean("estado"));
+                habitaciones.add(habi);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al listar por tipo");
+        }
+        return habitaciones;
+    }
+    // listaDesocupados, listaOcupadas
+}
