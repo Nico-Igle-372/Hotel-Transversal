@@ -15,11 +15,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.mariadb.jdbc.Statement;
 
 public class ABMReserva {
 
     private Connection conn;
     private ABMHabitacion ABMH = new ABMHabitacion();
+    private ABMHuesped ABMHues=new ABMHuesped();
 
     public ABMReserva() {
         conn = Conexion.getConexion();
@@ -56,6 +58,59 @@ public class ABMReserva {
         }
         return disponibles;
     }
+    
+    public void crearReserva(Reserva reserva){
+        String sql="INSERT INTO `reserva`"
+       + "( `idHabitacion`, `idHuesped`, `cantPersonas`, `fechaEntrada`, `fechaSalida`,"
+       + " `importeTotal`, `estado`) "
+       + "VALUES (?,?,?,?,?,?,?)";
+        
+        PreparedStatement ps=null;
+        
+        try {
+            ps=conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1,reserva.getHabitacion().getidHabitacion());
+            ps.setInt(2,reserva.getHuesped().getIdHuesped());
+            ps.setInt(3,reserva.getCantPersonas());
+            ps.setDate(4,Date.valueOf(reserva.getFechaEntrada()));
+            ps.setDate(5,Date.valueOf(reserva.getFechaSalida()));
+            ps.setDouble(6, reserva.getImporteTotal());
+            ps.setBoolean(7, reserva.isEstado());
+            ps.executeUpdate();
+            ResultSet rs=ps.getGeneratedKeys();
+            if(rs.next()){
+                reserva.setIdReserva(rs.getInt(1));
+                JOptionPane.showMessageDialog(null,"Reserva generada");
+            }else{
+                JOptionPane.showMessageDialog(null, "No se pudo crear la reserva");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "Error al crear la reserva");
+        }
+    }
+    
+    public void cancelarReserva(int idR){
+       
+        String sql="UPDATE `reserva` SET `estado`=0 WHERE reserva.idReserva=?";
+        PreparedStatement ps=null;
+        try {
+            ps=conn.prepareStatement(sql);
+            ps.setInt(1, idR);
+            int registro=ps.executeUpdate();
+            if(registro==1){
+                JOptionPane.showMessageDialog(null, "Reserva cancelada");
+            }else{
+                JOptionPane.showMessageDialog(null, "No existe esa reserva");
+            }
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "Error al cancelar la reserva");
+        }
+  
+    }
+    
+    
+    
     // cancelar reserva, buscar reserva por huesped, buscar reserva por fecha, calcular monto estadia, lista reservas, modificar reserva
-
+    
 }
