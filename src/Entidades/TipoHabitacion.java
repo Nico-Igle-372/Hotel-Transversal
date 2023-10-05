@@ -78,6 +78,6 @@ public class TipoHabitacion {
 
     @Override
     public String toString() {
-        return nombre + ", " + capacidad;
+        return nombre + ", para " + capacidad;
     }
 }

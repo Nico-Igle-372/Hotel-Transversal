@@ -75,12 +75,12 @@ public class ABMHabitacion {
         }
     }
 
-    public void modificarHabitacion(Habitacion habi) {
+    public void modificarHabitacion(Habitacion habi, int idTH) {
         String sql = "UPDATE habitacion SET idTipoHabitacion = ? WHERE idHabitacion = ?";
         PreparedStatement ps = null;
         try {
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, habi.gettipoHabitacion().getIdTipo());
+            ps.setInt(1, idTH);
             ps.setInt(2, habi.getidHabitacion());
             int registro = ps.executeUpdate();
             if (registro > 0) {
@@ -104,7 +104,7 @@ public class ABMHabitacion {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 tipoH.setIdTipo(idTH);
-                tipoH.setNombre(rs.getString("nombre"));
+                tipoH.setNombre(rs.getString("nombreTipo"));
                 tipoH.setCapacidad(rs.getInt("capacidad"));
                 tipoH.setCantCamas(rs.getInt("cantCamas"));
                 tipoH.setTipoCamas(rs.getString("tipoCamas"));
@@ -160,7 +160,7 @@ public class ABMHabitacion {
     public List<Habitacion> listarPorTipo(int idTH) {
         List<Habitacion> habitaciones = new ArrayList<>();
         TipoHabitacion tipoH = buscarTipoHabitacion(idTH);
-        String sql = "SELECT * FROM habitacion WHERE idTipoHabitacion = ? AND estado = 1";
+        String sql = "SELECT * FROM habitacion WHERE idTipoHabitacion = ?";
         PreparedStatement ps = null;
         try {
             ps = conn.prepareStatement(sql);
@@ -179,5 +179,48 @@ public class ABMHabitacion {
         }
         return habitaciones;
     }
-    // listaDesocupados, listaOcupadas
+    
+    public List<Habitacion> listaOcupadas(){
+        List<Habitacion> ocupadas = new ArrayList<>();
+        String sql = "SELECT * FROM habitacion WHERE estado = 1";
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Habitacion habi = new Habitacion();
+                habi.setIdHabitacion(rs.getInt("idHabitacion"));
+                TipoHabitacion tipoH = buscarTipoHabitacion(rs.getInt("idTipoHabitacion"));
+                habi.settipoHabitacion(tipoH);
+                habi.setEstado(rs.getBoolean("estado"));
+                ocupadas.add(habi);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al listar ocupadas");
+        }
+        return ocupadas;
+    }
+    
+    public List<Habitacion> listaDesocupadas(){
+        List<Habitacion> desocupadas = new ArrayList<>();
+        String sql = "SELECT * FROM habitacion WHERE estado = 0";
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Habitacion habi = new Habitacion();
+                habi.setIdHabitacion(rs.getInt("idHabitacion"));
+                TipoHabitacion tipoH = buscarTipoHabitacion(rs.getInt("idTipoHabitacion"));
+                habi.settipoHabitacion(tipoH);
+                habi.setEstado(rs.getBoolean("estado"));
+                desocupadas.add(habi);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al listar desocupadas");
+        }
+        return desocupadas;
+    }
 }
