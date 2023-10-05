@@ -94,6 +94,30 @@ public class ABMHuesped {
         return h;
     }
 
+    public Huesped buscarHuespedPorId(int idH) {
+        Huesped h = new Huesped();
+        String sql = "SELECT * FROM `huesped` WHERE idHuesped=?";
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, idH);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                h.setIdHuesped(idH);
+                h.setNombre(rs.getString("nombre"));
+                h.setDni(rs.getInt("dni"));
+                h.setDomicilio(rs.getString("domicilio"));
+                h.setCelular(rs.getLong("celular"));
+                h.setCorreo(rs.getString("correo"));
+                h.setEstado(rs.getBoolean("estado"));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar huesped");
+        }
+        return h;
+    }
+    
     public void bajaHuesped(int dni) {
         String sql = "UPDATE `huesped` SET `estado`=0 WHERE dni=? ";
         PreparedStatement ps = null;

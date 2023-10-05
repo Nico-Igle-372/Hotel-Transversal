@@ -8,6 +8,7 @@ import Entidades.Habitacion;
 import Entidades.Huesped;
 import Entidades.TipoHabitacion;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class HotelTransversal {
     public static void main(String[] args) {
@@ -35,6 +36,11 @@ public class HotelTransversal {
 //dataHabi.ocuparHabitacion(5);
 //        System.out.println(dataHabi.listaDesocupadas());
 //dataHabi.modificarHabitacion(habi, 2);
-        System.out.println(dataRes.buscarHabitacionParaReserva(2, LocalDate.of(2023, 10, 04), LocalDate.of(2023, 10, 9)));
+//        System.out.println(dataRes.buscarHabitacionParaReserva(2, LocalDate.of(2023, 10, 04), LocalDate.of(2023, 10, 9)));
+//        dataRes.cancelarReserva(1);
+//        System.out.println(dataRes.buscarPorHuesped(36452738));
+//        int diasEstadia = (int) (ChronoUnit.DAYS.between(LocalDate.of(2023, 9, 04), LocalDate.of(2023, 10, 9)));
+//        System.out.println(diasEstadia);
+//        System.out.println(dataRes.calcularPrecioEstadia(LocalDate.of(2023, 10, 04), LocalDate.of(2023, 10, 9), habi));
     }
 }
