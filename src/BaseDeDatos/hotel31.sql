@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2023 a las 23:24:41
+-- Tiempo de generación: 07-10-2023 a las 01:22:20
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -220,6 +220,7 @@ INSERT INTO `habitacion` (`idHabitacion`, `idTipoHabitacion`, `estado`) VALUES
 CREATE TABLE `huesped` (
   `idHuesped` int(11) NOT NULL,
   `nombre` varchar(80) NOT NULL,
+  `apellido` varchar(50) NOT NULL,
   `dni` int(11) NOT NULL,
   `domicilio` varchar(100) NOT NULL,
   `correo` varchar(60) DEFAULT NULL,
@@ -231,11 +232,12 @@ CREATE TABLE `huesped` (
 -- Volcado de datos para la tabla `huesped`
 --
 
-INSERT INTO `huesped` (`idHuesped`, `nombre`, `dni`, `domicilio`, `correo`, `celular`, `estado`) VALUES
-(1, 'Kerlin Franco', 38018311, 'Coldaroli 949', 'Kerlin@gmail.com', 3454749769, 1),
-(2, 'Iglesias Nicolas', 36452738, 'Beltran 1778', 'nico-igle@gmail.com', 2804354313, 1),
-(3, 'Carrizo Matias', 35564662, 'Nanini 2965', 'maticarrizo@gmail.com', 3525306960, 1),
-(4, 'Gleria Fabio', 31950827, 'Aleu 3619', 'fgleria@gmail.com', 1133441967, 1);
+INSERT INTO `huesped` (`idHuesped`, `nombre`, `apellido`, `dni`, `domicilio`, `correo`, `celular`, `estado`) VALUES
+(1, 'Franco', 'Kerlin ', 38018311, 'Coldaroli 949', 'Kerlin@gmail.com', 3454749769, 0),
+(2, 'Nicolas', 'Iglesias', 36452738, 'Beltran 1778', 'nico-igle@gmail.com', 2804354313, 1),
+(3, 'Matias', 'Carrizo', 35564662, 'Nanini 2965', 'maticarrizo@gmail.com', 3525306960, 1),
+(4, 'Fabio', 'Gleria', 31950827, 'Aleu 3619', 'fgleria@gmail.com', 1133441967, 1),
+(5, 'Jose', 'Herling', 39000000, 'Mitre 321', 'Jorge@gmail.com', 3454786980, 1);
 
 -- --------------------------------------------------------
 
@@ -335,7 +337,7 @@ ALTER TABLE `habitacion`
 -- AUTO_INCREMENT de la tabla `huesped`
 --
 ALTER TABLE `huesped`
-  MODIFY `idHuesped` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idHuesped` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `reserva`
