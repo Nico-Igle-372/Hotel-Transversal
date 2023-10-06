@@ -111,8 +111,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBotonReservaActionPerformed
 
     private void jBotonHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonHuespedActionPerformed
-      escritorio.removeAll();
-      escritorio.repaint();
+//      escritorio.removeAll();
+//      escritorio.repaint();
       GestionHuesped gh= new GestionHuesped();
       gh.setVisible(true);
       escritorio.add(gh);
