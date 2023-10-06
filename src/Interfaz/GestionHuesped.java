@@ -5,8 +5,9 @@ import Entidades.Huesped;
 import javax.swing.JOptionPane;
 
 public class GestionHuesped extends javax.swing.JInternalFrame {
-    ABMHuesped ABMHues= new ABMHuesped();
-    
+
+    ABMHuesped ABMHues = new ABMHuesped();
+
     public GestionHuesped() {
         initComponents();
     }
@@ -29,14 +30,14 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         jTextoCorreo = new javax.swing.JTextField();
         jTextoCelular = new javax.swing.JTextField();
         jTextoEstado = new javax.swing.JTextField();
-        jBotonGuardar = new javax.swing.JToggleButton();
-        jBotonModificar = new javax.swing.JToggleButton();
-        jBotonSalir = new javax.swing.JToggleButton();
-        jBotonAltaBaja = new javax.swing.JToggleButton();
         jBotonBuscar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jTextoApellido = new javax.swing.JTextField();
-        jBotonLimpiar = new javax.swing.JToggleButton();
+        botonGuardar = new javax.swing.JButton();
+        botonModificar = new javax.swing.JButton();
+        botonLimpiar = new javax.swing.JButton();
+        botonSalir = new javax.swing.JButton();
+        botonAltaBaja = new javax.swing.JButton();
 
         jLabel1.setText("Gestion Huesped");
 
@@ -52,34 +53,6 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Estado");
 
-        jBotonGuardar.setText("Guardar");
-        jBotonGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBotonGuardarActionPerformed(evt);
-            }
-        });
-
-        jBotonModificar.setText("Modificar");
-        jBotonModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBotonModificarActionPerformed(evt);
-            }
-        });
-
-        jBotonSalir.setText("Salir");
-        jBotonSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBotonSalirActionPerformed(evt);
-            }
-        });
-
-        jBotonAltaBaja.setText("Baja/Alta");
-        jBotonAltaBaja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBotonAltaBajaActionPerformed(evt);
-            }
-        });
-
         jBotonBuscar.setText("Buscar");
         jBotonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,10 +62,38 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Apellido");
 
-        jBotonLimpiar.setText("Limpiar");
-        jBotonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+        botonGuardar.setText("Guardar");
+        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBotonLimpiarActionPerformed(evt);
+                botonGuardarActionPerformed(evt);
+            }
+        });
+
+        botonModificar.setText("Modificar");
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarActionPerformed(evt);
+            }
+        });
+
+        botonLimpiar.setText("Limpiar");
+        botonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonLimpiarActionPerformed(evt);
+            }
+        });
+
+        botonSalir.setText("Salir");
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
+
+        botonAltaBaja.setText("Baja/Alta");
+        botonAltaBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAltaBajaActionPerformed(evt);
             }
         });
 
@@ -103,14 +104,6 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jBotonGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBotonModificar)
-                        .addGap(90, 90, 90)
-                        .addComponent(jBotonLimpiar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-                        .addComponent(jBotonSalir))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -127,16 +120,24 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                             .addComponent(jTextoDireccion)
                             .addComponent(jTextoCorreo)
                             .addComponent(jTextoCelular)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextoEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBotonAltaBaja, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextoDni)
+                                .addComponent(jTextoDni, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jBotonBuscar))
-                            .addComponent(jTextoApellido))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jTextoApellido)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextoEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(botonAltaBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 99, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(botonGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonModificar)
+                        .addGap(89, 89, 89)
+                        .addComponent(botonLimpiar)
+                        .addGap(107, 107, 107)
+                        .addComponent(botonSalir)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -173,13 +174,13 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jTextoEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBotonAltaBaja))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                    .addComponent(botonAltaBaja))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBotonGuardar)
-                    .addComponent(jBotonModificar)
-                    .addComponent(jBotonSalir)
-                    .addComponent(jBotonLimpiar))
+                    .addComponent(botonSalir)
+                    .addComponent(botonLimpiar)
+                    .addComponent(botonModificar)
+                    .addComponent(botonGuardar))
                 .addContainerGap())
         );
 
@@ -198,84 +199,93 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonBuscarActionPerformed
-      try{
-          Huesped hues= ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText()));
-          if(hues!=null){
-          jTextoNombre.setText(hues.getNombre());
-          jTextoApellido.setText(hues.getApellido());
-          jTextoDireccion.setText(hues.getDomicilio());
-          jTextoCorreo.setText(hues.getCorreo());
-          jTextoCelular.setText(hues.getCelular()+"");
-          jTextoEstado.setText(hues.isEstado()?"Activo":"Inactivo");
-          if(hues.isEstado()){
-              jBotonAltaBaja.setText("Baja");
-          }else{
-              jBotonAltaBaja.setText("Alta");
-          }
-          }else{
-              JOptionPane.showMessageDialog(null,"No Se encontro huesped con ese dni");
-          }
-      }catch(NumberFormatException | NullPointerException ex){
-          
-      }
+        try {
+            Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText()));
+            if (hues.getIdHuesped() != 0) {
+                jTextoNombre.setText(hues.getNombre());
+                jTextoApellido.setText(hues.getApellido());
+                jTextoDireccion.setText(hues.getDomicilio());
+                jTextoCorreo.setText(hues.getCorreo());
+                jTextoCelular.setText(hues.getCelular() + "");
+                jTextoEstado.setText(hues.isEstado() ? "Activo" : "Inactivo");
+                if (hues.isEstado()) {
+                    botonAltaBaja.setText("Baja");
+                } else {
+                    botonAltaBaja.setText("Alta");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontro huesped con ese dni");
+            }
+        } catch (NumberFormatException | NullPointerException ex) {
+            
+        }
     }//GEN-LAST:event_jBotonBuscarActionPerformed
 
-    private void jBotonAltaBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonAltaBajaActionPerformed
-       Huesped hues=ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText())); 
-        if(hues.isEstado()){
-            ABMHues.bajaHuesped(hues.getDni());
-             jBotonAltaBaja.setText("Baja");
-        }else{
-             ABMHues.altaHuesped(hues.getDni());
-              jBotonAltaBaja.setText("Alta");
+    private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
+        Huesped hues = new Huesped();
+        hues.setDni(Integer.parseInt(jTextoDni.getText()));
+        hues.setNombre(jTextoNombre.getText());
+        hues.setApellido(jTextoApellido.getText());
+        hues.setDomicilio(jTextoDireccion.getText());
+        hues.setCorreo(jTextoCorreo.getText());
+        hues.setCelular(Long.parseLong(jTextoCelular.getText()));
+        hues.setEstado(true);
+        Huesped hues2 = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText()));
+        if (hues2 == null) {
+            ABMHues.guardarHuesped(hues);
+        } else {
+            JOptionPane.showMessageDialog(null, "Ya existe un huesped con ese dni");
         }
-        jTextoEstado.setText(hues.isEstado()?"Activo":"Inactivo");
-    }//GEN-LAST:event_jBotonAltaBajaActionPerformed
+    }//GEN-LAST:event_botonGuardarActionPerformed
 
-    private void jBotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonGuardarActionPerformed
-      Huesped hues=new Huesped();
-      hues.setDni(Integer.parseInt(jTextoDni.getText()));
-      hues.setNombre(jTextoNombre.getText());
-      hues.setApellido(jTextoApellido.getText());
-      hues.setDomicilio(jTextoDireccion.getText());
-      hues.setCorreo(jTextoCorreo.getText());
-      hues.setCelular(Long.parseLong(jTextoCelular.getText()));
-      hues.setEstado(true);
-      Huesped hues2=ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText()));
-      if(hues2==null){
-         ABMHues.guardarHuesped(hues); 
-      }else{
-          JOptionPane.showMessageDialog(null,"Ya existe un huesped con ese dni");
-      }
-    }//GEN-LAST:event_jBotonGuardarActionPerformed
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        Huesped hues = new Huesped();
+        hues.setDni(Integer.parseInt(jTextoDni.getText()));
+        hues.setNombre(jTextoNombre.getText());
+        hues.setApellido(jTextoApellido.getText());
+        hues.setDomicilio(jTextoDireccion.getText());
+        hues.setCorreo(jTextoCorreo.getText());
+        hues.setCelular(Long.parseLong(jTextoCelular.getText()));
+        hues.setEstado(true);
+        ABMHues.modificarHuesped(hues);
+    }//GEN-LAST:event_botonModificarActionPerformed
 
-    private void jBotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonSalirActionPerformed
-       dispose();
-    }//GEN-LAST:event_jBotonSalirActionPerformed
-
-    private void jBotonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonLimpiarActionPerformed
+    private void botonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLimpiarActionPerformed
         vaciar();
-    }//GEN-LAST:event_jBotonLimpiarActionPerformed
+    }//GEN-LAST:event_botonLimpiarActionPerformed
 
-    private void jBotonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonModificarActionPerformed
-       Huesped hues=new Huesped();
-      hues.setDni(Integer.parseInt(jTextoDni.getText()));
-      hues.setNombre(jTextoNombre.getText());
-      hues.setApellido(jTextoApellido.getText());
-      hues.setDomicilio(jTextoDireccion.getText());
-      hues.setCorreo(jTextoCorreo.getText());
-      hues.setCelular(Long.parseLong(jTextoCelular.getText()));
-      hues.setEstado(true);
-      ABMHues.modificarHuesped(hues);
-    }//GEN-LAST:event_jBotonModificarActionPerformed
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_botonSalirActionPerformed
+
+    private void botonAltaBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAltaBajaActionPerformed
+        try {
+            Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText()));
+            if (hues.getIdHuesped() != 0) {
+                if (hues.isEstado()) {
+                    ABMHues.bajaHuesped(hues.getDni());
+                    botonAltaBaja.setText("Alta");
+                } else {
+                    ABMHues.altaHuesped(hues.getDni());
+                    botonAltaBaja.setText("Baja");
+                }
+                jTextoEstado.setText(hues.isEstado() ? "Inactivo" : "Activo");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "No se encontro huesped con ese dni");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Revise el dni");
+        }
+    }//GEN-LAST:event_botonAltaBajaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton jBotonAltaBaja;
+    private javax.swing.JButton botonAltaBaja;
+    private javax.swing.JButton botonGuardar;
+    private javax.swing.JButton botonLimpiar;
+    private javax.swing.JButton botonModificar;
+    private javax.swing.JButton botonSalir;
     private javax.swing.JButton jBotonBuscar;
-    private javax.swing.JToggleButton jBotonGuardar;
-    private javax.swing.JToggleButton jBotonLimpiar;
-    private javax.swing.JToggleButton jBotonModificar;
-    private javax.swing.JToggleButton jBotonSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -294,13 +304,13 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextoNombre;
     // End of variables declaration//GEN-END:variables
 
-   public void vaciar(){
-       jTextoCelular.setText("");
-       jTextoCorreo.setText("");
-       jTextoDireccion.setText("");
-       jTextoDni.setText("");
-       jTextoNombre.setText("");
-       jTextoEstado.setText("");
-       jTextoApellido.setText("");
-   }
+    public void vaciar() {
+        jTextoCelular.setText("");
+        jTextoCorreo.setText("");
+        jTextoDireccion.setText("");
+        jTextoDni.setText("");
+        jTextoNombre.setText("");
+        jTextoEstado.setText("");
+        jTextoApellido.setText("");
+    }
 }
