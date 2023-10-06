@@ -18,18 +18,19 @@ public class ABMHuesped {
     }
 
     public void guardarHuesped(Huesped huesped) {
-        String sql = "INSERT INTO `huesped`( `nombre`, `dni`, `domicilio`, `correo`, `celular`, `estado`) "
-                + "VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO `huesped`( `nombre`,apellido, `dni`, `domicilio`, `correo`, `celular`, `estado`) "
+                + "VALUES (?,?,?,?,?,?,?)";
 
         PreparedStatement ps = null;
         try {
             ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, huesped.getNombre());
-            ps.setInt(2, huesped.getDni());
-            ps.setString(3, huesped.getDomicilio());
-            ps.setString(4, huesped.getCorreo());
-            ps.setLong(5, huesped.getCelular());
-            ps.setBoolean(6, true);
+            ps.setString(2,huesped.getApellido());
+            ps.setInt(3, huesped.getDni());
+            ps.setString(4, huesped.getDomicilio());
+            ps.setString(5, huesped.getCorreo());
+            ps.setLong(6, huesped.getCelular());
+            ps.setBoolean(7, true);
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -56,6 +57,7 @@ public class ABMHuesped {
                 Huesped h = new Huesped();
                 h.setIdHuesped(rs.getInt("idHuesped"));
                 h.setNombre(rs.getString("nombre"));
+                h.setApellido(rs.getString("apellido"));
                 h.setDni(rs.getInt("dni"));
                 h.setDomicilio(rs.getString("domicilio"));
                 h.setCorreo(rs.getString("correo"));
@@ -81,6 +83,7 @@ public class ABMHuesped {
             while (rs.next()) {
                 h.setIdHuesped(rs.getInt("idHuesped"));
                 h.setNombre(rs.getString("nombre"));
+                h.setApellido(rs.getString("apellido"));
                 h.setDni(rs.getInt("dni"));
                 h.setDomicilio(rs.getString("domicilio"));
                 h.setCelular(rs.getLong("celular"));
@@ -105,6 +108,7 @@ public class ABMHuesped {
             while (rs.next()) {
                 h.setIdHuesped(idH);
                 h.setNombre(rs.getString("nombre"));
+                h.setApellido(rs.getString("apellido"));
                 h.setDni(rs.getInt("dni"));
                 h.setDomicilio(rs.getString("domicilio"));
                 h.setCelular(rs.getLong("celular"));
@@ -155,16 +159,17 @@ public class ABMHuesped {
     }
 
     public void modificarHuesped(Huesped h) {
-        String sql = "UPDATE `huesped` SET `nombre`=?,`domicilio`=?,`correo`=?,`"
+        String sql = "UPDATE `huesped` SET `nombre`=?,apellido=?, `domicilio`=?,`correo`=?,`"
                 + "celular`=? WHERE dni=?";
         PreparedStatement ps = null;
         try {
             ps = conn.prepareStatement(sql);
-            ps.setInt(5, h.getDni());
+            ps.setInt(6, h.getDni());
             ps.setString(1, h.getNombre());
-            ps.setString(2, h.getDomicilio());
-            ps.setString(3, h.getCorreo());
-            ps.setLong(4, h.getCelular());
+            ps.setString(2, h.getApellido());
+            ps.setString(3, h.getDomicilio());
+            ps.setString(4, h.getCorreo());
+            ps.setLong(5, h.getCelular());
             int registro = ps.executeUpdate();
             if (registro == 0) {
                 JOptionPane.showMessageDialog(null, " No se modifico el huesped");

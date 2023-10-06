@@ -14,7 +14,7 @@ public class HotelTransversal {
     public static void main(String[] args) {
         
         Conexion con=new Conexion("jdbc:mariadb://localhost:3306/", "hotel31", "root", "");
-        Huesped h=new Huesped("Iglesias Nicolas","Beltran 1778","nico-igle@gmail.com",36452738, 2804354313L, true);
+//        Huesped h=new Huesped("Iglesias Nicolas","Beltran 1778","nico-igle@gmail.com",36452738, 2804354313L, true);
         ABMHuesped abmH=new ABMHuesped();
         ABMHabitacion dataHabi = new ABMHabitacion();
         ABMReserva dataRes = new ABMReserva();

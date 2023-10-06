@@ -3,7 +3,7 @@ package Entidades;
 public class Huesped {
     
     private int idHuesped;
-    private String nombre, domicilio, correo;
+    private String nombre,apellido, domicilio, correo;
     private int dni; 
     private long celular; 
             
@@ -12,8 +12,9 @@ public class Huesped {
     public Huesped() {
     }
 
-    public Huesped(String nombre, String domicilio, String correo, int dni, long celular, boolean estado) {
+    public Huesped(String nombre,String apellido, String domicilio, String correo, int dni, long celular, boolean estado) {
         this.nombre = nombre;
+        this.apellido=apellido;
         this.domicilio = domicilio;
         this.correo = correo;
         this.dni = dni;
@@ -21,9 +22,10 @@ public class Huesped {
         this.estado = estado;
     }
 
-    public Huesped(int idHuesped, String nombre, String domicilio, String correo, int dni, long celular, boolean estado) {
+    public Huesped(int idHuesped, String nombre,String apellido, String domicilio, String correo, int dni, long celular, boolean estado) {
         this.idHuesped = idHuesped;
         this.nombre = nombre;
+        this.apellido=apellido;
         this.domicilio = domicilio;
         this.correo = correo;
         this.dni = dni;
@@ -47,6 +49,14 @@ public class Huesped {
         this.nombre = nombre;
     }
 
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+    
     public String getDomicilio() {
         return domicilio;
     }
@@ -89,8 +99,10 @@ public class Huesped {
 
     @Override
     public String toString() {
-        return "Huesped{" + "idHuesped=" + idHuesped + ", nombre=" + nombre + ", domicilio=" + domicilio + ", correo=" + correo + ", dni=" + dni + ", celular=" + celular + ", estado=" + estado + '}';
+        return "Huesped{" + "idHuesped=" + idHuesped + ", nombre=" + nombre + ", apellido=" + apellido + ", domicilio=" + domicilio + ", correo=" + correo + ", dni=" + dni + ", celular=" + celular + ", estado=" + estado + '}';
     }
+
+  
     
     
     
