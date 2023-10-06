@@ -1,10 +1,8 @@
-
 package Interfaz;
 
 import AccesoADatos.ABMHuesped;
 import Entidades.Huesped;
 import javax.swing.JOptionPane;
-
 
 public class GestionHuesped extends javax.swing.JInternalFrame {
     ABMHuesped ABMHues= new ABMHuesped();
@@ -13,7 +11,6 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         initComponents();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -36,7 +33,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         jBotonModificar = new javax.swing.JToggleButton();
         jBotonSalir = new javax.swing.JToggleButton();
         jBotonAltaBaja = new javax.swing.JToggleButton();
-        jButton1 = new javax.swing.JButton();
+        jBotonBuscar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jTextoApellido = new javax.swing.JTextField();
         jBotonLimpiar = new javax.swing.JToggleButton();
@@ -54,18 +51,6 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         jLabel6.setText("Celular");
 
         jLabel7.setText("Estado");
-
-        jTextoDni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextoDniActionPerformed(evt);
-            }
-        });
-
-        jTextoNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextoNombreActionPerformed(evt);
-            }
-        });
 
         jBotonGuardar.setText("Guardar");
         jBotonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -95,20 +80,14 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBotonBuscar.setText("Buscar");
+        jBotonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBotonBuscarActionPerformed(evt);
             }
         });
 
         jLabel8.setText("Apellido");
-
-        jTextoApellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextoApellidoActionPerformed(evt);
-            }
-        });
 
         jBotonLimpiar.setText("Limpiar");
         jBotonLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +134,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jTextoDni)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1))
+                                .addComponent(jBotonBuscar))
                             .addComponent(jTextoApellido))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -169,7 +148,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextoDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jBotonBuscar))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -218,15 +197,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextoDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextoDniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextoDniActionPerformed
-
-    private void jTextoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextoNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextoNombreActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonBuscarActionPerformed
       try{
           Huesped hues= ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText()));
           if(hues!=null){
@@ -244,15 +215,10 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
           }else{
               JOptionPane.showMessageDialog(null,"No Se encontro huesped con ese dni");
           }
-          
       }catch(NumberFormatException | NullPointerException ex){
           
       }
-        
-      
-        
-// TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBotonBuscarActionPerformed
 
     private void jBotonAltaBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonAltaBajaActionPerformed
        Huesped hues=ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText())); 
@@ -281,13 +247,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
       }else{
           JOptionPane.showMessageDialog(null,"Ya existe un huesped con ese dni");
       }
-      
-      
     }//GEN-LAST:event_jBotonGuardarActionPerformed
-
-    private void jTextoApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextoApellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextoApellidoActionPerformed
 
     private void jBotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonSalirActionPerformed
        dispose();
@@ -307,17 +267,15 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
       hues.setCelular(Long.parseLong(jTextoCelular.getText()));
       hues.setEstado(true);
       ABMHues.modificarHuesped(hues);
-      
     }//GEN-LAST:event_jBotonModificarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton jBotonAltaBaja;
+    private javax.swing.JButton jBotonBuscar;
     private javax.swing.JToggleButton jBotonGuardar;
     private javax.swing.JToggleButton jBotonLimpiar;
     private javax.swing.JToggleButton jBotonModificar;
     private javax.swing.JToggleButton jBotonSalir;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
