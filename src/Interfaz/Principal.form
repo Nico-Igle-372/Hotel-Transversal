@@ -71,8 +71,8 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jBotonHabitacion" alignment="1" max="32767" attributes="0"/>
                           <Component id="jBotonReserva" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jBotonSalir" alignment="1" max="32767" attributes="0"/>
                           <Component id="jBotonHuesped" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jBotonSalir" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -88,8 +88,8 @@
                       <Component id="jBotonHabitacion" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="jBotonReserva" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="173" max="32767" attributes="0"/>
-                      <Component id="jBotonSalir" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="144" max="32767" attributes="0"/>
+                      <Component id="jBotonSalir" min="-2" pref="52" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -113,6 +113,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Habitacion"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBotonHabitacionActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jBotonReserva">
               <Properties>
@@ -124,8 +127,11 @@
             </Component>
             <Component class="javax.swing.JToggleButton" name="jBotonSalir">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Salir"/>
+                <Property name="text" type="java.lang.String" value="salir"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBotonSalirActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

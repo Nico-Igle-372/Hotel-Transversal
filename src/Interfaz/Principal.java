@@ -35,6 +35,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel1.setText("Logo");
 
         jBotonHabitacion.setText("Habitacion");
+        jBotonHabitacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBotonHabitacionActionPerformed(evt);
+            }
+        });
 
         jBotonReserva.setText("Reserva");
         jBotonReserva.addActionListener(new java.awt.event.ActionListener() {
@@ -43,7 +48,12 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jBotonSalir.setText("Salir");
+        jBotonSalir.setText("salir");
+        jBotonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBotonSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -58,8 +68,8 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jBotonHabitacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBotonReserva, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBotonSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBotonHuesped, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jBotonHuesped, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBotonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,8 +82,8 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jBotonHabitacion)
                 .addGap(29, 29, 29)
                 .addComponent(jBotonReserva)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
-                .addComponent(jBotonSalir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
+                .addComponent(jBotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -118,6 +128,17 @@ public class Principal extends javax.swing.JFrame {
       escritorio.add(gh);
       escritorio.moveToFront(gh);
     }//GEN-LAST:event_jBotonHuespedActionPerformed
+
+    private void jBotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBotonSalirActionPerformed
+
+    private void jBotonHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonHabitacionActionPerformed
+      GestionHabitacion gh= new GestionHabitacion();
+      gh.setVisible(true);
+      escritorio.add(gh);
+      escritorio.moveToFront(gh);
+    }//GEN-LAST:event_jBotonHabitacionActionPerformed
 
     
     public static void main(String args[]) {

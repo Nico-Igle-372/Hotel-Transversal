@@ -2,6 +2,7 @@ package AccesoADatos;
 
 import Entidades.Habitacion;
 import Entidades.TipoHabitacion;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +10,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ABMHabitacion {
@@ -116,6 +119,31 @@ public class ABMHabitacion {
         }
         return tipoH;
     }
+    
+    public TipoHabitacion buscarTipoHabitacionPorNombre(String nombreTH) {
+        TipoHabitacion tipoH = new TipoHabitacion();
+        String sql = "SELECT * FROM tipodehabitacion WHERE tipodehabitacion.nombreTipo= ?";
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, nombreTH);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                tipoH.setIdTipo(rs.getInt("idTipoHabitacion"));
+                tipoH.setNombre(rs.getString("nombreTipo"));
+                tipoH.setCapacidad(rs.getInt("capacidad"));
+                tipoH.setCantCamas(rs.getInt("cantCamas"));
+                tipoH.setTipoCamas(rs.getString("tipoCamas"));
+                tipoH.setPrecioNoche(rs.getDouble("precioNoche"));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar el tipo de habitacion");
+        }
+        return tipoH;
+    }
+    
+    
 
     public Habitacion buscarHabitacion(int idH) {
         Habitacion habi = new Habitacion();
@@ -223,4 +251,32 @@ public class ABMHabitacion {
         }
         return desocupadas;
     }
+    
+    public List<TipoHabitacion> listarTipoH(){
+       List<TipoHabitacion> tipoHabitaciones= new ArrayList<>();
+       String sql="SELECT * FROM `tipodehabitacion` WHERE 1";
+       PreparedStatement ps=null;
+        try {
+            ps=conn.prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                TipoHabitacion tipoH=new TipoHabitacion();
+                tipoH.setIdTipo(rs.getInt("idTipoHabitacion"));
+                tipoH.setNombre(rs.getString("nombreTipo"));
+                tipoH.setCapacidad(rs.getInt("capacidad"));
+                tipoH.setCantCamas(rs.getInt("cantCamas"));
+                tipoH.setTipoCamas(rs.getString("tipoCamas"));
+                tipoH.setPrecioNoche(rs.getDouble("precioNoche"));
+                tipoHabitaciones.add(tipoH);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al listar los tipos de habitación");
+        }
+       
+       
+       return tipoHabitaciones;
+    }
+    
+    
 }

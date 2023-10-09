@@ -26,7 +26,7 @@ public class HotelTransversal {
 //            System.out.println(listahues);
 //        }
 //            System.out.println(abmH.buscarHuesped(38018000));
-//          abmH.altaHuesped(38018311);
+//          abmH.altaHuesped(38018311);                        
 
 //        abmH.modificarHuesped(h);
 //        dataHabi.crearHabitacion(habi);
@@ -42,5 +42,7 @@ public class HotelTransversal {
 //        int diasEstadia = (int) (ChronoUnit.DAYS.between(LocalDate.of(2023, 9, 04), LocalDate.of(2023, 10, 9)));
 //        System.out.println(diasEstadia);
 //        System.out.println(dataRes.calcularPrecioEstadia(LocalDate.of(2023, 10, 04), LocalDate.of(2023, 10, 9), habi));
+        dataHabi.listaOcupadas();
     }
+    
 }
