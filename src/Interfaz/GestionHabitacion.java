@@ -7,20 +7,20 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 public class GestionHabitacion extends javax.swing.JInternalFrame {
-    ABMHabitacion ABMHabi=new ABMHabitacion();
-    private final DefaultTableModel modeloT=new DefaultTableModel(){
-        public boolean isCellEditable(int fila,int colum){
-            return colum==4;
+    ABMHabitacion ABMHabi = new ABMHabitacion();
+    
+    private final DefaultTableModel modeloT = new DefaultTableModel() {
+        public boolean isCellEditable(int fila, int colum) {
+            return colum == 4;
         }
     };
-    
+
     public GestionHabitacion() {
         initComponents();
-        cargarTipoH();
         armarCabecera();
-        modeloT.setRowCount(0);
+        cargarTipoH();
+        limpiarT();
     }
 
     @SuppressWarnings("unchecked")
@@ -184,33 +184,24 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
-       try{
-           Habitacion habi=ABMHabi.buscarHabitacion(Integer.parseInt(TextoNumero.getText()));
-       if(habi.getidHabitacion()!=0){
-           limpiarT(TablaHabitacion.getRowCount());
-           ComboTipoH.setSelectedItem(habi.gettipoHabitacion().getNombre());
-           TextoEstado.setText(habi.isEstado()?"Ocupada":"Libre");
-           cargarDatos(habi.gettipoHabitacion());
-          
-           
-       }else{
-           JOptionPane.showMessageDialog(null,"No se encontro la habitación");
-       } 
-       }catch(NumberFormatException ex){
-           JOptionPane.showMessageDialog(null,"Ingrese un número valido");
-       }
-      
+        try {
+            limpiarT();
+            Habitacion habi = ABMHabi.buscarHabitacion(Integer.parseInt(TextoNumero.getText()));
+            if (habi.getidHabitacion() != 0) {
+                ComboTipoH.setSelectedItem(habi.gettipoHabitacion().getNombre());
+                TextoEstado.setText(habi.isEstado() ? "Ocupada" : "Libre");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontro la habitación");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Ingrese un número valido");
+        }
     }//GEN-LAST:event_BotonBuscarActionPerformed
 
     private void ComboTipoHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboTipoHActionPerformed
-        TipoHabitacion tH=ABMHabi.buscarTipoHabitacionPorNombre(ComboTipoH.getSelectedItem()+"");
-        
-       
-//            limpiarT(1);
-        
-        
+        TipoHabitacion tH = ABMHabi.buscarTipoHabitacionPorNombre(ComboTipoH.getSelectedItem() + "");
+        limpiarT();
         cargarDatos(tH);
-        
     }//GEN-LAST:event_ComboTipoHActionPerformed
 
     private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
@@ -218,25 +209,20 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BotonSalirActionPerformed
 
     private void BotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGuardarActionPerformed
-      Habitacion h=new Habitacion();
-      
-      try{
-      if(ABMHabi.buscarHabitacion(Integer.parseInt(TextoNumero.getText())).getidHabitacion()==0){
-      h.setIdHabitacion(Integer.parseInt(TextoNumero.getText()));
-      h.settipoHabitacion(ABMHabi.buscarTipoHabitacionPorNombre(ComboTipoH.getSelectedItem()+""));
-      h.setEstado(false);
-      
-      ABMHabi.crearHabitacion(h);
-      }else{
-          JOptionPane.showMessageDialog(null,"Ya existe una habitacion con ese número");
-      }    
-      
-      }catch(NullPointerException | NumberFormatException ex){
-          
-      }
-      
-    }//GEN-LAST:event_BotonGuardarActionPerformed
+        Habitacion h = new Habitacion();
+        try {
+            if (ABMHabi.buscarHabitacion(Integer.parseInt(TextoNumero.getText())).getidHabitacion() == 0) {
+                h.setIdHabitacion(Integer.parseInt(TextoNumero.getText()));
+                h.settipoHabitacion(ABMHabi.buscarTipoHabitacionPorNombre(ComboTipoH.getSelectedItem() + ""));
+                h.setEstado(false);
+                ABMHabi.crearHabitacion(h);
+            } else {
+                JOptionPane.showMessageDialog(null, "Ya existe una habitacion con ese número");
+            }
+        } catch (NullPointerException | NumberFormatException ex) {
 
+        }
+    }//GEN-LAST:event_BotonGuardarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAltaBaja;
@@ -256,49 +242,33 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-  private void cargarTipoH(){
-      List<TipoHabitacion> tipoHabitaciones= ABMHabi.listarTipoH();
-      for(TipoHabitacion tipo: tipoHabitaciones){
-          ComboTipoH.addItem(tipo.getNombre());
-      }
- 
-  }
-  
-  
-  
-  private void armarCabecera(){
-      modeloT.addColumn("Nombre");
-      modeloT.addColumn("Capacidad");
-      modeloT.addColumn("Cantidad de Camas");
-      modeloT.addColumn("Tipo de Camas");
-      modeloT.addColumn("Precio Por Noche");
-      TablaHabitacion.setModel(modeloT);
-  }
-  
-  
-  private void limpiarT(int tamaño){
-//     for (int i = tamaño - 1; i >= 0; i--) {
-//           modeloT.removeRow(i);
-//        }
-      modeloT.removeRow(tamaño);
-      
-      
-// Opcion 2 
-//private void borrarFilas() {
-//        int filas = modelo.getRowCount() - 1;
-//        if (filas != -1) {
-//
-//            for (int f = filas; f >= 0; f--) {
-//
-//                modelo.removeRow(f);
-//            }
-//        }
-//    }
-  }
-  
-  public void cargarDatos(TipoHabitacion tH){
-      modeloT.addRow(new Object[]{tH.getNombre(),tH.getCapacidad(),tH.getCantCamas(),tH.getTipoCamas(),tH.getPrecioNoche()});
-  }
-  
-  
+    private void cargarTipoH() {
+        List<TipoHabitacion> tipoHabitaciones = ABMHabi.listarTipoH();
+        for (TipoHabitacion tipo : tipoHabitaciones) {
+            ComboTipoH.addItem(tipo.getNombre());
+        }
+    }
+
+    private void armarCabecera() {
+        modeloT.addColumn("Nombre");
+        modeloT.addColumn("Capacidad");
+        modeloT.addColumn("Cantidad de Camas");
+        modeloT.addColumn("Tipo de Camas");
+        modeloT.addColumn("Precio Por Noche");
+        TablaHabitacion.setModel(modeloT);
+    }
+
+    private void limpiarT() {
+        int tamaño = TablaHabitacion.getRowCount();
+        if (tamaño != -1) {
+            for (int i = tamaño - 1; i >= 0; i--) {
+                modeloT.removeRow(i);
+            }
+        }
+    }
+
+    public void cargarDatos(TipoHabitacion tH) {
+        modeloT.addRow(new Object[]{tH.getNombre(), tH.getCapacidad(), tH.getCantCamas(), tH.getTipoCamas(), tH.getPrecioNoche()});
+    }
+
 }
