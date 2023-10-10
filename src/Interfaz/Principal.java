@@ -1,17 +1,20 @@
 package Interfaz;
 
 import AccesoADatos.Conexion;
-import java.awt.Image;
-import java.awt.Toolkit;
+import com.sun.awt.AWTUtilities;
+
+import java.awt.Shape;
+
+import java.awt.geom.RoundRectangle2D;
 
 public class Principal extends javax.swing.JFrame {
 
     public Principal() {
+        this.setLocationRelativeTo(null);
         initComponents();
         conectar();
-        
     }
-   
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -26,7 +29,7 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(200, 150));
-        setType(java.awt.Window.Type.UTILITY);
+        setType(java.awt.Window.Type.POPUP);
 
         jPanel1.setBackground(new java.awt.Color(235, 248, 237));
 
@@ -52,7 +55,7 @@ public class Principal extends javax.swing.JFrame {
         jBotonHabitacion.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
         jBotonHabitacion.setForeground(new java.awt.Color(51, 51, 51));
         jBotonHabitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/habitacionPequeñaApagada.png"))); // NOI18N
-        jBotonHabitacion.setText("Habitacion");
+        jBotonHabitacion.setText("Habitación");
         jBotonHabitacion.setBorderPainted(false);
         jBotonHabitacion.setContentAreaFilled(false);
         jBotonHabitacion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -98,7 +101,7 @@ public class Principal extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -120,7 +123,7 @@ public class Principal extends javax.swing.JFrame {
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 646, Short.MAX_VALUE))
+                .addGap(0, 648, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,10 +151,10 @@ public class Principal extends javax.swing.JFrame {
     private void jBotonHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonHuespedActionPerformed
 //      escritorio.removeAll();
 //      escritorio.repaint();
-      GestionHuesped gh= new GestionHuesped();
-      gh.setVisible(true);
-      escritorio.add(gh);
-      escritorio.moveToFront(gh);
+        GestionHuesped gh = new GestionHuesped();
+        gh.setVisible(true);
+        escritorio.add(gh);
+        escritorio.moveToFront(gh);
     }//GEN-LAST:event_jBotonHuespedActionPerformed
 
     private void jBotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonSalirActionPerformed
@@ -159,13 +162,12 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBotonSalirActionPerformed
 
     private void jBotonHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonHabitacionActionPerformed
-      GestionHabitacion gh= new GestionHabitacion();
-      gh.setVisible(true);
-      escritorio.add(gh);
-      escritorio.moveToFront(gh);
+        GestionHabitacion gh = new GestionHabitacion();
+        gh.setVisible(true);
+        escritorio.add(gh);
+        escritorio.moveToFront(gh);
     }//GEN-LAST:event_jBotonHabitacionActionPerformed
 
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -207,9 +209,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
- private void conectar(){
-     Conexion con=new Conexion("jdbc:mariadb://localhost:3306/", "hotel31", "root", "");
-    
- }
+ private void conectar() {
+        Conexion con = new Conexion("jdbc:mariadb://localhost:3306/", "hotel31", "root", "");
+
+    }
 
 }
