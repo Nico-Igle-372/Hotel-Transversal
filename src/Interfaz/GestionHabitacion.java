@@ -17,6 +17,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
     };
 
     public GestionHabitacion() {
+        
         initComponents();
         armarCabecera();
         cargarTipoH();

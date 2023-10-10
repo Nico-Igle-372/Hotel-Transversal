@@ -22,8 +22,7 @@ public class Principal extends javax.swing.JFrame {
         jBotonSalir = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(200, 150));
-        setType(java.awt.Window.Type.POPUP);
+        setLocation(new java.awt.Point(180, 120));
 
         jPanel1.setBackground(new java.awt.Color(235, 248, 237));
 

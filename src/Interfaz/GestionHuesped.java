@@ -9,6 +9,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     ABMHuesped ABMHues = new ABMHuesped();
 
     public GestionHuesped() {
+       
         initComponents();
     }
 
