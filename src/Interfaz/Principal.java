@@ -1,12 +1,6 @@
 package Interfaz;
 
 import AccesoADatos.Conexion;
-import com.sun.awt.AWTUtilities;
-
-import java.awt.Shape;
-
-import java.awt.geom.RoundRectangle2D;
-
 public class Principal extends javax.swing.JFrame {
 
     public Principal() {
