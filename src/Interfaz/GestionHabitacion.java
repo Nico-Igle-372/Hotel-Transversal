@@ -14,12 +14,11 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
 
     private final DefaultTableModel modeloT = new DefaultTableModel() {
         public boolean isCellEditable(int fila, int colum) {
-            return colum == 4;
+            return false;
         }
     };
 
     public GestionHabitacion() {
-        
         initComponents();
         labelPrecio.setVisible(false);
         jTextoPrecio.setVisible(false);
@@ -104,6 +103,11 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         });
 
         BotonModificar.setText("Modificar");
+        BotonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonModificarActionPerformed(evt);
+            }
+        });
 
         botonPrecio.setText("Cambiar Precio");
         botonPrecio.addActionListener(new java.awt.event.ActionListener() {
@@ -271,39 +275,52 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
 
     private void botonPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPrecioActionPerformed
         if (titulo.getText().equals("Gestión Habitación")) {
-             labelPrecio.setVisible(true);
-        jTextoPrecio.setVisible(true);
-        botonCambiarPrecio.setVisible(true);
-        BotonGuardar.setVisible(false);
-        BotonModificar.setVisible(false);
-        BotonBuscar.setVisible(false);
-        BotonAltaBaja.setVisible(false);
-        TextoEstado.setVisible(false);
-        TextoNumero.setVisible(false);
-        labelEstado.setVisible(false);
-        labelHabitacion.setVisible(false);
-        titulo.setText("Gestión Precio");
-        botonPrecio.setText("Modificar Habitación");
-        } else{
-        labelPrecio.setVisible(false);
-        jTextoPrecio.setVisible(false);
-        botonCambiarPrecio.setVisible(false);
-        BotonGuardar.setVisible(true);
-        BotonModificar.setVisible(true);
-        BotonBuscar.setVisible(true);
-        BotonAltaBaja.setVisible(true);
-        TextoEstado.setVisible(true);
-        TextoNumero.setVisible(true);
-        labelEstado.setVisible(true);
-        labelHabitacion.setVisible(true);
-        titulo.setText("Gestión Habitación");
-        botonPrecio.setText("Cambiar Precio");
+            labelPrecio.setVisible(true);
+            jTextoPrecio.setVisible(true);
+            botonCambiarPrecio.setVisible(true);
+            BotonGuardar.setVisible(false);
+            BotonModificar.setVisible(false);
+            BotonBuscar.setVisible(false);
+            BotonAltaBaja.setVisible(false);
+            TextoEstado.setVisible(false);
+            TextoNumero.setVisible(false);
+            labelEstado.setVisible(false);
+            labelHabitacion.setVisible(false);
+            titulo.setText("Gestión Precio");
+            botonPrecio.setText("Modificar Habitación");
+        } else {
+            labelPrecio.setVisible(false);
+            jTextoPrecio.setVisible(false);
+            botonCambiarPrecio.setVisible(false);
+            BotonGuardar.setVisible(true);
+            BotonModificar.setVisible(true);
+            BotonBuscar.setVisible(true);
+            BotonAltaBaja.setVisible(true);
+            TextoEstado.setVisible(true);
+            TextoNumero.setVisible(true);
+            labelEstado.setVisible(true);
+            labelHabitacion.setVisible(true);
+            titulo.setText("Gestión Habitación");
+            botonPrecio.setText("Cambiar Precio");
         }
     }//GEN-LAST:event_botonPrecioActionPerformed
 
     private void botonCambiarPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCambiarPrecioActionPerformed
-        // TODO add your handling code here:
+        try {
+            double precio = Double.parseDouble(jTextoPrecio.getText());
+            TipoHabitacion tipoH = ABMHabi.buscarTipoHabitacionPorNombre((String) ComboTipoH.getSelectedItem());
+            int idTH = tipoH.getIdTipo();
+            ABMHabi.cambiarPrecio(idTH, precio);
+            jTextoPrecio.setText("");
+            TablaHabitacion.setValueAt(precio, 0, 4);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingrese valores numericos");
+        }
     }//GEN-LAST:event_botonCambiarPrecioActionPerformed
+
+    private void BotonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonModificarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAltaBaja;
