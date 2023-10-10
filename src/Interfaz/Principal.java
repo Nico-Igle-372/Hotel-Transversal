@@ -64,7 +64,15 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jBotonReserva.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
+        jBotonReserva.setForeground(new java.awt.Color(51, 51, 51));
+        jBotonReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reserva-pequeño(apagado).png"))); // NOI18N
         jBotonReserva.setText("Reserva");
+        jBotonReserva.setContentAreaFilled(false);
+        jBotonReserva.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBotonReserva.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reserva_grande(encendido).png"))); // NOI18N
+        jBotonReserva.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reserva_grande(encendido).png"))); // NOI18N
+        jBotonReserva.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jBotonReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBotonReservaActionPerformed(evt);
