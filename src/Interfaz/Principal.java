@@ -167,6 +167,10 @@ public class Principal extends javax.swing.JFrame {
         gh.setVisible(true);
         escritorio.add(gh);
         escritorio.moveToFront(gh);
+        CambiarPrecioVista cp = new CambiarPrecioVista();
+        cp.setVisible(false);
+        escritorio.add(cp);
+        escritorio.moveToBack(cp);
     }//GEN-LAST:event_jBotonHabitacionActionPerformed
 
     public static void main(String args[]) {
@@ -214,5 +218,24 @@ public class Principal extends javax.swing.JFrame {
         Conexion con = new Conexion("jdbc:mariadb://localhost:3306/", "hotel31", "root", "");
 
     }
+ public void CambiarPrecio(){
+     
+      CambiarPrecioVista cp = new CambiarPrecioVista();
+        cp.setVisible(true);
+        escritorio.add(cp);
+        escritorio.moveToFront(cp);
+        GestionHabitacion gh = new GestionHabitacion();
+        gh.setVisible(false);
+        
+ }
+ 
+ public void Salida(){
+     CambiarPrecioVista cp = new CambiarPrecioVista();
+        cp.dispose();
+       
+        GestionHabitacion gh = new GestionHabitacion();
+        gh.setVisible(true);
+         escritorio.moveToFront(gh);
+ }
 
 }
