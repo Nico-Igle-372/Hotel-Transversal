@@ -1,12 +1,15 @@
 package Interfaz;
 
 import AccesoADatos.Conexion;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
         conectar();
+        
     }
    
     @SuppressWarnings("unchecked")
@@ -22,19 +25,43 @@ public class Principal extends javax.swing.JFrame {
         jBotonSalir = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(200, 150));
+        setType(java.awt.Window.Type.UTILITY);
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel1.setBackground(new java.awt.Color(235, 248, 237));
 
+        jBotonHuesped.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
+        jBotonHuesped.setForeground(new java.awt.Color(51, 51, 51));
+        jBotonHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/huesped_pequeño(apagado).png"))); // NOI18N
         jBotonHuesped.setText("Huesped");
+        jBotonHuesped.setContentAreaFilled(false);
+        jBotonHuesped.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBotonHuesped.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/huespedGrandeEncendido.png"))); // NOI18N
+        jBotonHuesped.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/huespedGrandeEncendido.png"))); // NOI18N
+        jBotonHuesped.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/huespedGrandeEncendido.png"))); // NOI18N
+        jBotonHuesped.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jBotonHuesped.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jBotonHuesped.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBotonHuespedActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Logo");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoHotel.png"))); // NOI18N
 
+        jBotonHabitacion.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
+        jBotonHabitacion.setForeground(new java.awt.Color(51, 51, 51));
+        jBotonHabitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/habitacionPequeñaApagada.png"))); // NOI18N
         jBotonHabitacion.setText("Habitacion");
+        jBotonHabitacion.setBorderPainted(false);
+        jBotonHabitacion.setContentAreaFilled(false);
+        jBotonHabitacion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBotonHabitacion.setIconTextGap(-13);
+        jBotonHabitacion.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/habitacionGrandeDos(encendido).png"))); // NOI18N
+        jBotonHabitacion.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/habitacionGrandeDos(encendido).png"))); // NOI18N
+        jBotonHabitacion.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/habitacionGrandeDos(encendido).png"))); // NOI18N
+        jBotonHabitacion.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jBotonHabitacion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jBotonHabitacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBotonHabitacionActionPerformed(evt);
@@ -61,30 +88,28 @@ public class Principal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBotonHabitacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBotonReserva, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBotonHuesped, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBotonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBotonReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBotonHabitacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBotonHuesped, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBotonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jBotonHuesped)
-                .addGap(32, 32, 32)
-                .addComponent(jBotonHabitacion)
-                .addGap(29, 29, 29)
-                .addComponent(jBotonReserva)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
-                .addComponent(jBotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBotonHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBotonHabitacion, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBotonReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jBotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
 
         escritorio.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -130,7 +155,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBotonHuespedActionPerformed
 
     private void jBotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonSalirActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jBotonSalirActionPerformed
 
     private void jBotonHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonHabitacionActionPerformed
@@ -186,4 +211,5 @@ public class Principal extends javax.swing.JFrame {
      Conexion con=new Conexion("jdbc:mariadb://localhost:3306/", "hotel31", "root", "");
     
  }
+
 }
