@@ -24,62 +24,72 @@ public class Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(180, 120));
 
-        jPanel1.setBackground(new java.awt.Color(235, 248, 237));
+        jPanel1.setBackground(new java.awt.Color(38, 38, 12));
 
-        jBotonHuesped.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
-        jBotonHuesped.setForeground(new java.awt.Color(51, 51, 51));
+        jBotonHuesped.setFont(new java.awt.Font("Perpetua Titling MT", 1, 9)); // NOI18N
+        jBotonHuesped.setForeground(new java.awt.Color(160, 160, 54));
         jBotonHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/huesped_pequeño(apagado).png"))); // NOI18N
         jBotonHuesped.setText("Huesped");
         jBotonHuesped.setContentAreaFilled(false);
         jBotonHuesped.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBotonHuesped.setIconTextGap(8);
         jBotonHuesped.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/huespedGrandeEncendido.png"))); // NOI18N
         jBotonHuesped.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/huespedGrandeEncendido.png"))); // NOI18N
         jBotonHuesped.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/huespedGrandeEncendido.png"))); // NOI18N
-        jBotonHuesped.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jBotonHuesped.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBotonHuesped.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         jBotonHuesped.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBotonHuespedActionPerformed(evt);
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoHotel.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoHotel2.png"))); // NOI18N
+        jLabel1.setToolTipText("");
 
-        jBotonHabitacion.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
-        jBotonHabitacion.setForeground(new java.awt.Color(51, 51, 51));
+        jBotonHabitacion.setFont(new java.awt.Font("Perpetua Titling MT", 1, 9)); // NOI18N
+        jBotonHabitacion.setForeground(new java.awt.Color(160, 160, 54));
         jBotonHabitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/habitacionPequeñaApagada.png"))); // NOI18N
         jBotonHabitacion.setText("Habitación");
         jBotonHabitacion.setBorderPainted(false);
         jBotonHabitacion.setContentAreaFilled(false);
         jBotonHabitacion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jBotonHabitacion.setIconTextGap(-13);
+        jBotonHabitacion.setIconTextGap(11);
         jBotonHabitacion.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/habitacionGrandeDos(encendido).png"))); // NOI18N
         jBotonHabitacion.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/habitacionGrandeDos(encendido).png"))); // NOI18N
         jBotonHabitacion.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/habitacionGrandeDos(encendido).png"))); // NOI18N
-        jBotonHabitacion.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jBotonHabitacion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBotonHabitacion.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jBotonHabitacion.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         jBotonHabitacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBotonHabitacionActionPerformed(evt);
             }
         });
 
-        jBotonReserva.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
-        jBotonReserva.setForeground(new java.awt.Color(51, 51, 51));
+        jBotonReserva.setFont(new java.awt.Font("Perpetua Titling MT", 1, 9)); // NOI18N
+        jBotonReserva.setForeground(new java.awt.Color(160, 160, 54));
         jBotonReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reserva-pequeño(apagado).png"))); // NOI18N
         jBotonReserva.setText("Reserva");
         jBotonReserva.setContentAreaFilled(false);
         jBotonReserva.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBotonReserva.setIconTextGap(8);
         jBotonReserva.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reserva_grande(encendido).png"))); // NOI18N
         jBotonReserva.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reserva_grande(encendido).png"))); // NOI18N
-        jBotonReserva.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBotonReserva.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         jBotonReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBotonReservaActionPerformed(evt);
             }
         });
 
-        jBotonSalir.setText("salir");
+        jBotonSalir.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
+        jBotonSalir.setForeground(new java.awt.Color(204, 204, 204));
+        jBotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconoSalirApagado.png"))); // NOI18N
+        jBotonSalir.setContentAreaFilled(false);
+        jBotonSalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBotonSalir.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono-salir-encendido.png"))); // NOI18N
+        jBotonSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono-salir-encendido.png"))); // NOI18N
+        jBotonSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono-salir-encendido.png"))); // NOI18N
+        jBotonSalir.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         jBotonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBotonSalirActionPerformed(evt);
@@ -92,28 +102,33 @@ public class Principal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBotonReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBotonHabitacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBotonHuesped, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBotonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jBotonReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBotonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBotonHabitacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBotonHuesped, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel1)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBotonHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBotonHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBotonHabitacion, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                .addComponent(jBotonHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBotonReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jBotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addGap(12, 12, 12)
+                .addComponent(jBotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         escritorio.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -123,8 +138,8 @@ public class Principal extends javax.swing.JFrame {
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 648, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 660, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
