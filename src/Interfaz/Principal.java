@@ -1,12 +1,17 @@
 package Interfaz;
 
 import AccesoADatos.Conexion;
+
 public class Principal extends javax.swing.JFrame {
 
+    public static int contador;
+
     public Principal() {
-        this.setLocationRelativeTo(null);
         initComponents();
+//        setResizable(false);
+        this.setLocationRelativeTo(null);
         conectar();
+        contador = 0;
     }
 
     @SuppressWarnings("unchecked")
@@ -161,16 +166,24 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBotonReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonReservaActionPerformed
-        // TODO add your handling code here:
+        if (contador == 0) {
+            contador++;
+            GestionReserva gr = new GestionReserva();
+            gr.setVisible(true);
+            escritorio.add(gr);
+            escritorio.moveToFront(gr);
+        }
+
     }//GEN-LAST:event_jBotonReservaActionPerformed
 
     private void jBotonHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonHuespedActionPerformed
-//      escritorio.removeAll();
-//      escritorio.repaint();
-        GestionHuesped gh = new GestionHuesped();
-        gh.setVisible(true);
-        escritorio.add(gh);
-        escritorio.moveToFront(gh);
+        if (contador == 0) {
+            contador++;
+            GestionHuesped ghu = new GestionHuesped();
+            ghu.setVisible(true);
+            escritorio.add(ghu);
+            escritorio.moveToFront(ghu);
+        }
     }//GEN-LAST:event_jBotonHuespedActionPerformed
 
     private void jBotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonSalirActionPerformed
@@ -178,17 +191,19 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBotonSalirActionPerformed
 
     private void jBotonHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonHabitacionActionPerformed
-        GestionHabitacion gh = new GestionHabitacion();
-        gh.setVisible(true);
-        escritorio.add(gh);
-        escritorio.moveToFront(gh);
-        CambiarPrecioVista cp = new CambiarPrecioVista();
-        cp.setVisible(false);
-        escritorio.add(cp);
-        escritorio.moveToBack(cp);
+        if (contador == 0) {
+            contador++;
+            GestionHabitacion gha = new GestionHabitacion();
+            gha.setVisible(true);
+            escritorio.add(gha);
+            escritorio.moveToFront(gha);
+            CambiarPrecioVista cp = new CambiarPrecioVista();
+            cp.setVisible(false);
+            escritorio.add(cp);
+            escritorio.moveToBack(cp);
+        }
     }//GEN-LAST:event_jBotonHabitacionActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
@@ -203,24 +218,25 @@ public class Principal extends javax.swing.JFrame {
         Conexion con = new Conexion("jdbc:mariadb://localhost:3306/", "hotel31", "root", "");
 
     }
- public void CambiarPrecio(){
-     
-      CambiarPrecioVista cp = new CambiarPrecioVista();
+
+    public void CambiarPrecio() {
+
+        CambiarPrecioVista cp = new CambiarPrecioVista();
         cp.setVisible(true);
         escritorio.add(cp);
         escritorio.moveToFront(cp);
         GestionHabitacion gh = new GestionHabitacion();
         gh.setVisible(false);
-        
- }
- 
- public void Salida(){
-     CambiarPrecioVista cp = new CambiarPrecioVista();
+
+    }
+
+    public void Salida() {
+        CambiarPrecioVista cp = new CambiarPrecioVista();
         cp.dispose();
-       
+
         GestionHabitacion gh = new GestionHabitacion();
         gh.setVisible(true);
-         escritorio.moveToFront(gh);
- }
+        escritorio.moveToFront(gh);
+    }
 
 }
