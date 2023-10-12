@@ -261,6 +261,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ComboTipoHActionPerformed
 
     private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
+        Principal.contador--;
         dispose();
     }//GEN-LAST:event_BotonSalirActionPerformed
 

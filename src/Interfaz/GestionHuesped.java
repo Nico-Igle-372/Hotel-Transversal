@@ -272,6 +272,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonAltaBajaActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        Principal.contador--;
         dispose();
     }//GEN-LAST:event_botonSalirActionPerformed
 
