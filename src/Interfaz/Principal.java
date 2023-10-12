@@ -27,7 +27,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(38, 38, 12));
 
         jBotonHuesped.setFont(new java.awt.Font("Perpetua Titling MT", 1, 9)); // NOI18N
-        jBotonHuesped.setForeground(new java.awt.Color(160, 160, 54));
+        jBotonHuesped.setForeground(new java.awt.Color(255, 255, 51));
         jBotonHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/huesped_pequeño(apagado).png"))); // NOI18N
         jBotonHuesped.setText("Huesped");
         jBotonHuesped.setContentAreaFilled(false);
@@ -47,7 +47,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel1.setToolTipText("");
 
         jBotonHabitacion.setFont(new java.awt.Font("Perpetua Titling MT", 1, 9)); // NOI18N
-        jBotonHabitacion.setForeground(new java.awt.Color(160, 160, 54));
+        jBotonHabitacion.setForeground(new java.awt.Color(255, 255, 51));
         jBotonHabitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/habitacionPequeñaApagada.png"))); // NOI18N
         jBotonHabitacion.setText("Habitación");
         jBotonHabitacion.setBorderPainted(false);
@@ -66,7 +66,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jBotonReserva.setFont(new java.awt.Font("Perpetua Titling MT", 1, 9)); // NOI18N
-        jBotonReserva.setForeground(new java.awt.Color(160, 160, 54));
+        jBotonReserva.setForeground(new java.awt.Color(255, 255, 51));
         jBotonReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reserva-pequeño(apagado).png"))); // NOI18N
         jBotonReserva.setText("Reserva");
         jBotonReserva.setContentAreaFilled(false);

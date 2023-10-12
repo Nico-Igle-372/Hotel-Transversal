@@ -110,7 +110,7 @@
                   <Font name="Perpetua Titling MT" size="9" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="36" green="a0" red="a0" type="rgb"/>
+                  <Color blue="33" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagenes/huesped_peque&#xf1;o(apagado).png"/>
@@ -148,7 +148,7 @@
                   <Font name="Perpetua Titling MT" size="9" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="36" green="a0" red="a0" type="rgb"/>
+                  <Color blue="33" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagenes/habitacionPeque&#xf1;aApagada.png"/>
@@ -180,7 +180,7 @@
                   <Font name="Perpetua Titling MT" size="9" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="36" green="a0" red="a0" type="rgb"/>
+                  <Color blue="33" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagenes/reserva-peque&#xf1;o(apagado).png"/>
