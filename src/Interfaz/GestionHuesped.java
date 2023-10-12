@@ -377,5 +377,6 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         jTextoDni.putClientProperty("JComponent.roundRect", true);
         jTextoEstado.putClientProperty("JComponent.roundRect", true);
         jTextoNombre.putClientProperty("JComponent.roundRect", true);
+        
     }
 }

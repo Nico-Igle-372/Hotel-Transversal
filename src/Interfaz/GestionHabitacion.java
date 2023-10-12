@@ -391,6 +391,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         TextoNumero.putClientProperty("JComponent.roundRect", true);
         jTextoPrecio.putClientProperty("JComponent.roundRect", true);
         ComboTipoH.putClientProperty("JComponent.roundRect", true);
+         BotonAltaBaja.putClientProperty("JComponent.roundRect", true);
     }
 
 }
