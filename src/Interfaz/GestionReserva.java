@@ -27,6 +27,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
 
     public GestionReserva() {
         initComponents();
+        redondearCajasDeTexto();
         armarCabecera();
     }
 
@@ -274,16 +275,16 @@ public class GestionReserva extends javax.swing.JInternalFrame {
 
     private void botonNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevaActionPerformed
         try {
-        Reserva res = new Reserva();
-        res.setHuesped(ABMHues.buscarHuesped(Integer.parseInt(TextoDNI.getText())));
-        res.setHabitacion(ABMHabi.buscarHabitacion((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0)));
-        res.setFechaEntrada(jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        res.setFechaSalida(jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        res.setCantPersonas(Integer.parseInt(textoCantPers.getText()));
-        res.setImporteTotal((double) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 3));
-        res.setEstado(true);
-        ABMR.crearReserva(res);
-        ABMHabi.ocuparHabitacion(res.getHabitacion().getidHabitacion());
+            Reserva res = new Reserva();
+            res.setHuesped(ABMHues.buscarHuesped(Integer.parseInt(TextoDNI.getText())));
+            res.setHabitacion(ABMHabi.buscarHabitacion((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0)));
+            res.setFechaEntrada(jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            res.setFechaSalida(jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            res.setCantPersonas(Integer.parseInt(textoCantPers.getText()));
+            res.setImporteTotal((double) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 3));
+            res.setEstado(true);
+            ABMR.crearReserva(res);
+            ABMHabi.ocuparHabitacion(res.getHabitacion().getidHabitacion());
         } catch (NumberFormatException | NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Error en generar Reserva");
         }
@@ -354,5 +355,11 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 modeloTabla.removeRow(i);
             }
         }
+    }
+
+    private void redondearCajasDeTexto() {
+       
+        TextoDNI.putClientProperty("JComponent.roundRect", true);
+        textoCantPers.putClientProperty("JComponent.roundRect", true);
     }
 }

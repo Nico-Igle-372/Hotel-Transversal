@@ -3,14 +3,16 @@ package Interfaz;
 import AccesoADatos.ABMHuesped;
 import Entidades.Huesped;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 public class GestionHuesped extends javax.swing.JInternalFrame {
 
     ABMHuesped ABMHues = new ABMHuesped();
 
     public GestionHuesped() {
-       
+
         initComponents();
+        redondearCajasDeTexto();
     }
 
     @SuppressWarnings("unchecked")
@@ -262,8 +264,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                     botonAltaBaja.setText("Baja");
                 }
                 jTextoEstado.setText(hues.isEstado() ? "Inactivo" : "Activo");
-            }
-            else{
+            } else {
                 JOptionPane.showMessageDialog(null, "No se encontro huesped con ese dni");
             }
         } catch (NumberFormatException e) {
@@ -365,5 +366,16 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         jTextoNombre.setText("");
         jTextoEstado.setText("");
         jTextoApellido.setText("");
+    }
+
+    private void redondearCajasDeTexto() {
+        jTextoApellido.putClientProperty("JComponent.roundRect", true);
+        jTextoCelular.putClientProperty("JComponent.roundRect",true);
+        jTextoCorreo.putClientProperty("JComponent.roundRect", true);
+        jTextoDireccion.putClientProperty("JComponent.roundRect", true);
+        jTextoDireccion.putClientProperty("JComponent.roundRect", true);
+        jTextoDni.putClientProperty("JComponent.roundRect", true);
+        jTextoEstado.putClientProperty("JComponent.roundRect", true);
+        jTextoNombre.putClientProperty("JComponent.roundRect", true);
     }
 }
