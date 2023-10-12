@@ -25,14 +25,16 @@ public class Principal extends javax.swing.JFrame {
         jBotonHabitacion = new javax.swing.JToggleButton();
         jBotonReserva = new javax.swing.JToggleButton();
         jBotonSalir = new javax.swing.JToggleButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(180, 120));
 
         jPanel1.setBackground(new java.awt.Color(38, 38, 12));
 
-        jBotonHuesped.setFont(new java.awt.Font("Perpetua Titling MT", 1, 9)); // NOI18N
-        jBotonHuesped.setForeground(new java.awt.Color(160, 160, 54));
+        jBotonHuesped.setFont(new java.awt.Font("Perpetua Titling MT", 1, 10)); // NOI18N
+        jBotonHuesped.setForeground(new java.awt.Color(255, 255, 255));
         jBotonHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/huesped_pequeño(apagado).png"))); // NOI18N
         jBotonHuesped.setText("Huesped");
         jBotonHuesped.setContentAreaFilled(false);
@@ -51,8 +53,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoHotel2.png"))); // NOI18N
         jLabel1.setToolTipText("");
 
-        jBotonHabitacion.setFont(new java.awt.Font("Perpetua Titling MT", 1, 9)); // NOI18N
-        jBotonHabitacion.setForeground(new java.awt.Color(160, 160, 54));
+        jBotonHabitacion.setFont(new java.awt.Font("Perpetua Titling MT", 1, 10)); // NOI18N
+        jBotonHabitacion.setForeground(new java.awt.Color(255, 255, 255));
         jBotonHabitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/habitacionPequeñaApagada.png"))); // NOI18N
         jBotonHabitacion.setText("Habitación");
         jBotonHabitacion.setBorderPainted(false);
@@ -70,13 +72,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jBotonReserva.setFont(new java.awt.Font("Perpetua Titling MT", 1, 9)); // NOI18N
-        jBotonReserva.setForeground(new java.awt.Color(160, 160, 54));
+        jBotonReserva.setFont(new java.awt.Font("Perpetua Titling MT", 1, 10)); // NOI18N
+        jBotonReserva.setForeground(new java.awt.Color(255, 255, 255));
         jBotonReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reserva-pequeño(apagado).png"))); // NOI18N
         jBotonReserva.setText("Reserva");
         jBotonReserva.setContentAreaFilled(false);
         jBotonReserva.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBotonReserva.setIconTextGap(8);
+        jBotonReserva.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reserva_grande(encendido).png"))); // NOI18N
         jBotonReserva.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reserva_grande(encendido).png"))); // NOI18N
         jBotonReserva.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reserva_grande(encendido).png"))); // NOI18N
         jBotonReserva.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -136,7 +139,21 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/recepcionHotelPrincipal.jpg"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         escritorio.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -144,11 +161,13 @@ public class Principal extends javax.swing.JFrame {
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 660, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -212,7 +231,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JToggleButton jBotonReserva;
     private javax.swing.JToggleButton jBotonSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
  private void conectar() {
         Conexion con = new Conexion("jdbc:mariadb://localhost:3306/", "hotel31", "root", "");

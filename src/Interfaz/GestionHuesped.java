@@ -3,14 +3,16 @@ package Interfaz;
 import AccesoADatos.ABMHuesped;
 import Entidades.Huesped;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 public class GestionHuesped extends javax.swing.JInternalFrame {
 
     ABMHuesped ABMHues = new ABMHuesped();
 
     public GestionHuesped() {
-       
+
         initComponents();
+        redondearCajasDeTexto();
     }
 
     @SuppressWarnings("unchecked")
@@ -69,7 +71,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Apellido");
 
-        botonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevoHuespedPequeñoApagado.png"))); // NOI18N
+        botonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevoHuespedGrandeApagado.png"))); // NOI18N
         botonGuardar.setContentAreaFilled(false);
         botonGuardar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevoHuespedGrandeEncendido.png"))); // NOI18N
         botonGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevoHuespedGrandeEncendido.png"))); // NOI18N
@@ -220,13 +222,16 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jBotonBuscar)))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botonLimpiar)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(botonGuardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(botonModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
-                    .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(botonLimpiar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(botonModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -259,8 +264,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                     botonAltaBaja.setText("Baja");
                 }
                 jTextoEstado.setText(hues.isEstado() ? "Inactivo" : "Activo");
-            }
-            else{
+            } else {
                 JOptionPane.showMessageDialog(null, "No se encontro huesped con ese dni");
             }
         } catch (NumberFormatException e) {
@@ -362,5 +366,17 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         jTextoNombre.setText("");
         jTextoEstado.setText("");
         jTextoApellido.setText("");
+    }
+
+    private void redondearCajasDeTexto() {
+        jTextoApellido.putClientProperty("JComponent.roundRect", true);
+        jTextoCelular.putClientProperty("JComponent.roundRect",true);
+        jTextoCorreo.putClientProperty("JComponent.roundRect", true);
+        jTextoDireccion.putClientProperty("JComponent.roundRect", true);
+        jTextoDireccion.putClientProperty("JComponent.roundRect", true);
+        jTextoDni.putClientProperty("JComponent.roundRect", true);
+        jTextoEstado.putClientProperty("JComponent.roundRect", true);
+        jTextoNombre.putClientProperty("JComponent.roundRect", true);
+        
     }
 }
