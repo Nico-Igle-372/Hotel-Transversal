@@ -154,7 +154,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                 .addComponent(BotonModificar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botonPrecio)
-                .addGap(35, 35, 35)
+                .addGap(33, 33, 33)
                 .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
             .addGroup(jPanel1Layout.createSequentialGroup()
