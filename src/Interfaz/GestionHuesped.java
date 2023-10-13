@@ -254,6 +254,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
 
     private void botonAltaBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAltaBajaActionPerformed
         try {
+            //hola
             Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText()));
             if (hues.getIdHuesped() != 0) {
                 if (hues.isEstado()) {
