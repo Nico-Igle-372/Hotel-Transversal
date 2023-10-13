@@ -37,13 +37,16 @@ public class ABMReserva {
                 + "(SELECT habitacion.idHabitacion FROM habitacion JOIN reserva ON "
                 + "(reserva.idHabitacion = habitacion.idHabitacion)  "
                 + "WHERE ? BETWEEN fechaEntrada AND fechaSalida "
-                + "OR ? BETWEEN fechaEntrada AND fechaSalida))";
+                + "OR ? BETWEEN fechaEntrada AND fechaSalida "
+                + "OR fechaEntrada BETWEEN ? AND ?))";
         PreparedStatement ps = null;
         try {
             ps = conn.prepareStatement(sql);
             ps.setInt(1, cantPer);
             ps.setDate(2, Date.valueOf(checkIn));
             ps.setDate(3, Date.valueOf(checkOut));
+            ps.setDate(4,Date.valueOf(checkIn));
+            ps.setDate(5,Date.valueOf(checkOut));
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Habitacion habi = new Habitacion();
@@ -130,9 +133,27 @@ public class ABMReserva {
             ps.setInt(1, idR);
             int registro=ps.executeUpdate();
             if(registro==1){
-                JOptionPane.showMessageDialog(null, "Reserva cancelada");
+                System.out.println("Reserva cancelada");
             }else{
-                JOptionPane.showMessageDialog(null, "No existe esa reserva");
+                System.out.println("No existe reserva");
+            }
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "Error al cancelar la reserva");
+        }
+    }
+    
+     public void AltaReserva(int idR){
+       
+        String sql="UPDATE `reserva` SET `estado`=1 WHERE reserva.idReserva=?";
+        PreparedStatement ps=null;
+        try {
+            ps=conn.prepareStatement(sql);
+            ps.setInt(1, idR);
+            int registro=ps.executeUpdate();
+            if(registro==1){
+                System.out.println("Alta");
+            }else{
+                System.out.println("No existe reserva");
             }
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null, "Error al cancelar la reserva");
@@ -231,7 +252,7 @@ public class ABMReserva {
             
             int registro = ps.executeUpdate();
             if (registro > 0) {
-                JOptionPane.showMessageDialog(null, "Reserva modificada");
+                System.out.println("Reserva modificada");
             }else{
                 JOptionPane.showMessageDialog(null, "No se pudo modificar la reserva");
             }

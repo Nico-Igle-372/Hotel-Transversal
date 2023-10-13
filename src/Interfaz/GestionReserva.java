@@ -312,13 +312,17 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         limpiarT();
         try {
-            //hola
+            
             int cantPersonas = Integer.parseInt(textoCantPers.getText());
             LocalDate ingreso = jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate egreso = jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            if(comprobarFechas(ingreso, egreso)){
             List<Habitacion> habitaciones = ABMR.buscarHabitacionParaReserva(cantPersonas, ingreso, egreso);
             for (Habitacion habi : habitaciones) {
                 cargarTabla(ingreso, egreso, habi);
+            }
+            }else{
+                JOptionPane.showMessageDialog(null, "Revise las fechas seleccionadas");
             }
         } catch (NumberFormatException | NullPointerException | DateTimeException e) {
             JOptionPane.showMessageDialog(null, "Error en busqueda de habitaciones para reservar");
@@ -327,7 +331,11 @@ public class GestionReserva extends javax.swing.JInternalFrame {
 
     private void botonNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevaActionPerformed
         if (RHabitaciones.isSelected()) {
+            
             try {
+            LocalDate ingreso = jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate egreso = jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                if (comprobarFechas(ingreso, egreso)) {
                 Reserva res = new Reserva();
                 res.setHuesped(ABMHues.buscarHuesped(Integer.parseInt(TextoDNI.getText())));
                 res.setHabitacion(ABMHabi.buscarHabitacion((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0)));
@@ -338,6 +346,9 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 res.setEstado(true);
                 ABMR.crearReserva(res);
                 ABMHabi.ocuparHabitacion(res.getHabitacion().getidHabitacion());
+                }else{
+                  JOptionPane.showMessageDialog(null, "Revise las fechas seleccionadas");
+                }
             } catch (NumberFormatException | NullPointerException e) {
                 JOptionPane.showMessageDialog(null, "Error en generar Reserva");
             }
@@ -359,13 +370,43 @@ public class GestionReserva extends javax.swing.JInternalFrame {
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         if (RReservas.isSelected()) {
-            //falta terminar
-            Reserva res=ABMR.buscarPorId((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0));
-            res.setCantPersonas(Integer.parseInt(textoCantPers.getText()));
-            res.setFechaEntrada(LocalDate.MAX);
-            res.setFechaSalida(LocalDate.MAX);
-            res.setImporteTotal(ABMR.calcularPrecioEstadia(LocalDate.MAX, LocalDate.MIN, res.getHabitacion()));
-            ABMR.modificarReserva(res);
+            try {
+                int cantPersonas = Integer.parseInt(textoCantPers.getText());
+                LocalDate ingreso = jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate egreso = jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                if (comprobarFechas(ingreso, egreso)) {
+                    Reserva res = ABMR.buscarPorId((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0));
+                    res.setCantPersonas(cantPersonas);
+                    res.setFechaEntrada(ingreso);
+                    res.setFechaSalida(egreso);
+                    res.setImporteTotal(ABMR.calcularPrecioEstadia(ingreso, egreso, res.getHabitacion()));
+                    ABMR.cancelarReserva(res.getIdReserva());
+                    if (res.getHabitacion().gettipoHabitacion().getCapacidad() >= cantPersonas) {
+                        List<Habitacion> habis = ABMR.buscarHabitacionParaReserva(cantPersonas, ingreso, egreso);
+                        for (Habitacion habi : habis) {
+                            if (habi.getidHabitacion() == res.getHabitacion().getidHabitacion()) {
+                                ABMR.modificarReserva(res);
+                                limpiarT();
+                                cargarTablaR(res);
+                                JOptionPane.showMessageDialog(null, "Reserva modificada");
+                            }
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "La cantidad maxima es de "
+                                + res.getHabitacion().gettipoHabitacion().getCapacidad() + " personas");
+
+                    }
+                    ABMR.AltaReserva(res.getIdReserva());
+                }else{
+                    JOptionPane.showMessageDialog(null, "Revise las fechas seleccionadas");
+                }
+
+            } catch (NumberFormatException | NullPointerException ex) {
+                JOptionPane.showMessageDialog(null, "Complete todos los campos");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Seleccione una reserva de la tabla");
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione ver reservas");
         }
@@ -501,5 +542,9 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 modeloTabla.removeRow(i);
             }
         }
+    }
+
+    private boolean comprobarFechas(LocalDate ingreso, LocalDate egreso) {
+        return egreso.isAfter(ingreso);
     }
 }
