@@ -312,6 +312,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         limpiarT();
         try {
+            //hola
             int cantPersonas = Integer.parseInt(textoCantPers.getText());
             LocalDate ingreso = jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate egreso = jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
