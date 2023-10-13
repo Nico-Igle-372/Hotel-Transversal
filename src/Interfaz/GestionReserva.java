@@ -31,6 +31,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     public GestionReserva() {
         initComponents();
         armarCabecera();
+        actualizar();
     }
 
     @SuppressWarnings("unchecked")
@@ -310,6 +311,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+        actualizar();
         limpiarT();
         try {
             
@@ -330,6 +332,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevaActionPerformed
+        
         if (RHabitaciones.isSelected()) {
             
             try {
@@ -355,7 +358,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione ver habitaciones");
         }
-
+        actualizar();
 
     }//GEN-LAST:event_botonNuevaActionPerformed
 
@@ -365,7 +368,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione ver reservas");
         }
-
+        actualizar();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
@@ -410,6 +413,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione ver reservas");
         }
+        actualizar();
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsultasActionPerformed
@@ -546,5 +550,30 @@ public class GestionReserva extends javax.swing.JInternalFrame {
 
     private boolean comprobarFechas(LocalDate ingreso, LocalDate egreso) {
         return egreso.isAfter(ingreso);
+    }
+    
+    private void actualizar(){
+       LocalDate hoy= LocalDate.now(); 
+       List<Habitacion> habitaciones=ABMHabi.listaDesocupadas();
+       for(Habitacion habi:habitaciones){
+           
+         List<Reserva> reservas=ABMR.buscarPorHabitacion(habi);
+           for (Reserva res : reservas) {
+              if(hoy.equals(res.getFechaEntrada())){
+                  ABMHabi.ocuparHabitacion(habi.getidHabitacion());
+              }
+           }
+       }
+       habitaciones=ABMHabi.listaOcupadas();
+       
+        for (Habitacion habi : habitaciones) {
+            List<Reserva> reservas=ABMR.buscarPorHabitacion(habi);
+           for (Reserva res : reservas) {
+              if(hoy.equals(res.getFechaSalida())){
+                  ABMHabi.liberarHabitacion(habi.getidHabitacion());
+              }
+           } 
+        }
+       
     }
 }

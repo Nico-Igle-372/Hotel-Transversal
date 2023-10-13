@@ -52,7 +52,7 @@ public class ABMHabitacion {
             ps.setInt(1, idH);
             int registro = ps.executeUpdate();
             if (registro == 1) {
-                JOptionPane.showMessageDialog(null, "Habitacion a sido ocupada");
+//                JOptionPane.showMessageDialog(null, "Habitacion a sido ocupada");
             } else {
                 JOptionPane.showMessageDialog(null, "Esa habitacion no existe");
             }
@@ -69,7 +69,7 @@ public class ABMHabitacion {
             ps.setInt(1, idH);
             int registro = ps.executeUpdate();
             if (registro == 1) {
-                JOptionPane.showMessageDialog(null, "Habitacion a sido liberada");
+//                JOptionPane.showMessageDialog(null, "Habitacion a sido liberada");
             } else {
                 JOptionPane.showMessageDialog(null, "Esa habitacion no existe");
             }
@@ -87,7 +87,7 @@ public class ABMHabitacion {
             ps.setInt(2, habi.getidHabitacion());
             int registro = ps.executeUpdate();
             if (registro > 0) {
-                JOptionPane.showMessageDialog(null, "Habitacion modificada");
+//                JOptionPane.showMessageDialog(null, "Habitacion modificada");
             } else {
                 JOptionPane.showMessageDialog(null, "Habitacion no encontrada (?)");
             }
@@ -175,7 +175,7 @@ public class ABMHabitacion {
             ps.setInt(2, idTH);
             int registro = ps.executeUpdate();
             if (registro > 0) {
-                JOptionPane.showMessageDialog(null, "Precio modificado");
+//                JOptionPane.showMessageDialog(null, "Precio modificado");
             } else {
                 JOptionPane.showMessageDialog(null, "Tipo de Habitacion inexistente");
             }

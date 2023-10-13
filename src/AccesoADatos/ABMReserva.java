@@ -226,6 +226,33 @@ public class ABMReserva {
         }
           return reservas;
     }
+    public List<Reserva> buscarPorHabitacion(Habitacion habi){
+        List<Reserva> reservas=new ArrayList<>();
+        String sql="SELECT * FROM reserva WHERE reserva.idHabitacion=?";
+        PreparedStatement ps=null;
+        try {
+            ps=conn.prepareStatement(sql);
+            ps.setInt(1, habi.getidHabitacion());
+            ResultSet rs= ps.executeQuery();
+            while(rs.next()){
+                Reserva res = new Reserva();
+                res.setIdReserva(rs.getInt("idReserva"));
+                Huesped hues = ABMHues.buscarHuespedPorId(rs.getInt("idHuesped"));
+                res.setHuesped(hues);
+                res.setHabitacion(habi);
+                res.setCantPersonas(rs.getInt("cantPersonas"));
+                res.setFechaEntrada(rs.getDate("fechaEntrada").toLocalDate());
+                res.setFechaSalida(rs.getDate("fechaSalida").toLocalDate());
+                res.setImporteTotal(rs.getDouble("importeTotal"));
+                res.setEstado(rs.getBoolean("estado"));
+                reservas.add(res);
+            }
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "No hay reservas para esa habitación");
+        }
+        
+        return reservas;
+    }
     
     public double calcularPrecioEstadia(LocalDate entrada, LocalDate salida, Habitacion habi){
         double montoTotal = 0;
@@ -236,6 +263,7 @@ public class ABMReserva {
         return montoTotal;
     }
     
+ 
     public void modificarReserva(Reserva res){ // para la interfaz grafica, recordar ver problemas de fechas que choquen entre la reserva modificada y reservas ya hechas anteriores
         String sql = "UPDATE reserva SET idHabitacion = ? , idHuesped = ?, cantPersonas = ?, "
                 + "fechaEntrada = ?, fechaSalida = ?, importeTotal = ? WHERE idReserva = ?";
