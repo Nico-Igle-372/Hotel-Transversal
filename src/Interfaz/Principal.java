@@ -50,7 +50,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoHotel2.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoHotel3.png"))); // NOI18N
         jLabel1.setToolTipText("");
 
         jBotonHabitacion.setFont(new java.awt.Font("Perpetua Titling MT", 1, 10)); // NOI18N
@@ -182,6 +182,7 @@ public class Principal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBotonReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonReservaActionPerformed

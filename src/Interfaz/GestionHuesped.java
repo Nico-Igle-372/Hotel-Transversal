@@ -42,7 +42,8 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         botonSalir = new javax.swing.JButton();
         botonAltaBaja = new javax.swing.JButton();
 
-        jLabel1.setText("Gestion Huesped");
+        jLabel1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        jLabel1.setText("Gestión Huesped");
 
         jLabel2.setText("D.N.I.");
 
@@ -107,7 +108,6 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         botonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconoSalirApagado.png"))); // NOI18N
         botonSalir.setContentAreaFilled(false);
         botonSalir.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono-salir-encendido.png"))); // NOI18N
-        botonSalir.setRolloverEnabled(true);
         botonSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono-salir-encendido.png"))); // NOI18N
         botonSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono-salir-encendido.png"))); // NOI18N
         botonSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -179,7 +179,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jTextoDni, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jBotonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(26, 26, 26))))))
         );
