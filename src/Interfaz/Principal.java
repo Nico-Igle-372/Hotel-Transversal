@@ -217,10 +217,8 @@ public class Principal extends javax.swing.JFrame {
             gha.setVisible(true);
             escritorio.add(gha);
             escritorio.moveToFront(gha);
-            CambiarPrecioVista cp = new CambiarPrecioVista();
-            cp.setVisible(false);
-            escritorio.add(cp);
-            escritorio.moveToBack(cp);
+            
+            
         }
     }//GEN-LAST:event_jBotonHabitacionActionPerformed
 
@@ -241,24 +239,6 @@ public class Principal extends javax.swing.JFrame {
 
     }
 
-    public void CambiarPrecio() {
-
-        CambiarPrecioVista cp = new CambiarPrecioVista();
-        cp.setVisible(true);
-        escritorio.add(cp);
-        escritorio.moveToFront(cp);
-        GestionHabitacion gh = new GestionHabitacion();
-        gh.setVisible(false);
-
-    }
-
-    public void Salida() {
-        CambiarPrecioVista cp = new CambiarPrecioVista();
-        cp.dispose();
-
-        GestionHabitacion gh = new GestionHabitacion();
-        gh.setVisible(true);
-        escritorio.moveToFront(gh);
-    }
+ 
 
 }
