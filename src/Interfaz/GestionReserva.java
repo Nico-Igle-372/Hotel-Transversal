@@ -354,21 +354,9 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevaActionPerformed
-<<<<<<< HEAD
-        try {
-            Reserva res = new Reserva();
-            res.setHuesped(ABMHues.buscarHuesped(Integer.parseInt(TextoDNI.getText())));
-            res.setHabitacion(ABMHabi.buscarHabitacion((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0)));
-            res.setFechaEntrada(jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-            res.setFechaSalida(jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-            res.setCantPersonas(Integer.parseInt(textoCantPers.getText()));
-            res.setImporteTotal((double) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 3));
-            res.setEstado(true);
-            ABMR.crearReserva(res);
-            ABMHabi.ocuparHabitacion(res.getHabitacion().getidHabitacion());
-        } catch (NumberFormatException | NullPointerException e) {
-            JOptionPane.showMessageDialog(null, "Error en generar Reserva");
-=======
+
+    
+
         if (RHabitaciones.isSelected()) {
             try {
                 Reserva res = new Reserva();
@@ -386,7 +374,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             }
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione ver habitaciones");
->>>>>>> Franco
+
         }
 
 
