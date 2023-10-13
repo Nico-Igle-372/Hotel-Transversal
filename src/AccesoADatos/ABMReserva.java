@@ -13,6 +13,8 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.mariadb.jdbc.Statement;
 
@@ -87,6 +89,36 @@ public class ABMReserva {
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null, "Error al crear la reserva");
         }
+    }
+    
+    public Reserva buscarPorId(int idR){
+       Reserva res= new Reserva();
+        String sql="SELECT * FROM reserva WHERE idReserva=?";
+        PreparedStatement ps=null;
+        try {
+            ps=conn.prepareStatement(sql);
+            ps.setInt(1,idR);
+            ResultSet rs=ps.executeQuery();
+            if (rs.next()) {
+                res.setIdReserva(idR);
+                Huesped hues=ABMHues.buscarHuespedPorId(rs.getInt("idHuesped"));
+                res.setHuesped(hues);
+                Habitacion habi=ABMH.buscarHabitacion(rs.getInt("idHabitacion"));
+                res.setHabitacion(habi);
+                res.setCantPersonas(rs.getInt("cantPersonas"));
+                res.setFechaEntrada(rs.getDate("fechaEntrada").toLocalDate());
+                res.setFechaSalida(rs.getDate("fechaSalida").toLocalDate());
+                res.setImporteTotal(rs.getDouble("importeTotal"));
+                res.setEstado(rs.getBoolean("estado"));
+            }else{
+                JOptionPane.showMessageDialog(null, "No se encontro reserva");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar la reserva");
+        }
+        
+                
+       return res;         
     }
     
     public void cancelarReserva(int idR){
