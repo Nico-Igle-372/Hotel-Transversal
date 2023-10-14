@@ -132,7 +132,7 @@ public class ABMHuesped {
             if (registro == 0) {
                 JOptionPane.showMessageDialog(null, "No se encontro el huesped");
             } else {
-                JOptionPane.showMessageDialog(null, " Huesped eliminado");
+                JOptionPane.showMessageDialog(null, " Huesped eliminado junto a sus reservas");
             }
             ps.close();
         } catch (SQLException ex) {
