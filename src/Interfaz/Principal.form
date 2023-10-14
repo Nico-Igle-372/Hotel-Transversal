@@ -115,20 +115,20 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/imagenes/huesped_peque&#xf1;o(apagado).png"/>
+                  <Image iconType="3" name="/imagenes/HuespedPrincipalApagdo.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Huesped"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="iconTextGap" type="int" value="8"/>
                 <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/imagenes/huespedGrandeEncendido.png"/>
+                  <Image iconType="3" name="/imagenes/HuespedPrincipalEncendido.png"/>
                 </Property>
                 <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/imagenes/huespedGrandeEncendido.png"/>
+                  <Image iconType="3" name="/imagenes/HuespedPrincipalEncendido.png"/>
                 </Property>
                 <Property name="rolloverSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/imagenes/huespedGrandeEncendido.png"/>
+                  <Image iconType="3" name="/imagenes/HuespedPrincipalEncendido.png"/>
                 </Property>
                 <Property name="verticalTextPosition" type="int" value="1"/>
               </Properties>

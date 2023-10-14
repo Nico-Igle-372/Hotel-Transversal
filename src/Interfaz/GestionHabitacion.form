@@ -228,17 +228,17 @@
         <Component class="javax.swing.JButton" name="BotonBuscar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/buscar.apagado.png"/>
+              <Image iconType="3" name="/imagenes/buscarApagado.png"/>
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/buscar.encendido.png"/>
+              <Image iconType="3" name="/imagenes/buscarEncendido.png"/>
             </Property>
             <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/buscar.encendido.png"/>
+              <Image iconType="3" name="/imagenes/buscarEncendido.png"/>
             </Property>
             <Property name="rolloverSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/buscar.encendido.png"/>
+              <Image iconType="3" name="/imagenes/buscarEncendido.png"/>
             </Property>
           </Properties>
           <Events>
@@ -253,17 +253,17 @@
         <Component class="javax.swing.JButton" name="BotonSalir">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/iconoSalirApagado.png"/>
+              <Image iconType="3" name="/imagenes/InicioSalirApagado(2).png"/>
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/icono-salir-encendido.png"/>
+              <Image iconType="3" name="/imagenes/InicioSalirEncendido (1).png"/>
             </Property>
             <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/icono-salir-encendido.png"/>
+              <Image iconType="3" name="/imagenes/InicioSalirEncendido (1).png"/>
             </Property>
             <Property name="rolloverSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/icono-salir-encendido.png"/>
+              <Image iconType="3" name="/imagenes/InicioSalirEncendido (1).png"/>
             </Property>
           </Properties>
           <Events>

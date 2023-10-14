@@ -30,6 +30,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
 
     public GestionReserva() {
         initComponents();
+        redondearCajasDeTexto();
         armarCabecera();
         actualizar();
     }
@@ -262,16 +263,16 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         actualizar();
         limpiarT();
         try {
-            
+
             int cantPersonas = Integer.parseInt(textoCantPers.getText());
             LocalDate ingreso = jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate egreso = jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            if(comprobarFechas(ingreso, egreso)){
-            List<Habitacion> habitaciones = ABMR.buscarHabitacionParaReserva(cantPersonas, ingreso, egreso);
-            for (Habitacion habi : habitaciones) {
-                cargarTabla(ingreso, egreso, habi);
-            }
-            }else{
+            if (comprobarFechas(ingreso, egreso)) {
+                List<Habitacion> habitaciones = ABMR.buscarHabitacionParaReserva(cantPersonas, ingreso, egreso);
+                for (Habitacion habi : habitaciones) {
+                    cargarTabla(ingreso, egreso, habi);
+                }
+            } else {
                 JOptionPane.showMessageDialog(null, "Revise las fechas seleccionadas");
             }
         } catch (NumberFormatException | NullPointerException | DateTimeException e) {
@@ -280,25 +281,25 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevaActionPerformed
-        
+
         if (RHabitaciones.isSelected()) {
-            
+
             try {
-            LocalDate ingreso = jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate egreso = jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate ingreso = jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate egreso = jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 if (comprobarFechas(ingreso, egreso)) {
-                Reserva res = new Reserva();
-                res.setHuesped(ABMHues.buscarHuesped(Integer.parseInt(TextoDNI.getText())));
-                res.setHabitacion(ABMHabi.buscarHabitacion((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0)));
-                res.setFechaEntrada(jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-                res.setFechaSalida(jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-                res.setCantPersonas(Integer.parseInt(textoCantPers.getText()));
-                res.setImporteTotal((double) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 3));
-                res.setEstado(true);
-                ABMR.crearReserva(res);
-                ABMHabi.ocuparHabitacion(res.getHabitacion().getidHabitacion());
-                }else{
-                  JOptionPane.showMessageDialog(null, "Revise las fechas seleccionadas");
+                    Reserva res = new Reserva();
+                    res.setHuesped(ABMHues.buscarHuesped(Integer.parseInt(TextoDNI.getText())));
+                    res.setHabitacion(ABMHabi.buscarHabitacion((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0)));
+                    res.setFechaEntrada(jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                    res.setFechaSalida(jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                    res.setCantPersonas(Integer.parseInt(textoCantPers.getText()));
+                    res.setImporteTotal((double) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 3));
+                    res.setEstado(true);
+                    ABMR.crearReserva(res);
+                    ABMHabi.ocuparHabitacion(res.getHabitacion().getidHabitacion());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Revise las fechas seleccionadas");
                 }
             } catch (NumberFormatException | NullPointerException e) {
                 JOptionPane.showMessageDialog(null, "Error en generar Reserva");
@@ -349,7 +350,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
 
                     }
                     ABMR.AltaReserva(res.getIdReserva());
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "Revise las fechas seleccionadas");
                 }
 
@@ -488,29 +489,34 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     private boolean comprobarFechas(LocalDate ingreso, LocalDate egreso) {
         return egreso.isAfter(ingreso);
     }
-    
-    private void actualizar(){
-       LocalDate hoy= LocalDate.now(); 
-       List<Habitacion> habitaciones=ABMHabi.listaDesocupadas();
-       for(Habitacion habi:habitaciones){
-           
-         List<Reserva> reservas=ABMR.buscarPorHabitacion(habi);
-           for (Reserva res : reservas) {
-              if(hoy.equals(res.getFechaEntrada())){
-                  ABMHabi.ocuparHabitacion(habi.getidHabitacion());
-              }
-           }
-       }
-       habitaciones=ABMHabi.listaOcupadas();
-       
+
+    private void actualizar() {
+        LocalDate hoy = LocalDate.now();
+        List<Habitacion> habitaciones = ABMHabi.listaDesocupadas();
         for (Habitacion habi : habitaciones) {
-            List<Reserva> reservas=ABMR.buscarPorHabitacion(habi);
-           for (Reserva res : reservas) {
-              if(hoy.equals(res.getFechaSalida())){
-                  ABMHabi.liberarHabitacion(habi.getidHabitacion());
-              }
-           } 
+
+            List<Reserva> reservas = ABMR.buscarPorHabitacion(habi);
+            for (Reserva res : reservas) {
+                if (hoy.equals(res.getFechaEntrada())) {
+                    ABMHabi.ocuparHabitacion(habi.getidHabitacion());
+                }
+            }
         }
-       
+        habitaciones = ABMHabi.listaOcupadas();
+
+        for (Habitacion habi : habitaciones) {
+            List<Reserva> reservas = ABMR.buscarPorHabitacion(habi);
+            for (Reserva res : reservas) {
+                if (hoy.equals(res.getFechaSalida())) {
+                    ABMHabi.liberarHabitacion(habi.getidHabitacion());
+                }
+            }
+        }
+
+    }
+
+    private void redondearCajasDeTexto() {
+        TextoDNI.putClientProperty("JComponent.roundRect", true);
+        textoCantPers.putClientProperty("JComponent.roundRect", true);
     }
 }

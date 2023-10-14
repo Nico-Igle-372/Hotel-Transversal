@@ -35,14 +35,14 @@ public class Principal extends javax.swing.JFrame {
 
         jBotonHuesped.setFont(new java.awt.Font("Perpetua Titling MT", 1, 10)); // NOI18N
         jBotonHuesped.setForeground(new java.awt.Color(255, 255, 255));
-        jBotonHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/huesped_pequeño(apagado).png"))); // NOI18N
+        jBotonHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HuespedPrincipalApagdo.png"))); // NOI18N
         jBotonHuesped.setText("Huesped");
         jBotonHuesped.setContentAreaFilled(false);
         jBotonHuesped.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBotonHuesped.setIconTextGap(8);
-        jBotonHuesped.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/huespedGrandeEncendido.png"))); // NOI18N
-        jBotonHuesped.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/huespedGrandeEncendido.png"))); // NOI18N
-        jBotonHuesped.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/huespedGrandeEncendido.png"))); // NOI18N
+        jBotonHuesped.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HuespedPrincipalEncendido.png"))); // NOI18N
+        jBotonHuesped.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HuespedPrincipalEncendido.png"))); // NOI18N
+        jBotonHuesped.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HuespedPrincipalEncendido.png"))); // NOI18N
         jBotonHuesped.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         jBotonHuesped.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

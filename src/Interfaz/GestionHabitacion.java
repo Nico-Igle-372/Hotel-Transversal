@@ -81,11 +81,11 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(TablaHabitacion);
 
-        BotonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.apagado.png"))); // NOI18N
+        BotonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarApagado.png"))); // NOI18N
         BotonBuscar.setContentAreaFilled(false);
-        BotonBuscar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.encendido.png"))); // NOI18N
-        BotonBuscar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.encendido.png"))); // NOI18N
-        BotonBuscar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.encendido.png"))); // NOI18N
+        BotonBuscar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarEncendido.png"))); // NOI18N
+        BotonBuscar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarEncendido.png"))); // NOI18N
+        BotonBuscar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarEncendido.png"))); // NOI18N
         BotonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonBuscarActionPerformed(evt);
@@ -94,11 +94,11 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
 
         BotonAltaBaja.setText("Alta/baja");
 
-        BotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconoSalirApagado.png"))); // NOI18N
+        BotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InicioSalirApagado(2).png"))); // NOI18N
         BotonSalir.setContentAreaFilled(false);
-        BotonSalir.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono-salir-encendido.png"))); // NOI18N
-        BotonSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono-salir-encendido.png"))); // NOI18N
-        BotonSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono-salir-encendido.png"))); // NOI18N
+        BotonSalir.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InicioSalirEncendido (1).png"))); // NOI18N
+        BotonSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InicioSalirEncendido (1).png"))); // NOI18N
+        BotonSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InicioSalirEncendido (1).png"))); // NOI18N
         BotonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonSalirActionPerformed(evt);
