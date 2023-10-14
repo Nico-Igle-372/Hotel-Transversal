@@ -1,6 +1,8 @@
 package Interfaz;
 
 import AccesoADatos.Conexion;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 public class Principal extends javax.swing.JFrame {
 
@@ -8,6 +10,7 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
+        setIconImage(getIconImage());
 //        setResizable(false);
         this.setLocationRelativeTo(null);
         conectar();
@@ -237,6 +240,12 @@ public class Principal extends javax.swing.JFrame {
  private void conectar() {
         Conexion con = new Conexion("jdbc:mariadb://localhost:3306/", "hotel31", "root", "");
 
+    }
+  @Override
+    public Image getIconImage(){
+        
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/icono2.png"));
+        return retValue;
     }
 
  
