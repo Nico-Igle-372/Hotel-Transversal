@@ -61,6 +61,8 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         RReservas = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
 
+        setFrameIcon(null);
+
         jLabel1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 20)); // NOI18N
         jLabel1.setText("Gestión Reserva");
 
@@ -198,9 +200,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                         .addGap(83, 83, 83)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(RReservas)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))))
+                            .addComponent(RReservas, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()

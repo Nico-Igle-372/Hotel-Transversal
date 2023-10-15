@@ -33,13 +33,15 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(180, 120));
+        setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(38, 38, 12));
+        jPanel1.setBackground(new java.awt.Color(28, 8, 0));
 
         jBotonHuesped.setFont(new java.awt.Font("Perpetua Titling MT", 1, 10)); // NOI18N
         jBotonHuesped.setForeground(new java.awt.Color(255, 255, 255));
         jBotonHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HuespedPrincipalApagdo.png"))); // NOI18N
         jBotonHuesped.setText("Huesped");
+        jBotonHuesped.setToolTipText("Huesped");
         jBotonHuesped.setContentAreaFilled(false);
         jBotonHuesped.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBotonHuesped.setIconTextGap(8);
