@@ -1,6 +1,8 @@
 package Interfaz;
 
 import AccesoADatos.Conexion;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 public class Principal extends javax.swing.JFrame {
 
@@ -8,6 +10,7 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
+        setIconImage(getIconImage());
 //        setResizable(false);
         this.setLocationRelativeTo(null);
         conectar();
@@ -30,19 +33,21 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(180, 120));
+        setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(38, 38, 12));
+        jPanel1.setBackground(new java.awt.Color(28, 8, 0));
 
         jBotonHuesped.setFont(new java.awt.Font("Perpetua Titling MT", 1, 10)); // NOI18N
         jBotonHuesped.setForeground(new java.awt.Color(255, 255, 255));
-        jBotonHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/huesped_pequeño(apagado).png"))); // NOI18N
+        jBotonHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HuespedPrincipalApagdo.png"))); // NOI18N
         jBotonHuesped.setText("Huesped");
+        jBotonHuesped.setToolTipText("Huesped");
         jBotonHuesped.setContentAreaFilled(false);
         jBotonHuesped.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBotonHuesped.setIconTextGap(8);
-        jBotonHuesped.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/huespedGrandeEncendido.png"))); // NOI18N
-        jBotonHuesped.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/huespedGrandeEncendido.png"))); // NOI18N
-        jBotonHuesped.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/huespedGrandeEncendido.png"))); // NOI18N
+        jBotonHuesped.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HuespedPrincipalEncendido.png"))); // NOI18N
+        jBotonHuesped.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HuespedPrincipalEncendido.png"))); // NOI18N
+        jBotonHuesped.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HuespedPrincipalEncendido.png"))); // NOI18N
         jBotonHuesped.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         jBotonHuesped.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,6 +242,12 @@ public class Principal extends javax.swing.JFrame {
  private void conectar() {
         Conexion con = new Conexion("jdbc:mariadb://localhost:3306/", "hotel31", "root", "");
 
+    }
+  @Override
+    public Image getIconImage(){
+        
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/icono2.png"));
+        return retValue;
     }
 
  
