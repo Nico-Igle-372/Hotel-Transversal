@@ -29,7 +29,7 @@ public class ABMHabitacion {
         try {
             ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, habitacion.gettipoHabitacion().getIdTipo());
-            ps.setBoolean(2, true);
+            ps.setBoolean(2, false);
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
