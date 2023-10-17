@@ -411,15 +411,19 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_RReservasActionPerformed
 
     private void BotonBuscarDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarDniActionPerformed
-        RReservas.setSelected(true);
-        RHabitaciones.setSelected(false);
-        armarCabecera();
-
-        List<Reserva> listaRes = ABMR.buscarPorHuesped(Integer.parseInt(TextoDNI.getText()));
-        limpiarT();
-        for (Reserva res : listaRes) {
-            cargarTablaR(res);
+        try {
+            RReservas.setSelected(true);
+            RHabitaciones.setSelected(false);
+            armarCabecera();
+            List<Reserva> listaRes = ABMR.buscarPorHuesped(Integer.parseInt(TextoDNI.getText().replace(".", "")));
+            limpiarT();
+            for (Reserva res : listaRes) {
+                cargarTablaR(res);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingrese un DNI valido");
         }
+
     }//GEN-LAST:event_BotonBuscarDniActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

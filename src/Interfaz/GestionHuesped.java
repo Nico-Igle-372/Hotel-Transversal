@@ -6,7 +6,6 @@ import Entidades.Huesped;
 import Entidades.Reserva;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 
 public class GestionHuesped extends javax.swing.JInternalFrame {
 
@@ -14,7 +13,6 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     ABMReserva ABMR = new ABMReserva();
 
     public GestionHuesped() {
-
         initComponents();
         redondearCajasDeTexto();
     }
@@ -271,34 +269,42 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonLimpiarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-        Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText().replace(".", "")));
-        hues.setDni(Integer.parseInt(jTextoDni.getText().replace(".", "")));
-        hues.setNombre(jTextoNombre.getText());
-        hues.setApellido(jTextoApellido.getText());
-        hues.setDomicilio(jTextoDireccion.getText());
-        hues.setCorreo(jTextoCorreo.getText());
-        hues.setCelular(Long.parseLong(jTextoCelular.getText()));
-        hues.setEstado(true);
-        if (hues.getIdHuesped() != 0) {
-            ABMHues.modificarHuesped(hues);
-        }else{
-            JOptionPane.showMessageDialog(null, "No existe un huesped con ese DNI");
+        try {
+            Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText().replace(".", "")));
+            hues.setDni(Integer.parseInt(jTextoDni.getText().replace(".", "")));
+            hues.setNombre(jTextoNombre.getText());
+            hues.setApellido(jTextoApellido.getText());
+            hues.setDomicilio(jTextoDireccion.getText());
+            hues.setCorreo(jTextoCorreo.getText());
+            hues.setCelular(Long.parseLong(jTextoCelular.getText()));
+            hues.setEstado(true);
+            if (hues.getIdHuesped() != 0) {
+                ABMHues.modificarHuesped(hues);
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe un huesped con ese DNI");
+            }
+        } catch (NumberFormatException | NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Complete todos los campos correctamente");
         }
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText().replace(".", "")));
-        hues.setDni(Integer.parseInt(jTextoDni.getText().replace(".", "")));
-        hues.setNombre(jTextoNombre.getText());
-        hues.setApellido(jTextoApellido.getText());
-        hues.setDomicilio(jTextoDireccion.getText());
-        hues.setCorreo(jTextoCorreo.getText());
-        hues.setCelular(Long.parseLong(jTextoCelular.getText()));
-        hues.setEstado(true);
-        if (hues.getIdHuesped() == 0) {
-            ABMHues.guardarHuesped(hues);
-        } else {
-            JOptionPane.showMessageDialog(null, "Ya existe un huesped con ese DNI");
+        try {
+            Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText().replace(".", "")));
+            hues.setDni(Integer.parseInt(jTextoDni.getText().replace(".", "")));
+            hues.setNombre(jTextoNombre.getText());
+            hues.setApellido(jTextoApellido.getText());
+            hues.setDomicilio(jTextoDireccion.getText());
+            hues.setCorreo(jTextoCorreo.getText());
+            hues.setCelular(Long.parseLong(jTextoCelular.getText()));
+            hues.setEstado(true);
+            if (hues.getIdHuesped() == 0) {
+                ABMHues.guardarHuesped(hues);
+            } else {
+                JOptionPane.showMessageDialog(null, "Ya existe un huesped con ese DNI");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingrese un DNI valido");
         }
     }//GEN-LAST:event_botonGuardarActionPerformed
 
