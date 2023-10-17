@@ -142,7 +142,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
             }
         });
 
-        labelPrecio.setText("Precio");
+        labelPrecio.setText("Nuevo Precio");
 
         botonCambiarPrecio.setText("Cambiar Precio");
         botonCambiarPrecio.addActionListener(new java.awt.event.ActionListener() {
@@ -235,12 +235,10 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                     .addComponent(botonCambiarPrecio))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(BotonModificar)
-                        .addGap(8, 8, 8))
                     .addComponent(BotonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BotonModificar)
                             .addComponent(botonPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BotonSalir))
                         .addGap(8, 8, 8)))

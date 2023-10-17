@@ -147,17 +147,14 @@
                   </Group>
                   <EmptySpace type="separate" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="BotonModificar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                      </Group>
                       <Component id="BotonGuardar" alignment="1" min="-2" pref="68" max="-2" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="BotonModificar" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="botonPrecio" min="-2" pref="51" max="-2" attributes="0"/>
                               <Component id="BotonSalir" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                          <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -331,7 +328,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="labelPrecio">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Precio"/>
+            <Property name="text" type="java.lang.String" value="Nuevo Precio"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextoPrecio">
