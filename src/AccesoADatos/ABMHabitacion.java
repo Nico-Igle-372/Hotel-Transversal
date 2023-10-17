@@ -87,7 +87,7 @@ public class ABMHabitacion {
             ps.setInt(2, habi.getidHabitacion());
             int registro = ps.executeUpdate();
             if (registro > 0) {
-//                JOptionPane.showMessageDialog(null, "Habitacion modificada");
+                JOptionPane.showMessageDialog(null, "Habitacion modificada");
             } else {
                 JOptionPane.showMessageDialog(null, "Habitacion no encontrada (?)");
             }

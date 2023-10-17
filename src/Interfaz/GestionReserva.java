@@ -8,7 +8,6 @@ import Entidades.Reserva;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -320,6 +319,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                     res.setEstado(true);
                     ABMR.crearReserva(res);
                     ABMHabi.ocuparHabitacion(res.getHabitacion().getidHabitacion());
+                    modeloTabla.removeRow(tablaReserva.getSelectedRow());
                 } else {
                     JOptionPane.showMessageDialog(null, "Revise las fechas seleccionadas");
                 }
@@ -327,7 +327,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Error en generar Reserva");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Seleccione ver habitaciones");
+            JOptionPane.showMessageDialog(null, "Seleccione una habitacion a reservar y vuelva a intentarlo");
         }
         actualizar();
 
@@ -335,9 +335,14 @@ public class GestionReserva extends javax.swing.JInternalFrame {
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         if (RReservas.isSelected()) {
-            ABMR.cancelarReserva((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0));
+            try {
+                ABMR.cancelarReserva((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0));
+                JOptionPane.showMessageDialog(null, "Reserva cancelada");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                JOptionPane.showMessageDialog(null, "Seleccione una reserva del huesped y vuelva a intentarlo");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Seleccione ver reservas");
+            JOptionPane.showMessageDialog(null, "Seleccione una reserva del huesped y vuelva a intentarlo");
         }
         actualizar();
     }//GEN-LAST:event_botonCancelarActionPerformed
@@ -365,7 +370,6 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                                 JOptionPane.showMessageDialog(null, "Reserva modificada");
                             }
                         }
-
                     } else {
                         JOptionPane.showMessageDialog(null, "La cantidad maxima es de "
                                 + res.getHabitacion().gettipoHabitacion().getCapacidad() + " personas");
@@ -380,7 +384,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Seleccione una reserva de la tabla");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Seleccione ver reservas");
+            JOptionPane.showMessageDialog(null, "Seleccione una reserva del huesped y vuelva a intentarlo");
         }
         actualizar();
     }//GEN-LAST:event_botonModificarActionPerformed
@@ -474,15 +478,14 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     }
 
     private void cargarTabla(LocalDate ingreso, LocalDate egreso, Habitacion habi) {
-
         modeloTabla.addRow(new Object[]{habi.getidHabitacion(), habi.gettipoHabitacion().getNombre(),
             habi.gettipoHabitacion().getCantCamas(), ABMR.calcularPrecioEstadia(ingreso, egreso, habi)});
     }
 
     private void cargarTablaR(Reserva res) {
-        modeloTabla.addRow(new Object[]{res.getIdReserva(), res.getHuesped().getNombre() + " " + res.getHuesped().getApellido(), res.getHabitacion().getidHabitacion(),
-            res.getHabitacion().gettipoHabitacion().getNombre(), res.getFechaEntrada(), res.getFechaSalida(), res.getImporteTotal()});
-
+        modeloTabla.addRow(new Object[]{res.getIdReserva(), res.getHuesped().getNombre() + " " + res.getHuesped().getApellido(),
+            res.getHabitacion().getidHabitacion(), res.getHabitacion().gettipoHabitacion().getNombre(), res.getFechaEntrada(),
+            res.getFechaSalida(), res.getImporteTotal()});
     }
 
     private void limpiarT() {
@@ -502,7 +505,6 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         LocalDate hoy = LocalDate.now();
         List<Habitacion> habitaciones = ABMHabi.listaDesocupadas();
         for (Habitacion habi : habitaciones) {
-
             List<Reserva> reservas = ABMR.buscarPorHabitacion(habi);
             for (Reserva res : reservas) {
                 if (hoy.equals(res.getFechaEntrada())) {
@@ -511,7 +513,6 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             }
         }
         habitaciones = ABMHabi.listaOcupadas();
-
         for (Habitacion habi : habitaciones) {
             List<Reserva> reservas = ABMR.buscarPorHabitacion(habi);
             for (Reserva res : reservas) {
@@ -520,7 +521,6 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 }
             }
         }
-
     }
 
     private void redondearCajasDeTexto() {
