@@ -239,7 +239,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
 
     private void botonAltaBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAltaBajaActionPerformed
         try {
-            Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText()));
+            Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText().replace(".", "")));
             if (hues.getIdHuesped() != 0) {
                 if (hues.isEstado()) {
                     ABMHues.bajaHuesped(hues.getDni());
@@ -271,37 +271,40 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonLimpiarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-        Huesped hues = new Huesped();
-        hues.setDni(Integer.parseInt(jTextoDni.getText()));
+        Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText().replace(".", "")));
+        hues.setDni(Integer.parseInt(jTextoDni.getText().replace(".", "")));
         hues.setNombre(jTextoNombre.getText());
         hues.setApellido(jTextoApellido.getText());
         hues.setDomicilio(jTextoDireccion.getText());
         hues.setCorreo(jTextoCorreo.getText());
         hues.setCelular(Long.parseLong(jTextoCelular.getText()));
         hues.setEstado(true);
-        ABMHues.modificarHuesped(hues);
+        if (hues.getIdHuesped() != 0) {
+            ABMHues.modificarHuesped(hues);
+        }else{
+            JOptionPane.showMessageDialog(null, "No existe un huesped con ese DNI");
+        }
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        Huesped hues = new Huesped();
-        hues.setDni(Integer.parseInt(jTextoDni.getText()));
+        Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText().replace(".", "")));
+        hues.setDni(Integer.parseInt(jTextoDni.getText().replace(".", "")));
         hues.setNombre(jTextoNombre.getText());
         hues.setApellido(jTextoApellido.getText());
         hues.setDomicilio(jTextoDireccion.getText());
         hues.setCorreo(jTextoCorreo.getText());
         hues.setCelular(Long.parseLong(jTextoCelular.getText()));
         hues.setEstado(true);
-        Huesped hues2 = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText()));
-        if (hues2.getIdHuesped() == 0) {
+        if (hues.getIdHuesped() == 0) {
             ABMHues.guardarHuesped(hues);
         } else {
-            JOptionPane.showMessageDialog(null, "Ya existe un huesped con ese dni");
+            JOptionPane.showMessageDialog(null, "Ya existe un huesped con ese DNI");
         }
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void jBotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonBuscarActionPerformed
         try {
-            Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText()));
+            Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText().replace(".", "")));
             if (hues.getIdHuesped() != 0) {
                 jTextoNombre.setText(hues.getNombre());
                 jTextoApellido.setText(hues.getApellido());
@@ -315,10 +318,10 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                     botonAltaBaja.setText("Alta");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "No se encontro huesped con ese dni");
+                JOptionPane.showMessageDialog(null, "No se encontro huesped con ese DNI");
             }
         } catch (NumberFormatException | NullPointerException ex) {
-
+            JOptionPane.showMessageDialog(null, "Rellene el campo DNI correctamente");
         }
     }//GEN-LAST:event_jBotonBuscarActionPerformed
 
@@ -359,14 +362,13 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
 
     private void redondearCajasDeTexto() {
         jTextoApellido.putClientProperty("JComponent.roundRect", true);
-        jTextoCelular.putClientProperty("JComponent.roundRect",true);
+        jTextoCelular.putClientProperty("JComponent.roundRect", true);
         jTextoCorreo.putClientProperty("JComponent.roundRect", true);
         jTextoDireccion.putClientProperty("JComponent.roundRect", true);
         jTextoDireccion.putClientProperty("JComponent.roundRect", true);
         jTextoDni.putClientProperty("JComponent.roundRect", true);
         jTextoEstado.putClientProperty("JComponent.roundRect", true);
         jTextoNombre.putClientProperty("JComponent.roundRect", true);
-        
-        
+
     }
 }
