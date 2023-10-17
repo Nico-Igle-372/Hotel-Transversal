@@ -11,7 +11,6 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         setIconImage(getIconImage());
-//        setResizable(false);
         this.setLocationRelativeTo(null);
         conectar();
         contador = 0;
@@ -33,7 +32,9 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(180, 120));
+        setPreferredSize(new java.awt.Dimension(1100, 650));
         setResizable(false);
+        setSize(new java.awt.Dimension(0, 0));
 
         jPanel1.setBackground(new java.awt.Color(28, 8, 0));
 
@@ -144,17 +145,19 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/recepcionHotelPrincipal.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/recepcionHotelPrincipal2.jpg"))); // NOI18N
+        jLabel2.setToolTipText("");
+        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         escritorio.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -179,7 +182,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,10 +198,10 @@ public class Principal extends javax.swing.JFrame {
             contador++;
             GestionReserva gr = new GestionReserva();
             gr.setVisible(true);
+            gr.setLocation(137, 1);
             escritorio.add(gr);
             escritorio.moveToFront(gr);
         }
-
     }//GEN-LAST:event_jBotonReservaActionPerformed
 
     private void jBotonHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonHuespedActionPerformed
@@ -206,6 +209,7 @@ public class Principal extends javax.swing.JFrame {
             contador++;
             GestionHuesped ghu = new GestionHuesped();
             ghu.setVisible(true);
+            ghu.setLocation(450, 1);
             escritorio.add(ghu);
             escritorio.moveToFront(ghu);
         }
@@ -220,13 +224,11 @@ public class Principal extends javax.swing.JFrame {
             contador++;
             GestionHabitacion gha = new GestionHabitacion();
             gha.setVisible(true);
+            gha.setLocation(300, 20);
             escritorio.add(gha);
             escritorio.moveToFront(gha);
-            
-            
         }
     }//GEN-LAST:event_jBotonHabitacionActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
@@ -241,15 +243,10 @@ public class Principal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
  private void conectar() {
         Conexion con = new Conexion("jdbc:mariadb://localhost:3306/", "hotel31", "root", "");
-
     }
   @Override
     public Image getIconImage(){
-        
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/icono2.png"));
         return retValue;
     }
-
- 
-
 }
