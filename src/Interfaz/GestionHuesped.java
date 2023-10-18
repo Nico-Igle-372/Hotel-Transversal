@@ -407,7 +407,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     }
 
     private boolean verificaNombreApellido() {
-        return jTextoNombre.getText().matches("[a-z A-Z]*") && jTextoApellido.getText().matches("[a-z A-Z]*") 
+        return jTextoNombre.getText().matches("[a-zA-Z]*") && jTextoApellido.getText().matches("[a-zA-Z]*") 
                 &&  jTextoNombre.getText().matches("[a-z A-Z].*") && jTextoApellido.getText().matches("[a-z A-Z].*");
     }
 
