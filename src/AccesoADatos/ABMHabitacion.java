@@ -23,17 +23,16 @@ public class ABMHabitacion {
     }
 
     public void crearHabitacion(Habitacion habitacion) {
-        String sql = "INSERT INTO habitacion (idTipoHabitacion, estado) VALUES (?, ?)";
+        String sql = "INSERT INTO habitacion (idTipoHabitacion, estado, idHabitacion) VALUES (?, ?, ?)";
         PreparedStatement ps = null;
-
         try {
             ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, habitacion.gettipoHabitacion().getIdTipo());
-            ps.setBoolean(2, true);
+            ps.setBoolean(2, false);
+            ps.setInt(3, habitacion.getidHabitacion());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                habitacion.setIdHabitacion(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Habitacion creada");
             } else {
                 JOptionPane.showMessageDialog(null, "Habitacion no creada");
@@ -51,9 +50,7 @@ public class ABMHabitacion {
             ps = conn.prepareStatement(sql);
             ps.setInt(1, idH);
             int registro = ps.executeUpdate();
-            if (registro == 1) {
-//                JOptionPane.showMessageDialog(null, "Habitacion a sido ocupada");
-            } else {
+            if (registro != 1) {
                 JOptionPane.showMessageDialog(null, "Esa habitacion no existe");
             }
         } catch (SQLException ex) {
@@ -68,9 +65,7 @@ public class ABMHabitacion {
             ps = conn.prepareStatement(sql);
             ps.setInt(1, idH);
             int registro = ps.executeUpdate();
-            if (registro == 1) {
-//                JOptionPane.showMessageDialog(null, "Habitacion a sido liberada");
-            } else {
+            if (registro != 1) {
                 JOptionPane.showMessageDialog(null, "Esa habitacion no existe");
             }
         } catch (SQLException ex) {
@@ -87,7 +82,7 @@ public class ABMHabitacion {
             ps.setInt(2, habi.getidHabitacion());
             int registro = ps.executeUpdate();
             if (registro > 0) {
-//                JOptionPane.showMessageDialog(null, "Habitacion modificada");
+                JOptionPane.showMessageDialog(null, "Habitacion modificada");
             } else {
                 JOptionPane.showMessageDialog(null, "Habitacion no encontrada (?)");
             }
@@ -143,8 +138,6 @@ public class ABMHabitacion {
         return tipoH;
     }
     
-    
-
     public Habitacion buscarHabitacion(int idH) {
         Habitacion habi = new Habitacion();
         String sql = "SELECT * FROM habitacion WHERE idHabitacion = ?";
@@ -174,9 +167,7 @@ public class ABMHabitacion {
             ps.setDouble(1, precio);
             ps.setInt(2, idTH);
             int registro = ps.executeUpdate();
-            if (registro > 0) {
-//                JOptionPane.showMessageDialog(null, "Precio modificado");
-            } else {
+            if (registro == 0) {
                 JOptionPane.showMessageDialog(null, "Tipo de Habitacion inexistente");
             }
             ps.close();
@@ -273,10 +264,6 @@ public class ABMHabitacion {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al listar los tipos de habitación");
         }
-       
-       
        return tipoHabitaciones;
     }
-    
-    
 }

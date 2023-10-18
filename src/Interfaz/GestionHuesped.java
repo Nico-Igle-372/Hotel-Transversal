@@ -6,7 +6,6 @@ import Entidades.Huesped;
 import Entidades.Reserva;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 
 public class GestionHuesped extends javax.swing.JInternalFrame {
 
@@ -14,7 +13,6 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     ABMReserva ABMR = new ABMReserva();
 
     public GestionHuesped() {
-
         initComponents();
         redondearCajasDeTexto();
     }
@@ -49,6 +47,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         setFrameIcon(null);
 
         jLabel1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 20)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Gestión Huesped");
 
         jLabel2.setText("D.N.I.");
@@ -62,6 +61,8 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         jLabel6.setText("Celular");
 
         jLabel7.setText("Estado");
+
+        jTextoEstado.setEditable(false);
 
         jBotonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarApagado.png"))); // NOI18N
         jBotonBuscar.setContentAreaFilled(false);
@@ -135,15 +136,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -155,30 +148,34 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextoApellido, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextoCorreo, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextoCelular, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextoDireccion, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextoNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jTextoEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(botonAltaBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
                                 .addComponent(jTextoDni, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jBotonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(12, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(jBotonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextoNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                                .addComponent(jTextoApellido, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextoDireccion, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextoCorreo, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextoCelular, javax.swing.GroupLayout.Alignment.LEADING))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,54 +187,45 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextoDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextoCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextoEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonAltaBaja)
-                            .addComponent(jLabel7))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(botonLimpiar, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(botonSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(botonModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextoCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextoEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonAltaBaja)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,7 +237,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
 
     private void botonAltaBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAltaBajaActionPerformed
         try {
-            Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText()));
+            Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText().replace(".", "")));
             if (hues.getIdHuesped() != 0) {
                 if (hues.isEstado()) {
                     ABMHues.bajaHuesped(hues.getDni());
@@ -264,10 +252,10 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                 }
                 jTextoEstado.setText(hues.isEstado() ? "Inactivo" : "Activo");
             } else {
-                JOptionPane.showMessageDialog(null, "No se encontro huesped con ese dni");
+                JOptionPane.showMessageDialog(null, "No se encontro huesped con ese DNI");
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Revise el dni");
+            JOptionPane.showMessageDialog(null, "Revise el DNI");
         }
     }//GEN-LAST:event_botonAltaBajaActionPerformed
 
@@ -281,37 +269,72 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonLimpiarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-        Huesped hues = new Huesped();
-        hues.setDni(Integer.parseInt(jTextoDni.getText()));
-        hues.setNombre(jTextoNombre.getText());
-        hues.setApellido(jTextoApellido.getText());
-        hues.setDomicilio(jTextoDireccion.getText());
-        hues.setCorreo(jTextoCorreo.getText());
-        hues.setCelular(Long.parseLong(jTextoCelular.getText()));
-        hues.setEstado(true);
-        ABMHues.modificarHuesped(hues);
+        try {
+            if (verificaVacios()) {
+                Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText().replace(".", "")));
+                hues.setDni(Integer.parseInt(jTextoDni.getText().replace(".", "")));
+                if (verificaNombreApellido()) {
+                    if (verificaCorreo()) {
+                        hues.setNombre(jTextoNombre.getText());
+                        hues.setApellido(jTextoApellido.getText());
+                        hues.setDomicilio(jTextoDireccion.getText());
+                        hues.setCorreo(jTextoCorreo.getText());
+                        hues.setCelular(Long.parseLong(jTextoCelular.getText()));
+                        hues.setEstado(true);
+                        if (hues.getIdHuesped() != 0) {
+                            ABMHues.modificarHuesped(hues);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No existe un huesped con ese DNI");
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Escriba un correo electronico valido");
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Formato de nombre/apellido no valido. \nReescriba con formato alfabetico");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Complete todos los campos");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Complete todos los campos correctamente");
+        }
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        Huesped hues = new Huesped();
-        hues.setDni(Integer.parseInt(jTextoDni.getText()));
-        hues.setNombre(jTextoNombre.getText());
-        hues.setApellido(jTextoApellido.getText());
-        hues.setDomicilio(jTextoDireccion.getText());
-        hues.setCorreo(jTextoCorreo.getText());
-        hues.setCelular(Long.parseLong(jTextoCelular.getText()));
-        hues.setEstado(true);
-        Huesped hues2 = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText()));
-        if (hues2.getIdHuesped() == 0) {
-            ABMHues.guardarHuesped(hues);
-        } else {
-            JOptionPane.showMessageDialog(null, "Ya existe un huesped con ese dni");
+        try {
+            if (verificaVacios()) {
+                Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText().replace(".", "")));
+                hues.setDni(Integer.parseInt(jTextoDni.getText().replace(".", "")));
+                if (verificaNombreApellido()) {
+                    if (verificaCorreo()) {
+                        hues.setNombre(jTextoNombre.getText());
+                        hues.setApellido(jTextoApellido.getText());
+                        hues.setDomicilio(jTextoDireccion.getText());
+                        hues.setCorreo(jTextoCorreo.getText());
+                        hues.setCelular(Long.parseLong(jTextoCelular.getText()));
+                        hues.setEstado(true);
+                        if (hues.getIdHuesped() == 0) {
+                            ABMHues.guardarHuesped(hues);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Ya existe un huesped con ese DNI");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Escriba un correo electronico valido");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Formato de nombre/apellido no valido. \nReescriba con formato alfabetico");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Complete todos los campos");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Complete todos los campos correctamente");
         }
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void jBotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonBuscarActionPerformed
         try {
-            Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText()));
+            Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText().replace(".", "")));
             if (hues.getIdHuesped() != 0) {
                 jTextoNombre.setText(hues.getNombre());
                 jTextoApellido.setText(hues.getApellido());
@@ -325,10 +348,10 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                     botonAltaBaja.setText("Alta");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "No se encontro huesped con ese dni");
+                JOptionPane.showMessageDialog(null, "No se encontro huesped con ese DNI");
             }
         } catch (NumberFormatException | NullPointerException ex) {
-
+            JOptionPane.showMessageDialog(null, "Rellene el campo DNI correctamente");
         }
     }//GEN-LAST:event_jBotonBuscarActionPerformed
 
@@ -369,14 +392,26 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
 
     private void redondearCajasDeTexto() {
         jTextoApellido.putClientProperty("JComponent.roundRect", true);
-        jTextoCelular.putClientProperty("JComponent.roundRect",true);
+        jTextoCelular.putClientProperty("JComponent.roundRect", true);
         jTextoCorreo.putClientProperty("JComponent.roundRect", true);
         jTextoDireccion.putClientProperty("JComponent.roundRect", true);
         jTextoDireccion.putClientProperty("JComponent.roundRect", true);
         jTextoDni.putClientProperty("JComponent.roundRect", true);
         jTextoEstado.putClientProperty("JComponent.roundRect", true);
         jTextoNombre.putClientProperty("JComponent.roundRect", true);
-        
-        
+    }
+
+    private boolean verificaVacios() {
+        return !(jTextoDni.getText().isEmpty() || jTextoNombre.getText().isEmpty() || jTextoApellido.getText().isEmpty()
+                || jTextoDireccion.getText().isEmpty() || jTextoCorreo.getText().isEmpty() || jTextoCelular.getText().isEmpty());
+    }
+
+    private boolean verificaNombreApellido() {
+        return jTextoNombre.getText().matches("[a-zA-Z]*") && jTextoApellido.getText().matches("[a-zA-Z]*") 
+                &&  jTextoNombre.getText().matches("[a-z A-Z].*") && jTextoApellido.getText().matches("[a-z A-Z].*");
+    }
+
+    private boolean verificaCorreo() {
+        return jTextoCorreo.getText().matches("[-\\w\\.]+@\\D+\\.\\D{3}+");
     }
 }

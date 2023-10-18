@@ -193,6 +193,39 @@ public class ABMReserva {
         return reservas;
     }
     
+    public List<Reserva> buscarTodasPorHuesped(int dni){
+        List<Reserva> reservas = new ArrayList<>();
+        Huesped hues = ABMHues.buscarHuesped(dni);
+        
+        String sql = "SELECT * FROM reserva WHERE reserva.idHuesped = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, hues.getIdHuesped());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Reserva res = new Reserva();
+                res.setIdReserva(rs.getInt("idReserva"));
+                res.setHuesped(hues);
+                Habitacion habi = ABMH.buscarHabitacion(rs.getInt("idHabitacion"));
+                res.setHabitacion(habi);
+                res.setCantPersonas(rs.getInt("cantPersonas"));
+                res.setFechaEntrada(rs.getDate("fechaEntrada").toLocalDate());
+                res.setFechaSalida(rs.getDate("fechaSalida").toLocalDate());
+                res.setImporteTotal(rs.getDouble("importeTotal"));
+                res.setEstado(rs.getBoolean("estado"));
+                reservas.add(res);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar la reserva");
+        }
+        if (reservas.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay reservas de ese Huesped");
+        }
+        return reservas;
+    }
+    
     public List<Reserva> buscarPorFechas(LocalDate entrada, LocalDate salida){
           List<Reserva> reservas = new ArrayList<>();
           String sql = "SELECT * FROM reserva WHERE estado = 1 AND "
