@@ -252,10 +252,10 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                 }
                 jTextoEstado.setText(hues.isEstado() ? "Inactivo" : "Activo");
             } else {
-                JOptionPane.showMessageDialog(null, "No se encontro huesped con ese dni");
+                JOptionPane.showMessageDialog(null, "No se encontro huesped con ese DNI");
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Revise el dni");
+            JOptionPane.showMessageDialog(null, "Revise el DNI");
         }
     }//GEN-LAST:event_botonAltaBajaActionPerformed
 
@@ -270,41 +270,65 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         try {
-            Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText().replace(".", "")));
-            hues.setDni(Integer.parseInt(jTextoDni.getText().replace(".", "")));
-            hues.setNombre(jTextoNombre.getText());
-            hues.setApellido(jTextoApellido.getText());
-            hues.setDomicilio(jTextoDireccion.getText());
-            hues.setCorreo(jTextoCorreo.getText());
-            hues.setCelular(Long.parseLong(jTextoCelular.getText()));
-            hues.setEstado(true);
-            if (hues.getIdHuesped() != 0) {
-                ABMHues.modificarHuesped(hues);
-            } else {
-                JOptionPane.showMessageDialog(null, "No existe un huesped con ese DNI");
+            if (verificaVacios()) {
+                Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText().replace(".", "")));
+                hues.setDni(Integer.parseInt(jTextoDni.getText().replace(".", "")));
+                if (verificaNombreApellido()) {
+                    if (verificaCorreo()) {
+                        hues.setNombre(jTextoNombre.getText());
+                        hues.setApellido(jTextoApellido.getText());
+                        hues.setDomicilio(jTextoDireccion.getText());
+                        hues.setCorreo(jTextoCorreo.getText());
+                        hues.setCelular(Long.parseLong(jTextoCelular.getText()));
+                        hues.setEstado(true);
+                        if (hues.getIdHuesped() != 0) {
+                            ABMHues.modificarHuesped(hues);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No existe un huesped con ese DNI");
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Escriba un correo electronico valido");
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Formato de nombre/apellido no valido. \nReescriba con formato alfabetico");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Complete todos los campos");
             }
-        } catch (NumberFormatException | NullPointerException e) {
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Complete todos los campos correctamente");
         }
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         try {
-            Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText().replace(".", "")));
-            hues.setDni(Integer.parseInt(jTextoDni.getText().replace(".", "")));
-            hues.setNombre(jTextoNombre.getText());
-            hues.setApellido(jTextoApellido.getText());
-            hues.setDomicilio(jTextoDireccion.getText());
-            hues.setCorreo(jTextoCorreo.getText());
-            hues.setCelular(Long.parseLong(jTextoCelular.getText()));
-            hues.setEstado(true);
-            if (hues.getIdHuesped() == 0) {
-                ABMHues.guardarHuesped(hues);
+            if (verificaVacios()) {
+                Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText().replace(".", "")));
+                hues.setDni(Integer.parseInt(jTextoDni.getText().replace(".", "")));
+                if (verificaNombreApellido()) {
+                    if (verificaCorreo()) {
+                        hues.setNombre(jTextoNombre.getText());
+                        hues.setApellido(jTextoApellido.getText());
+                        hues.setDomicilio(jTextoDireccion.getText());
+                        hues.setCorreo(jTextoCorreo.getText());
+                        hues.setCelular(Long.parseLong(jTextoCelular.getText()));
+                        hues.setEstado(true);
+                        if (hues.getIdHuesped() == 0) {
+                            ABMHues.guardarHuesped(hues);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Ya existe un huesped con ese DNI");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Escriba un correo electronico valido");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Formato de nombre/apellido no valido. \nReescriba con formato alfabetico");
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Ya existe un huesped con ese DNI");
+                JOptionPane.showMessageDialog(null, "Complete todos los campos");
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Ingrese un DNI valido");
+            JOptionPane.showMessageDialog(null, "Complete todos los campos correctamente");
         }
     }//GEN-LAST:event_botonGuardarActionPerformed
 
@@ -375,6 +399,19 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         jTextoDni.putClientProperty("JComponent.roundRect", true);
         jTextoEstado.putClientProperty("JComponent.roundRect", true);
         jTextoNombre.putClientProperty("JComponent.roundRect", true);
+    }
 
+    private boolean verificaVacios() {
+        return !(jTextoDni.getText().isEmpty() || jTextoNombre.getText().isEmpty() || jTextoApellido.getText().isEmpty()
+                || jTextoDireccion.getText().isEmpty() || jTextoCorreo.getText().isEmpty() || jTextoCelular.getText().isEmpty());
+    }
+
+    private boolean verificaNombreApellido() {
+        return jTextoNombre.getText().matches("[a-z A-Z]*") && jTextoApellido.getText().matches("[a-z A-Z]*") 
+                &&  jTextoNombre.getText().matches("[a-z A-Z].*") && jTextoApellido.getText().matches("[a-z A-Z].*");
+    }
+
+    private boolean verificaCorreo() {
+        return jTextoCorreo.getText().matches("[-\\w\\.]+@\\D+\\.\\D{3}+");
     }
 }

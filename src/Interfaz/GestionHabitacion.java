@@ -290,15 +290,19 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
     private void BotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGuardarActionPerformed
         Habitacion h = new Habitacion();
         try {
-            if (ABMHabi.buscarHabitacion(Integer.parseInt(TextoNumero.getText())).getidHabitacion() == 0) {
-                h.setIdHabitacion(Integer.parseInt(TextoNumero.getText()));
-                h.settipoHabitacion(ABMHabi.buscarTipoHabitacionPorNombre(ComboTipoH.getSelectedItem() + ""));
-                h.setEstado(false);
-                ABMHabi.crearHabitacion(h);
-            } else {
-                JOptionPane.showMessageDialog(null, "Ya existe una habitacion con ese número");
+            if (verificaHabitacion()) {
+                if (ABMHabi.buscarHabitacion(Integer.parseInt(TextoNumero.getText())).getidHabitacion() == 0) {
+                    h.setIdHabitacion(Integer.parseInt(TextoNumero.getText()));
+                    h.settipoHabitacion(ABMHabi.buscarTipoHabitacionPorNombre(ComboTipoH.getSelectedItem() + ""));
+                    h.setEstado(false);
+                    ABMHabi.crearHabitacion(h);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ya existe una habitacion con ese número");
+                }
+            }else{
+                 JOptionPane.showMessageDialog(null, "Las habitaciones solo pueden ir del 1 al 200");
             }
-        } catch (NullPointerException | NumberFormatException ex) {
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Ingrese un numero de habitacion valido");
         }
     }//GEN-LAST:event_BotonGuardarActionPerformed
@@ -457,5 +461,9 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         jTextoPrecio.putClientProperty("JComponent.roundRect", true);
         ComboTipoH.putClientProperty("JComponent.roundRect", true);
         BotonAltaBaja.putClientProperty("JComponent.roundRect", true);
+    }
+
+    private boolean verificaHabitacion() {
+        return Integer.parseInt(TextoNumero.getText()) > 0 && Integer.parseInt(TextoNumero.getText()) < 201;
     }
 }
