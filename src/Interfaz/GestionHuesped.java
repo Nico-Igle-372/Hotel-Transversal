@@ -15,6 +15,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     public GestionHuesped() {
         initComponents();
         redondearCajasDeTexto();
+        desactivarEstado();
     }
 
     @SuppressWarnings("unchecked")
@@ -62,6 +63,36 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Estado");
 
+        jTextoDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextoDniKeyReleased(evt);
+            }
+        });
+
+        jTextoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextoNombreKeyReleased(evt);
+            }
+        });
+
+        jTextoDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextoDireccionKeyReleased(evt);
+            }
+        });
+
+        jTextoCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextoCorreoKeyReleased(evt);
+            }
+        });
+
+        jTextoCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextoCelularKeyReleased(evt);
+            }
+        });
+
         jTextoEstado.setEditable(false);
 
         jBotonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarApagado.png"))); // NOI18N
@@ -78,6 +109,12 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         });
 
         jLabel8.setText("Apellido");
+
+        jTextoApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextoApellidoKeyReleased(evt);
+            }
+        });
 
         botonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HuespedGestionApagado.png"))); // NOI18N
         botonGuardar.setContentAreaFilled(false);
@@ -266,6 +303,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
 
     private void botonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLimpiarActionPerformed
         vaciar();
+        desactivarEstado();
     }//GEN-LAST:event_botonLimpiarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
@@ -286,13 +324,13 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                         } else {
                             JOptionPane.showMessageDialog(null, "No existe un huesped con ese DNI");
                         }
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(null, "Escriba un correo electronico valido");
                     }
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "Formato de nombre/apellido no valido. \nReescriba con formato alfabetico");
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Complete todos los campos");
             }
         } catch (NumberFormatException e) {
@@ -333,9 +371,13 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void jBotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonBuscarActionPerformed
+
         try {
             Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText().replace(".", "")));
             if (hues.getIdHuesped() != 0) {
+                jLabel7.setVisible(true);
+                jTextoEstado.setVisible(true);
+                botonAltaBaja.setVisible(true);
                 jTextoNombre.setText(hues.getNombre());
                 jTextoApellido.setText(hues.getApellido());
                 jTextoDireccion.setText(hues.getDomicilio());
@@ -354,6 +396,30 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Rellene el campo DNI correctamente");
         }
     }//GEN-LAST:event_jBotonBuscarActionPerformed
+
+    private void jTextoNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoNombreKeyReleased
+        desactivarEstado();
+    }//GEN-LAST:event_jTextoNombreKeyReleased
+
+    private void jTextoApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoApellidoKeyReleased
+        desactivarEstado();
+    }//GEN-LAST:event_jTextoApellidoKeyReleased
+
+    private void jTextoDireccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoDireccionKeyReleased
+       desactivarEstado();
+    }//GEN-LAST:event_jTextoDireccionKeyReleased
+
+    private void jTextoCorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoCorreoKeyReleased
+        desactivarEstado();
+    }//GEN-LAST:event_jTextoCorreoKeyReleased
+
+    private void jTextoCelularKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoCelularKeyReleased
+       desactivarEstado();
+    }//GEN-LAST:event_jTextoCelularKeyReleased
+
+    private void jTextoDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoDniKeyReleased
+        desactivarEstado();
+    }//GEN-LAST:event_jTextoDniKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAltaBaja;
@@ -407,11 +473,18 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     }
 
     private boolean verificaNombreApellido() {
-        return jTextoNombre.getText().matches("[a-zA-Z]*") && jTextoApellido.getText().matches("[a-zA-Z]*") 
-                &&  jTextoNombre.getText().matches("[a-z A-Z].*") && jTextoApellido.getText().matches("[a-z A-Z].*");
+        return jTextoNombre.getText().matches("[a-zA-Z]*") && jTextoApellido.getText().matches("[a-zA-Z]*")
+                && jTextoNombre.getText().matches("[a-z A-Z].*") && jTextoApellido.getText().matches("[a-z A-Z].*");
     }
 
     private boolean verificaCorreo() {
         return jTextoCorreo.getText().matches("[-\\w\\.]+@\\D+\\.\\D{3}+");
     }
+
+    private void desactivarEstado() {
+        jLabel7.setVisible(false);
+        jTextoEstado.setVisible(false);
+        botonAltaBaja.setVisible(false);
+    }
+
 }

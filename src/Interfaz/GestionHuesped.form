@@ -190,14 +190,29 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextoDni">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextoDniKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextoNombre">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextoNombreKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextoDireccion">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextoDireccionKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextoCorreo">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextoCorreoKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextoCelular">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextoCelularKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextoEstado">
           <Properties>
@@ -232,6 +247,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextoApellido">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextoApellidoKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botonGuardar">
           <Properties>
