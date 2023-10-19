@@ -683,4 +683,17 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         TextoDNI.putClientProperty("JComponent.roundRect", true);
         textoCantPers.putClientProperty("JComponent.roundRect", true);
     }
-}
+    
+    private boolean verificarDni(){
+        return TextoDNI.getText().matches("[0-9]*")&& TextoDNI.getText().length()<11&&!(TextoDNI.getText().isEmpty());
+    }
+    
+    private void activarDesactivarBuscarDni(){
+        if(verificarDni()){
+            BotonBuscarDni.setEnabled(true);
+        }else{
+            BotonBuscarDni.setEnabled(false);
+        }
+    }
+    
+    }
