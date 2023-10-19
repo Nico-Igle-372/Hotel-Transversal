@@ -539,7 +539,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         limpiarT();
 
         if (titulo.getText().equals("Gestión Reserva")) {
-            System.out.println("2");
+            
             titulo.setText("HISTORIAL");
             textoCantPers.setVisible(false);
             jDFechaEgreso.setVisible(false);
@@ -555,7 +555,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             jLabel5.setVisible(false);
             jLabel6.setVisible(false);
         } else {
-            System.out.println("1");
+            
             titulo.setText("Gestión Reserva");
 
             textoCantPers.setVisible(true);
