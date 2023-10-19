@@ -409,50 +409,60 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         if (RReservas.isSelected()) {
             try {
+                Reserva res = ABMR.buscarPorId((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0));
+                LocalDate hoy = LocalDate.now();
+                LocalDate ingresoActual = res.getFechaEntrada();
+
                 int cantPersonas = Integer.parseInt(textoCantPers.getText());
                 LocalDate ingreso = jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 LocalDate egreso = jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                if (comprobarFechas(ingreso, egreso)) {
-                    Reserva res = ABMR.buscarPorId((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0));
-                    res.setCantPersonas(cantPersonas);
-                    res.setFechaEntrada(ingreso);
-                    res.setFechaSalida(egreso);
-                    double total = ABMR.calcularPrecioEstadia(ingreso, egreso, res.getHabitacion());
-                    res.setImporteTotal(total);
-                    ABMR.cancelarReserva(res.getIdReserva());
-                    if (res.getHabitacion().gettipoHabitacion().getCapacidad() >= cantPersonas) {
-                        ABMHabi.liberarHabitacion(res.getHabitacion().getidHabitacion());
-                        List<Habitacion> habis = ABMR.buscarHabitacionParaReserva(cantPersonas, ingreso, egreso);
-                        for (Habitacion habi : habis) {
-                            if (habi.getidHabitacion() == res.getHabitacion().getidHabitacion()) {
-                                int respuesta = JOptionPane.showConfirmDialog(this, "El costo final sera $" + total + ".\n"
-                                        + "Desea confirmar las modificaciones de esa reserva?"); // 0 = si // 1 = no // 2 = cancelar
-                                switch (respuesta) {
-                                    case 0:
-                                        ABMR.modificarReserva(res);
-                                        ABMHabi.ocuparHabitacion(habi.getidHabitacion());
-                                        limpiarT();
-                                        cargarTablaR(res);
-                                        JOptionPane.showMessageDialog(null, "Reserva modificada");
-                                        break;
-                                    case 1:
-                                        ABMHabi.ocuparHabitacion(habi.getidHabitacion());
-                                        JOptionPane.showMessageDialog(null, "No se modifico la reserva");
-                                        break;
-                                    case 2:
-                                        ABMHabi.ocuparHabitacion(habi.getidHabitacion());
-                                        break;
+                if ((ingresoActual.equals(ingreso) || hoy.isBefore(ingreso))&&egreso.isAfter(hoy)) {
+                    
+                    if (comprobarFechas(ingreso, egreso)) {
+
+                        res.setCantPersonas(cantPersonas);
+                        res.setFechaEntrada(ingreso);
+                        res.setFechaSalida(egreso);
+                        double total = ABMR.calcularPrecioEstadia(ingreso, egreso, res.getHabitacion());
+                        res.setImporteTotal(total);
+                        ABMR.cancelarReserva(res.getIdReserva());
+                        if (res.getHabitacion().gettipoHabitacion().getCapacidad() >= cantPersonas) {
+                            ABMHabi.liberarHabitacion(res.getHabitacion().getidHabitacion());
+                            List<Habitacion> habis = ABMR.buscarHabitacionParaReserva(cantPersonas, ingreso, egreso);
+                            for (Habitacion habi : habis) {
+                                if (habi.getidHabitacion() == res.getHabitacion().getidHabitacion()) {
+                                    int respuesta = JOptionPane.showConfirmDialog(this, "El costo final sera $" + total + ".\n"
+                                            + "Desea confirmar las modificaciones de esa reserva?"); // 0 = si // 1 = no // 2 = cancelar
+                                    switch (respuesta) {
+                                        case 0:
+                                            ABMR.modificarReserva(res);
+                                            ABMHabi.ocuparHabitacion(habi.getidHabitacion());
+                                            limpiarT();
+                                            cargarTablaR(res);
+                                            JOptionPane.showMessageDialog(null, "Reserva modificada");
+                                            break;
+                                        case 1:
+                                            ABMHabi.ocuparHabitacion(habi.getidHabitacion());
+                                            JOptionPane.showMessageDialog(null, "No se modifico la reserva");
+                                            break;
+                                        case 2:
+                                            ABMHabi.ocuparHabitacion(habi.getidHabitacion());
+                                            break;
+                                    }
                                 }
                             }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "La cantidad maxima es de "
+                                    + res.getHabitacion().gettipoHabitacion().getCapacidad() + " personas");
                         }
+                        ABMR.AltaReserva(res.getIdReserva());
                     } else {
-                        JOptionPane.showMessageDialog(null, "La cantidad maxima es de "
-                                + res.getHabitacion().gettipoHabitacion().getCapacidad() + " personas");
+                        JOptionPane.showMessageDialog(null, "Revise las fechas seleccionadas");
                     }
-                    ABMR.AltaReserva(res.getIdReserva());
-                } else {
+                }else{
                     JOptionPane.showMessageDialog(null, "Revise las fechas seleccionadas");
                 }
+
             } catch (NumberFormatException | NullPointerException ex) {
                 JOptionPane.showMessageDialog(null, "Complete todos los campos");
             } catch (ArrayIndexOutOfBoundsException ex) {
@@ -514,9 +524,9 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BotonBuscarDniActionPerformed
 
     private void BotonHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonHistorialActionPerformed
-        
+
         limpiarT();
-        
+
         if (titulo.getText().equals("Gestión Reserva")) {
             System.out.println("2");
             titulo.setText("HISTORIAL");
@@ -586,38 +596,38 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void armarCabecera() {
-        
-        if(titulo.getText().equals("Gestión Reserva")){
-           if (RHabitaciones.isSelected()) {
-            modeloTabla.addColumn("Habitacion");
-            modeloTabla.addColumn("Tipo de Habitacion");
-            modeloTabla.addColumn("N° de Camas");
-            modeloTabla.addColumn("Total");
-            modeloTabla.setColumnCount(4);
-            tablaReserva.setModel(modeloTabla);
+
+        if (titulo.getText().equals("Gestión Reserva")) {
+            if (RHabitaciones.isSelected()) {
+                modeloTabla.addColumn("Habitacion");
+                modeloTabla.addColumn("Tipo de Habitacion");
+                modeloTabla.addColumn("N° de Camas");
+                modeloTabla.addColumn("Total");
+                modeloTabla.setColumnCount(4);
+                tablaReserva.setModel(modeloTabla);
+            } else {
+                modeloTabla.setColumnCount(7);
+                tablaReserva.setModel(modeloTabla);
+                JTableHeader tableHeader = tablaReserva.getTableHeader();
+                TableColumnModel tableColumnModel = tableHeader.getColumnModel();
+                TableColumn tableColumn = tableColumnModel.getColumn(0);
+                tableColumn.setHeaderValue("Id");
+                TableColumn tableColumn1 = tableColumnModel.getColumn(1);
+                tableColumn1.setHeaderValue("Huesped");
+                TableColumn tableColumn2 = tableColumnModel.getColumn(2);
+                tableColumn2.setHeaderValue("Habitacion");
+                TableColumn tableColumn3 = tableColumnModel.getColumn(3);
+                tableColumn3.setHeaderValue("Tipo de Habitacion");
+                TableColumn tableColumn4 = tableColumnModel.getColumn(4);
+                tableColumn4.setHeaderValue("Ingreso");
+                TableColumn tableColumn5 = tableColumnModel.getColumn(5);
+                tableColumn5.setHeaderValue("Egreso");
+                TableColumn tableColumn6 = tableColumnModel.getColumn(6);
+                tableColumn6.setHeaderValue("Total");
+                tableHeader.repaint();
+            }
         } else {
             modeloTabla.setColumnCount(7);
-            tablaReserva.setModel(modeloTabla);
-            JTableHeader tableHeader = tablaReserva.getTableHeader();
-            TableColumnModel tableColumnModel = tableHeader.getColumnModel();
-            TableColumn tableColumn = tableColumnModel.getColumn(0);
-            tableColumn.setHeaderValue("Id");
-            TableColumn tableColumn1 = tableColumnModel.getColumn(1);
-            tableColumn1.setHeaderValue("Huesped");
-            TableColumn tableColumn2 = tableColumnModel.getColumn(2);
-            tableColumn2.setHeaderValue("Habitacion");
-            TableColumn tableColumn3 = tableColumnModel.getColumn(3);
-            tableColumn3.setHeaderValue("Tipo de Habitacion");
-            TableColumn tableColumn4 = tableColumnModel.getColumn(4);
-            tableColumn4.setHeaderValue("Ingreso");
-            TableColumn tableColumn5 = tableColumnModel.getColumn(5);
-            tableColumn5.setHeaderValue("Egreso");
-            TableColumn tableColumn6 = tableColumnModel.getColumn(6);
-            tableColumn6.setHeaderValue("Total");
-            tableHeader.repaint();
-        } 
-        }else{
-              modeloTabla.setColumnCount(7);
             tablaReserva.setModel(modeloTabla);
             JTableHeader tableHeader = tablaReserva.getTableHeader();
             TableColumnModel tableColumnModel = tableHeader.getColumnModel();
@@ -637,28 +647,32 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             tableColumn6.setHeaderValue("Total");
             tableHeader.repaint();
         }
-        
-        
+
     }
 
     private void cargarTabla(LocalDate ingreso, LocalDate egreso, Habitacion habi) {
-        
+
         modeloTabla.addRow(new Object[]{habi.getidHabitacion(), habi.gettipoHabitacion().getNombre(),
             habi.gettipoHabitacion().getCantCamas(), ABMR.calcularPrecioEstadia(ingreso, egreso, habi)});
     }
 
     private void cargarTablaR(Reserva res) {
+        String estado = "";
+        if (res.isEstado()) {
+            estado = "activa";
+        } else {
+            estado = "inactiva";
+        }
         if (titulo.getText().equals("Gestión Reserva")) {
             modeloTabla.addRow(new Object[]{res.getIdReserva(), res.getHuesped().getNombre() + " " + res.getHuesped().getApellido(),
-            res.getHabitacion().getidHabitacion(), res.getHabitacion().gettipoHabitacion().getNombre(), res.getFechaEntrada(),
-            res.getFechaSalida(), res.getImporteTotal()});
-        }else{
-            modeloTabla.addRow(new Object[]{res.isEstado(), res.getHuesped().getNombre() + " " + res.getHuesped().getApellido(),
-            res.getHabitacion().getidHabitacion(), res.getHabitacion().gettipoHabitacion().getNombre(), res.getFechaEntrada(),
-            res.getFechaSalida(), res.getImporteTotal()});
+                res.getHabitacion().getidHabitacion(), res.getHabitacion().gettipoHabitacion().getNombre(), res.getFechaEntrada(),
+                res.getFechaSalida(), res.getImporteTotal()});
+        } else {
+            modeloTabla.addRow(new Object[]{estado, res.getHuesped().getNombre() + " " + res.getHuesped().getApellido(),
+                res.getHabitacion().getidHabitacion(), res.getHabitacion().gettipoHabitacion().getNombre(), res.getFechaEntrada(),
+                res.getFechaSalida(), res.getImporteTotal()});
         }
-        
-        
+
     }
 
     private void limpiarT() {
