@@ -30,6 +30,8 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         armarCabecera();
         cargarTipoH();
         limpiarT();
+        activarDesactivarBuscar();
+        activarDesactivarPrecio();
 
     }
 
@@ -68,6 +70,12 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         jLabel3.setText("Tipo de Habitación");
 
         labelEstado.setText("Estado");
+
+        TextoNumero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TextoNumeroKeyReleased(evt);
+            }
+        });
 
         ComboTipoH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,6 +168,12 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         });
 
         labelPrecio.setText("Precio");
+
+        jTextoPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextoPrecioKeyReleased(evt);
+            }
+        });
 
         botonCambiarPrecio.setText("Cambiar Precio");
         botonCambiarPrecio.addActionListener(new java.awt.event.ActionListener() {
@@ -421,6 +435,14 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_BotonAltaBajaActionPerformed
 
+    private void TextoNumeroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextoNumeroKeyReleased
+        activarDesactivarBuscar();
+    }//GEN-LAST:event_TextoNumeroKeyReleased
+
+    private void jTextoPrecioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoPrecioKeyReleased
+        activarDesactivarPrecio();
+    }//GEN-LAST:event_jTextoPrecioKeyReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAltaBaja;
     private javax.swing.JButton BotonBuscar;
@@ -481,6 +503,34 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
     }
 
     private boolean verificaHabitacion() {
-        return Integer.parseInt(TextoNumero.getText()) > 0 && Integer.parseInt(TextoNumero.getText()) < 201;
+        try{
+            return Integer.parseInt(TextoNumero.getText()) > 0 
+                && Integer.parseInt(TextoNumero.getText()) < 201 &&
+                TextoNumero.getText().matches("[0-9]*");
+        }catch(NumberFormatException e){
+            
+        }
+        return false;
+    }
+    
+
+    private void activarDesactivarBuscar(){
+        if(verificaHabitacion()){
+            BotonBuscar.setEnabled(true);
+            BotonGuardar.setEnabled(true);
+            BotonModificar.setEnabled(true);
+        }else{
+            BotonBuscar.setEnabled(false);
+            BotonGuardar.setEnabled(false);
+            BotonModificar.setEnabled(false);
+        }
+    }
+    
+    private void activarDesactivarPrecio(){
+        if(!(jTextoPrecio.getText().isEmpty())&& jTextoPrecio.getText().matches("[0-9]*[,.]?")){
+            botonCambiarPrecio.setEnabled(true);
+        }else{
+            botonCambiarPrecio.setEnabled(false);
+        }
     }
 }
