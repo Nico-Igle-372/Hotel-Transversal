@@ -16,6 +16,8 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         initComponents();
         redondearCajasDeTexto();
         desactivarEstado();
+        activarDesactivarBuscar();
+        activarDesactivarGM();
     }
 
     @SuppressWarnings("unchecked")
@@ -304,6 +306,8 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     private void botonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLimpiarActionPerformed
         vaciar();
         desactivarEstado();
+        activarDesactivarBuscar();
+        activarDesactivarGM();
     }//GEN-LAST:event_botonLimpiarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
@@ -345,8 +349,8 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                 hues.setDni(Integer.parseInt(jTextoDni.getText().replace(".", "")));
                 if (verificaNombreApellido()) {
                     if (verificaCorreo()) {
-                        hues.setNombre(jTextoNombre.getText());
-                        hues.setApellido(jTextoApellido.getText());
+                        hues.setNombre(jTextoNombre.getText().trim());
+                        hues.setApellido(jTextoApellido.getText().trim());
                         hues.setDomicilio(jTextoDireccion.getText());
                         hues.setCorreo(jTextoCorreo.getText());
                         hues.setCelular(Long.parseLong(jTextoCelular.getText()));
@@ -399,26 +403,33 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
 
     private void jTextoNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoNombreKeyReleased
         desactivarEstado();
+        activarDesactivarGM();
     }//GEN-LAST:event_jTextoNombreKeyReleased
 
     private void jTextoApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoApellidoKeyReleased
         desactivarEstado();
+        activarDesactivarGM();
     }//GEN-LAST:event_jTextoApellidoKeyReleased
 
     private void jTextoDireccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoDireccionKeyReleased
        desactivarEstado();
+       activarDesactivarGM();
     }//GEN-LAST:event_jTextoDireccionKeyReleased
 
     private void jTextoCorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoCorreoKeyReleased
         desactivarEstado();
+        activarDesactivarGM();
     }//GEN-LAST:event_jTextoCorreoKeyReleased
 
     private void jTextoCelularKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoCelularKeyReleased
        desactivarEstado();
+       activarDesactivarGM();
     }//GEN-LAST:event_jTextoCelularKeyReleased
 
     private void jTextoDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoDniKeyReleased
         desactivarEstado();
+        activarDesactivarBuscar();
+        activarDesactivarGM();
     }//GEN-LAST:event_jTextoDniKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -471,14 +482,25 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         return !(jTextoDni.getText().isEmpty() || jTextoNombre.getText().isEmpty() || jTextoApellido.getText().isEmpty()
                 || jTextoDireccion.getText().isEmpty() || jTextoCorreo.getText().isEmpty() || jTextoCelular.getText().isEmpty());
     }
-
+    
     private boolean verificaNombreApellido() {
-        return jTextoNombre.getText().matches("[a-zA-Z]*") && jTextoApellido.getText().matches("[a-zA-Z]*")
-                && jTextoNombre.getText().matches("[a-z A-Z].*") && jTextoApellido.getText().matches("[a-z A-Z].*");
+        return jTextoNombre.getText().matches("^([A-Z]{1}[a-z]+[ ]?){1,2}$") 
+                && jTextoApellido.getText().matches("^([A-Z]{1}[a-z]+[ ]?){1,2}$");
     }
 
     private boolean verificaCorreo() {
         return jTextoCorreo.getText().matches("[-\\w\\.]+@\\D+\\.\\D{3}+");
+    }
+    
+    private boolean verificarDni(){
+        return jTextoDni.getText().matches("[0-9]*")&&jTextoDni.getText().length()<11&&!(jTextoDni.getText().isEmpty());
+    }
+    private boolean verificarDireccion(){
+        return jTextoDireccion.getText().matches("(\\w+[ ]?\\w*){1,6}");
+    }
+    
+    private boolean verificarCelular(){
+        return jTextoCelular.getText().matches("[0-9]*")&&jTextoCelular.getText().length()>=6;
     }
 
     private void desactivarEstado() {
@@ -486,5 +508,23 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         jTextoEstado.setVisible(false);
         botonAltaBaja.setVisible(false);
     }
+    private void activarDesactivarBuscar(){
+        if(!verificarDni()){
+            jBotonBuscar.setEnabled(false);
+        }else{
+            jBotonBuscar.setEnabled(true);
+        }
+    }
+    private void activarDesactivarGM(){
+        if(verificaVacios()&&verificaNombreApellido()&&verificaCorreo()
+                &&verificarDni()&&verificarCelular()&&verificarDireccion()){
+            botonGuardar.setEnabled(true);
+            botonModificar.setEnabled(true);
+        }else{
+            botonGuardar.setEnabled(false);
+            botonModificar.setEnabled(false);
+        }
+    }
+    
 
 }
