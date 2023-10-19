@@ -30,6 +30,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         armarCabecera();
         cargarTipoH();
         limpiarT();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -83,7 +84,15 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(TablaHabitacion);
 
         BotonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarApagado.png"))); // NOI18N
@@ -290,6 +299,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
     private void BotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGuardarActionPerformed
         Habitacion h = new Habitacion();
         try {
+<<<<<<< HEAD
             if (ABMHabi.buscarHabitacion(Integer.parseInt(TextoNumero.getText())).getidHabitacion() == 0) {
                 h.setIdHabitacion(Integer.parseInt(TextoNumero.getText()));
                 h.settipoHabitacion(ABMHabi.buscarTipoHabitacionPorNombre(ComboTipoH.getSelectedItem() + ""));
@@ -297,6 +307,19 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                 ABMHabi.crearHabitacion(h);
             } else {
                 JOptionPane.showMessageDialog(null, "Ya existe una habitacion con ese número");
+=======
+            if (verificaHabitacion()) {
+                if (ABMHabi.buscarHabitacion(Integer.parseInt(TextoNumero.getText())).getidHabitacion() == 0) {
+                    h.setIdHabitacion(Integer.parseInt(TextoNumero.getText()));
+                    h.settipoHabitacion(ABMHabi.buscarTipoHabitacionPorNombre(ComboTipoH.getSelectedItem() + ""));
+                    h.setEstado(false);
+                    ABMHabi.crearHabitacion(h);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ya existe una habitacion con ese número");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Las habitaciones solo pueden ir del 1 al 200");
+>>>>>>> Franco
             }
         } catch (NullPointerException | NumberFormatException ex) {
 
@@ -337,12 +360,26 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
 
     private void botonCambiarPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCambiarPrecioActionPerformed
         try {
+<<<<<<< HEAD
             double precio = Double.parseDouble(jTextoPrecio.getText());
             TipoHabitacion tipoH = ABMHabi.buscarTipoHabitacionPorNombre((String) ComboTipoH.getSelectedItem());
             int idTH = tipoH.getIdTipo();
             ABMHabi.cambiarPrecio(idTH, precio);
             jTextoPrecio.setText("");
             TablaHabitacion.setValueAt(precio, 0, 4);
+=======
+            double precio = Double.parseDouble(jTextoPrecio.getText().replace(',', '.'));
+            if (precio > 0) {
+                TipoHabitacion tipoH = ABMHabi.buscarTipoHabitacionPorNombre((String) ComboTipoH.getSelectedItem());
+                int idTH = tipoH.getIdTipo();
+                ABMHabi.cambiarPrecio(idTH, precio);
+                jTextoPrecio.setText("");
+                TablaHabitacion.setValueAt(precio, 0, 4);
+            } else {
+                JOptionPane.showMessageDialog(null, "Ingrese un precio mayor a 0");
+            }
+
+>>>>>>> Franco
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingrese valores numericos");
         }
@@ -352,6 +389,44 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonModificarActionPerformed
 
+<<<<<<< HEAD
+=======
+    private void BotonAltaBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAltaBajaActionPerformed
+        try {
+            Habitacion habi = ABMHabi.buscarHabitacion(Integer.parseInt(TextoNumero.getText()));
+            if (habi.getidHabitacion() != 0) {
+                LocalDate hoy = LocalDate.now();
+                int ocupada = 0;
+                if (habi.isEstado()) {
+                    List<Reserva> reservas = ABMR.buscarPorHabitacion(habi);
+                    if (reservas.isEmpty()) {
+                        ABMHabi.liberarHabitacion(habi.getidHabitacion());
+                    }
+                    for (Reserva res : reservas) {
+                        if ((hoy.equals(res.getFechaEntrada()) || hoy.isAfter(res.getFechaEntrada()))
+                                && (hoy.equals(res.getFechaSalida()) || hoy.isBefore(res.getFechaSalida()))) {
+                            ocupada++;
+                        }
+                    }
+                    if (ocupada != 0) {
+                        JOptionPane.showMessageDialog(null, "No se puede trabajar en una habitacion ocupada");
+                    } else {
+                        ABMHabi.liberarHabitacion(habi.getidHabitacion());
+                    }
+                } else {
+                    ABMHabi.ocuparHabitacion(habi.getidHabitacion());
+                }
+                habi = ABMHabi.buscarHabitacion(Integer.parseInt(TextoNumero.getText()));
+                TextoEstado.setText(habi.isEstado() ? "Ocupada" : "Libre");
+                BotonAltaBaja.setText(habi.isEstado() ? "Alta" : "Baja");
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingrese un numero de habitacion existente");
+        }
+    }//GEN-LAST:event_BotonAltaBajaActionPerformed
+
+>>>>>>> Franco
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAltaBaja;
     private javax.swing.JButton BotonBuscar;
