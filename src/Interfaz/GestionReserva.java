@@ -36,6 +36,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         actualizar();
         activarDesactivarBuscarDni();
         activarDesactivarBuscarHabi();
+        activarDesactivarNuevo();
     }
 
     @SuppressWarnings("unchecked")
@@ -587,18 +588,22 @@ public class GestionReserva extends javax.swing.JInternalFrame {
 
     private void TextoDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextoDNIKeyReleased
         activarDesactivarBuscarDni();
+        activarDesactivarNuevo();
     }//GEN-LAST:event_TextoDNIKeyReleased
 
     private void textoCantPersKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoCantPersKeyReleased
         activarDesactivarBuscarHabi();
+        activarDesactivarNuevo();
     }//GEN-LAST:event_textoCantPersKeyReleased
 
     private void jDFechaEgresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDFechaEgresoPropertyChange
-          activarDesactivarBuscarHabi();
+        activarDesactivarBuscarHabi();
+        activarDesactivarNuevo();
     }//GEN-LAST:event_jDFechaEgresoPropertyChange
 
     private void jDFechaIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDFechaIngresoPropertyChange
         activarDesactivarBuscarHabi();
+        activarDesactivarNuevo();
     }//GEN-LAST:event_jDFechaIngresoPropertyChange
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -755,12 +760,12 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     }
 
     private boolean verificarFechas() {
-        try{
+        try {
             LocalDate ingreso = jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate egreso = jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
             return comprobarFechas(ingreso, egreso);
-        } catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             return false;
         }
     }
@@ -787,4 +792,11 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         }
     }
 
+    private void activarDesactivarNuevo() {
+        if (verificarDni() && verificarHuesped() && verificarFechas()) {
+            botonNueva.setEnabled(true);
+        } else {
+            botonNueva.setEnabled(false);
+        }
+    }
 }

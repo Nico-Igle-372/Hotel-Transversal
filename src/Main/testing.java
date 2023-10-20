@@ -5,8 +5,8 @@ public class testing {
         if (prueba.matches("[-\\w\\.]+@\\D+\\.\\D{3}+")) {
 //            System.out.println(prueba);
         }
-        System.out.println(prueba);
-        System.out.println(prueba.trim());
+//        System.out.println(prueba);
+//        System.out.println(prueba.trim());
         
     }
 }
