@@ -4,6 +4,7 @@ import AccesoADatos.ABMHabitacion;
 import AccesoADatos.ABMHuesped;
 import AccesoADatos.ABMReserva;
 import Entidades.Habitacion;
+import Entidades.Huesped;
 import Entidades.Reserva;
 import java.sql.Date;
 import java.time.DateTimeException;
@@ -37,6 +38,8 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         activarDesactivarBuscarDni();
         activarDesactivarBuscarHabi();
         activarDesactivarNuevo();
+        activarDesactivarModificar();
+        activarDesactivarCancelar();
     }
 
     @SuppressWarnings("unchecked")
@@ -374,17 +377,23 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 if (comprobarFechas(hoy, ingreso) || ingreso.equals(hoy)) {
                     LocalDate egreso = jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     if (comprobarFechas(ingreso, egreso)) {
-                        Reserva res = new Reserva();
-                        res.setHuesped(ABMHues.buscarHuesped(Integer.parseInt(TextoDNI.getText())));
-                        res.setHabitacion(ABMHabi.buscarHabitacion((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0)));
-                        res.setFechaEntrada(jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-                        res.setFechaSalida(jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-                        res.setCantPersonas(Integer.parseInt(textoCantPers.getText()));
-                        res.setImporteTotal(ABMR.calcularPrecioEstadia(ingreso, egreso, res.getHabitacion()));
-                        res.setEstado(true);
-                        ABMR.crearReserva(res);
-                        ABMHabi.ocuparHabitacion(res.getHabitacion().getidHabitacion());
-                        modeloTabla.removeRow(tablaReserva.getSelectedRow());
+                        Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(TextoDNI.getText()));
+                        if (hues.getIdHuesped() != 0) {
+                            Reserva res = new Reserva();
+                            res.setHuesped(hues);
+                            res.setHabitacion(ABMHabi.buscarHabitacion((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0)));
+                            res.setFechaEntrada(jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                            res.setFechaSalida(jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                            res.setCantPersonas(Integer.parseInt(textoCantPers.getText()));
+                            res.setImporteTotal(ABMR.calcularPrecioEstadia(ingreso, egreso, res.getHabitacion()));
+                            res.setEstado(true);
+                            ABMR.crearReserva(res);
+                            ABMHabi.ocuparHabitacion(res.getHabitacion().getidHabitacion());
+                            modeloTabla.removeRow(tablaReserva.getSelectedRow());
+                        } else {
+                            JOptionPane.showMessageDialog(null, "El huesped no se encuentra registrado");
+                        }
+
                     } else {
                         JOptionPane.showMessageDialog(null, "Revise las fechas seleccionadas");
                     }
@@ -493,18 +502,29 @@ public class GestionReserva extends javax.swing.JInternalFrame {
 
     private void RHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RHabitacionesActionPerformed
         limpiarT();
+
         if (RHabitaciones.isSelected()) {
             RReservas.setSelected(false);
             armarCabecera();
+
         }
+        activarDesactivarCancelar();
+        activarDesactivarModificar();
+        activarDesactivarNuevo();
     }//GEN-LAST:event_RHabitacionesActionPerformed
 
     private void RReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RReservasActionPerformed
         limpiarT();
+
         if (RReservas.isSelected()) {
             RHabitaciones.setSelected(false);
             armarCabecera();
+
         }
+        activarDesactivarCancelar();
+        activarDesactivarModificar();
+        activarDesactivarNuevo();
+
     }//GEN-LAST:event_RReservasActionPerformed
 
     private void BotonBuscarDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarDniActionPerformed
@@ -513,6 +533,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
 
                 RReservas.setSelected(true);
                 RHabitaciones.setSelected(false);
+                activarDesactivarCancelar();
                 armarCabecera();
                 List<Reserva> listaRes = ABMR.buscarPorHuesped(Integer.parseInt(TextoDNI.getText().replace(".", "")));
                 limpiarT();
@@ -577,13 +598,25 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BotonHistorialActionPerformed
 
     private void tablaReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaReservaMouseClicked
-        if (RReservas.isSelected()) {
-            textoCantPers.setText((ABMR.buscarPorId((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0))).getCantPersonas() + "");
-            LocalDate ingreso = (LocalDate) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 4);
-            LocalDate egreso = (LocalDate) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 5);
-            jDFechaIngreso.setDate(Date.valueOf(ingreso));
-            jDFechaEgreso.setDate(Date.valueOf(egreso));
+        try {
+            if (titulo.getText().equals("Gestión Reserva")) {
+                if (RReservas.isSelected()) {
+                    activarDesactivarCancelar();
+                    activarDesactivarModificar();
+                    textoCantPers.setText((ABMR.buscarPorId((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0))).getCantPersonas() + "");
+                    LocalDate ingreso = (LocalDate) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 4);
+                    LocalDate egreso = (LocalDate) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 5);
+                    jDFechaIngreso.setDate(Date.valueOf(ingreso));
+                    jDFechaEgreso.setDate(Date.valueOf(egreso));
+                } else {
+                    activarDesactivarNuevo();
+                }
+            }
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+
         }
+
     }//GEN-LAST:event_tablaReservaMouseClicked
 
     private void TextoDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextoDNIKeyReleased
@@ -594,16 +627,19 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     private void textoCantPersKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoCantPersKeyReleased
         activarDesactivarBuscarHabi();
         activarDesactivarNuevo();
+        activarDesactivarModificar();
     }//GEN-LAST:event_textoCantPersKeyReleased
 
     private void jDFechaEgresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDFechaEgresoPropertyChange
         activarDesactivarBuscarHabi();
         activarDesactivarNuevo();
+        activarDesactivarModificar();
     }//GEN-LAST:event_jDFechaEgresoPropertyChange
 
     private void jDFechaIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDFechaIngresoPropertyChange
         activarDesactivarBuscarHabi();
         activarDesactivarNuevo();
+        activarDesactivarModificar();
     }//GEN-LAST:event_jDFechaIngresoPropertyChange
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -683,6 +719,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             tableColumn6.setHeaderValue("Total");
             tableHeader.repaint();
         }
+        tablaReserva.setDefaultEditor(Object.class, null);
 
     }
 
@@ -770,10 +807,24 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         }
     }
 
-    private void verificarAunMasFechas() {
-        Reserva res = ABMR.buscarPorId((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0));
-        LocalDate ingresoActual = res.getFechaEntrada();
-        LocalDate hoy = LocalDate.now();
+    private boolean verificarAunMasFechas() {
+        try {
+            Reserva res = ABMR.buscarPorId((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0));
+            LocalDate ingresoActual = res.getFechaEntrada();
+            LocalDate hoy = LocalDate.now();
+            LocalDate ingreso = jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate egreso = jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            if ((ingresoActual.equals(ingreso) || hoy.isBefore(ingreso)) && egreso.isAfter(hoy)) {
+                return verificarFechas();
+            } else {
+                return false;
+            }
+        } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
+
+            return false;
+
+        }
+
     }
 
     private void activarDesactivarBuscarDni() {
@@ -793,10 +844,28 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     }
 
     private void activarDesactivarNuevo() {
-        if (verificarDni() && verificarHuesped() && verificarFechas()) {
+        if (verificarDni() && verificarHuesped() && verificarFechas()
+                && tablaReserva.getSelectedRow() != -1 && RHabitaciones.isSelected()) {
             botonNueva.setEnabled(true);
         } else {
             botonNueva.setEnabled(false);
+        }
+    }
+
+    private void activarDesactivarModificar() {
+        if (verificarHuesped() && verificarAunMasFechas() && tablaReserva.getSelectedRow() != -1
+                && RReservas.isSelected()) {
+            botonModificar.setEnabled(true);
+        } else {
+            botonModificar.setEnabled(false);
+        }
+    }
+
+    private void activarDesactivarCancelar() {
+        if (RReservas.isSelected() && tablaReserva.getSelectedRow() != -1) {
+            botonCancelar.setEnabled(true);
+        } else {
+            botonCancelar.setEnabled(false);
         }
     }
 }
