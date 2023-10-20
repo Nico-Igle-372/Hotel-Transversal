@@ -131,12 +131,8 @@ public class ABMReserva {
         try {
             ps=conn.prepareStatement(sql);
             ps.setInt(1, idR);
-            int registro=ps.executeUpdate();
-            if(registro==1){
-                System.out.println("Reserva cancelada");
-            }else{
-                System.out.println("No existe reserva");
-            }
+            ps.executeUpdate();
+           
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null, "Error al cancelar la reserva");
         }
@@ -149,12 +145,8 @@ public class ABMReserva {
         try {
             ps=conn.prepareStatement(sql);
             ps.setInt(1, idR);
-            int registro=ps.executeUpdate();
-            if(registro==1){
-                System.out.println("Alta");
-            }else{
-                System.out.println("No existe reserva");
-            }
+           ps.executeUpdate();
+           
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null, "Error al cancelar la reserva");
         }
@@ -312,10 +304,8 @@ public class ABMReserva {
             ps.setInt(7, res.getIdReserva());
             
             int registro = ps.executeUpdate();
-            if (registro > 0) {
-                System.out.println("Reserva modificada");
-            }else{
-                JOptionPane.showMessageDialog(null, "No se pudo modificar la reserva");
+            if (registro == 0) {
+               JOptionPane.showMessageDialog(null, "No se pudo modificar la reserva");
             }
             ps.close();
         } catch (SQLException ex) {

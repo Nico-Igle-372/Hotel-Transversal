@@ -221,7 +221,11 @@ public class GestionReserva extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Ver");
 
-        BotonHistorial.setText("Historial");
+        BotonHistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HistorialApagado.png"))); // NOI18N
+        BotonHistorial.setContentAreaFilled(false);
+        BotonHistorial.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HistorialEncendido.png"))); // NOI18N
+        BotonHistorial.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HistorialEncendido.png"))); // NOI18N
+        BotonHistorial.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HistorialEncendido.png"))); // NOI18N
         BotonHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonHistorialActionPerformed(evt);
@@ -274,9 +278,9 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 .addComponent(botonModificar)
                 .addGap(49, 49, 49)
                 .addComponent(botonCancelar)
+                .addGap(40, 40, 40)
+                .addComponent(BotonHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BotonHistorial)
-                .addGap(50, 50, 50)
                 .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
             .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -316,20 +320,16 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonNueva, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(botonModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
-                            .addComponent(botonSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(30, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
+                    .addComponent(botonNueva, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(BotonHistorial)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(botonModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -576,6 +576,10 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             jLabel4.setVisible(false);
             jLabel5.setVisible(false);
             jLabel6.setVisible(false);
+            BotonHistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reserva-pequeño(apagado).png")));
+            BotonHistorial.setContentAreaFilled(false);
+            BotonHistorial.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reserva.pequeño.encendido.png")));
+            BotonHistorial.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reserva.pequeño.encendido.png")));
         } else {
 
             titulo.setText("Gestión Reserva");
@@ -593,6 +597,10 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             jLabel4.setVisible(true);
             jLabel5.setVisible(true);
             jLabel6.setVisible(true);
+            BotonHistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HistorialApagado.png")));
+            BotonHistorial.setContentAreaFilled(false);
+            BotonHistorial.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HistorialEncendido.png")));
+            BotonHistorial.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HistorialEncendido.png")));
         }
         armarCabecera();
     }//GEN-LAST:event_BotonHistorialActionPerformed
