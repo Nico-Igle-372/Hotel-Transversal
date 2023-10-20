@@ -5,9 +5,11 @@ import AccesoADatos.ABMHuesped;
 import AccesoADatos.ABMReserva;
 import Entidades.Habitacion;
 import Entidades.Reserva;
+import java.sql.Date;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -32,6 +34,8 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         redondearCajasDeTexto();
         armarCabecera();
         actualizar();
+        activarDesactivarBuscarDni();
+        activarDesactivarBuscarHabi();
     }
 
     @SuppressWarnings("unchecked")
@@ -73,6 +77,28 @@ public class GestionReserva extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Fecha Egreso");
 
+        jDFechaEgreso.setMinSelectableDate(Date.valueOf(LocalDate.now()));
+        jDFechaEgreso.setRequestFocusEnabled(false);
+        jDFechaEgreso.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jDFechaEgresoPropertyChange(evt);
+            }
+        });
+
+        jDFechaIngreso.setMinSelectableDate(Date.valueOf(LocalDate.now())
+        );
+        jDFechaIngreso.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jDFechaIngresoPropertyChange(evt);
+            }
+        });
+
+        TextoDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TextoDNIKeyReleased(evt);
+            }
+        });
+
         tablaReserva.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -93,6 +119,11 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             }
         });
         tablaReserva.setToolTipText("");
+        tablaReserva.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaReservaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaReserva);
 
         botonNueva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GReservaNuevaApagado.png"))); // NOI18N
@@ -151,6 +182,12 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         });
 
         jLabel5.setText("N° de Huespedes");
+
+        textoCantPers.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textoCantPersKeyReleased(evt);
+            }
+        });
 
         BotonBuscarDni.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarApagado.png"))); // NOI18N
         BotonBuscarDni.setContentAreaFilled(false);
@@ -390,8 +427,8 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 int cantPersonas = Integer.parseInt(textoCantPers.getText());
                 LocalDate ingreso = jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 LocalDate egreso = jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                if ((ingresoActual.equals(ingreso) || hoy.isBefore(ingreso))&&egreso.isAfter(hoy)) {
-                    
+                if ((ingresoActual.equals(ingreso) || hoy.isBefore(ingreso)) && egreso.isAfter(hoy)) {
+
                     if (comprobarFechas(ingreso, egreso)) {
 
                         res.setCantPersonas(cantPersonas);
@@ -433,7 +470,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "Revise las fechas seleccionadas");
                     }
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "Revise las fechas seleccionadas");
                 }
 
@@ -502,7 +539,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         limpiarT();
 
         if (titulo.getText().equals("Gestión Reserva")) {
-            
+
             titulo.setText("HISTORIAL");
             textoCantPers.setVisible(false);
             jDFechaEgreso.setVisible(false);
@@ -518,7 +555,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             jLabel5.setVisible(false);
             jLabel6.setVisible(false);
         } else {
-            
+
             titulo.setText("Gestión Reserva");
 
             textoCantPers.setVisible(true);
@@ -535,9 +572,34 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             jLabel5.setVisible(true);
             jLabel6.setVisible(true);
         }
-
         armarCabecera();
     }//GEN-LAST:event_BotonHistorialActionPerformed
+
+    private void tablaReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaReservaMouseClicked
+        if (RReservas.isSelected()) {
+            textoCantPers.setText((ABMR.buscarPorId((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0))).getCantPersonas() + "");
+            LocalDate ingreso = (LocalDate) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 4);
+            LocalDate egreso = (LocalDate) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 5);
+            jDFechaIngreso.setDate(Date.valueOf(ingreso));
+            jDFechaEgreso.setDate(Date.valueOf(egreso));
+        }
+    }//GEN-LAST:event_tablaReservaMouseClicked
+
+    private void TextoDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextoDNIKeyReleased
+        activarDesactivarBuscarDni();
+    }//GEN-LAST:event_TextoDNIKeyReleased
+
+    private void textoCantPersKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoCantPersKeyReleased
+        activarDesactivarBuscarHabi();
+    }//GEN-LAST:event_textoCantPersKeyReleased
+
+    private void jDFechaEgresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDFechaEgresoPropertyChange
+          activarDesactivarBuscarHabi();
+    }//GEN-LAST:event_jDFechaEgresoPropertyChange
+
+    private void jDFechaIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDFechaIngresoPropertyChange
+        activarDesactivarBuscarHabi();
+    }//GEN-LAST:event_jDFechaIngresoPropertyChange
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonBuscarDni;
@@ -683,17 +745,46 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         TextoDNI.putClientProperty("JComponent.roundRect", true);
         textoCantPers.putClientProperty("JComponent.roundRect", true);
     }
-    
-    private boolean verificarDni(){
-        return TextoDNI.getText().matches("[0-9]*")&& TextoDNI.getText().length()<11&&!(TextoDNI.getText().isEmpty());
+
+    private boolean verificarDni() {
+        return TextoDNI.getText().matches("[0-9]*") && TextoDNI.getText().length() < 11 && TextoDNI.getText().length() > 6;
     }
-    
-    private void activarDesactivarBuscarDni(){
-        if(verificarDni()){
+
+    private boolean verificarHuesped() {
+        return textoCantPers.getText().matches("[1-6]") && textoCantPers.getText().length() == 1;
+    }
+
+    private boolean verificarFechas() {
+        try{
+            LocalDate ingreso = jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate egreso = jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            return comprobarFechas(ingreso, egreso);
+        } catch(NullPointerException e) {
+            return false;
+        }
+    }
+
+    private void verificarAunMasFechas() {
+        Reserva res = ABMR.buscarPorId((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0));
+        LocalDate ingresoActual = res.getFechaEntrada();
+        LocalDate hoy = LocalDate.now();
+    }
+
+    private void activarDesactivarBuscarDni() {
+        if (verificarDni()) {
             BotonBuscarDni.setEnabled(true);
-        }else{
+        } else {
             BotonBuscarDni.setEnabled(false);
         }
     }
-    
+
+    private void activarDesactivarBuscarHabi() {
+        if (verificarHuesped() && verificarFechas()) {
+            botonBuscar.setEnabled(true);
+        } else {
+            botonBuscar.setEnabled(false);
+        }
     }
+
+}

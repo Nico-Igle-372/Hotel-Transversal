@@ -493,7 +493,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     }
     
     private boolean verificarDni(){
-        return jTextoDni.getText().matches("[0-9]*")&&jTextoDni.getText().length()<11&&!(jTextoDni.getText().isEmpty());
+        return jTextoDni.getText().matches("[0-9]*")&&jTextoDni.getText().length()<11&&jTextoDni.getText().length() > 6;
     }
     private boolean verificarDireccion(){
         return jTextoDireccion.getText().matches("(\\w+[ ]?\\w*){1,6}");
