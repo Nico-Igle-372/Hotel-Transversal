@@ -129,6 +129,12 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(tablaReserva);
+        if (tablaReserva.getColumnModel().getColumnCount() > 0) {
+            tablaReserva.getColumnModel().getColumn(0).setResizable(false);
+            tablaReserva.getColumnModel().getColumn(1).setResizable(false);
+            tablaReserva.getColumnModel().getColumn(2).setResizable(false);
+            tablaReserva.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         botonNueva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GReservaNuevaApagado.png"))); // NOI18N
         botonNueva.setContentAreaFilled(false);
@@ -679,12 +685,30 @@ public class GestionReserva extends javax.swing.JInternalFrame {
 
         if (titulo.getText().equals("Gestión Reserva")) {
             if (RHabitaciones.isSelected()) {
-                modeloTabla.addColumn("Habitacion");
-                modeloTabla.addColumn("Tipo de Habitacion");
-                modeloTabla.addColumn("N° de Camas");
-                modeloTabla.addColumn("Total");
+//                modeloTabla.addColumn("Habitacion");
+//                modeloTabla.addColumn("Tipo de Habitacion");
+//                modeloTabla.addColumn("N° de Camas");
+//                modeloTabla.addColumn("Total");
                 modeloTabla.setColumnCount(4);
                 tablaReserva.setModel(modeloTabla);
+                JTableHeader tableHeader = tablaReserva.getTableHeader();
+                TableColumnModel tableColumnModel = tableHeader.getColumnModel();
+                TableColumn tableColumn = tableColumnModel.getColumn(0);
+                tableColumn.setHeaderValue("Habitacion");
+                tableColumn.setMinWidth(140);
+                tableColumn.setMaxWidth(140);
+                TableColumn tableColumn1 = tableColumnModel.getColumn(1);
+                tableColumn1.setHeaderValue("Tipo de Habitacion");
+                tableColumn1.setMinWidth(400);
+                tableColumn1.setMaxWidth(400);
+                TableColumn tableColumn2 = tableColumnModel.getColumn(2);
+                tableColumn2.setHeaderValue("N° Camas");
+                tableColumn2.setMinWidth(140);
+                tableColumn2.setMaxWidth(140);
+                TableColumn tableColumn3 = tableColumnModel.getColumn(3);
+                tableColumn3.setHeaderValue("Total");
+                tableColumn3.setMinWidth(200);
+                tableColumn3.setMaxWidth(300);
             } else {
                 modeloTabla.setColumnCount(7);
                 tablaReserva.setModel(modeloTabla);
@@ -692,18 +716,28 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 TableColumnModel tableColumnModel = tableHeader.getColumnModel();
                 TableColumn tableColumn = tableColumnModel.getColumn(0);
                 tableColumn.setHeaderValue("Id");
+                tableColumn.setMinWidth(50);
+                tableColumn.setMaxWidth(50);
                 TableColumn tableColumn1 = tableColumnModel.getColumn(1);
                 tableColumn1.setHeaderValue("Huesped");
                 TableColumn tableColumn2 = tableColumnModel.getColumn(2);
                 tableColumn2.setHeaderValue("Habitacion");
+                tableColumn2.setMinWidth(125);
+                tableColumn2.setMaxWidth(125);
                 TableColumn tableColumn3 = tableColumnModel.getColumn(3);
                 tableColumn3.setHeaderValue("Tipo de Habitacion");
                 TableColumn tableColumn4 = tableColumnModel.getColumn(4);
                 tableColumn4.setHeaderValue("Ingreso");
+                tableColumn4.setMinWidth(130);
+                tableColumn4.setMaxWidth(130);
                 TableColumn tableColumn5 = tableColumnModel.getColumn(5);
                 tableColumn5.setHeaderValue("Egreso");
+                tableColumn5.setMinWidth(130);
+                tableColumn5.setMaxWidth(130);
                 TableColumn tableColumn6 = tableColumnModel.getColumn(6);
                 tableColumn6.setHeaderValue("Total");
+                tableColumn6.setMinWidth(120);
+                tableColumn6.setMaxWidth(120);
                 tableHeader.repaint();
             }
         } else {

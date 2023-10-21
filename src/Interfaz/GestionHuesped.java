@@ -18,6 +18,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         desactivarEstado();
         activarDesactivarBuscar();
         activarDesactivarGM();
+        activaDesactivaLimpiar();
     }
 
     @SuppressWarnings("unchecked")
@@ -308,6 +309,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         desactivarEstado();
         activarDesactivarBuscar();
         activarDesactivarGM();
+        activaDesactivaLimpiar();
     }//GEN-LAST:event_botonLimpiarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
@@ -375,7 +377,6 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void jBotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonBuscarActionPerformed
-
         try {
             Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText().replace(".", "")));
             if (hues.getIdHuesped() != 0) {
@@ -399,37 +400,44 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         } catch (NumberFormatException | NullPointerException ex) {
             JOptionPane.showMessageDialog(null, "Rellene el campo DNI correctamente");
         }
+        activaDesactivaLimpiar();
     }//GEN-LAST:event_jBotonBuscarActionPerformed
 
     private void jTextoNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoNombreKeyReleased
         desactivarEstado();
         activarDesactivarGM();
+        activaDesactivaLimpiar();
     }//GEN-LAST:event_jTextoNombreKeyReleased
 
     private void jTextoApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoApellidoKeyReleased
         desactivarEstado();
         activarDesactivarGM();
+        activaDesactivaLimpiar();
     }//GEN-LAST:event_jTextoApellidoKeyReleased
 
     private void jTextoDireccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoDireccionKeyReleased
        desactivarEstado();
        activarDesactivarGM();
+        activaDesactivaLimpiar();
     }//GEN-LAST:event_jTextoDireccionKeyReleased
 
     private void jTextoCorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoCorreoKeyReleased
         desactivarEstado();
         activarDesactivarGM();
+        activaDesactivaLimpiar();
     }//GEN-LAST:event_jTextoCorreoKeyReleased
 
     private void jTextoCelularKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoCelularKeyReleased
        desactivarEstado();
        activarDesactivarGM();
+        activaDesactivaLimpiar();
     }//GEN-LAST:event_jTextoCelularKeyReleased
 
     private void jTextoDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoDniKeyReleased
         desactivarEstado();
         activarDesactivarBuscar();
         activarDesactivarGM();
+        activaDesactivaLimpiar();
     }//GEN-LAST:event_jTextoDniKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -483,6 +491,11 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                 || jTextoDireccion.getText().isEmpty() || jTextoCorreo.getText().isEmpty() || jTextoCelular.getText().isEmpty());
     }
     
+    private boolean verificaAlgunVacio() {
+        return !(jTextoDni.getText().isEmpty() && jTextoNombre.getText().isEmpty() && jTextoApellido.getText().isEmpty()
+                && jTextoDireccion.getText().isEmpty() && jTextoCorreo.getText().isEmpty() && jTextoCelular.getText().isEmpty());
+    }
+    
     private boolean verificaNombreApellido() {
         return jTextoNombre.getText().matches("^([A-Z]{1}[a-z]+[ ]?){1,2}$") 
                 && jTextoApellido.getText().matches("^([A-Z]{1}[a-z]+[ ]?){1,2}$");
@@ -526,5 +539,11 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         }
     }
     
-
+private void activaDesactivaLimpiar(){
+    if (verificaAlgunVacio()) {
+        botonLimpiar.setEnabled(true);
+    }else{
+        botonLimpiar.setEnabled(false);
+    }
+}
 }
