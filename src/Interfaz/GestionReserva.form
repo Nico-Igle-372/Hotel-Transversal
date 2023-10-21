@@ -269,6 +269,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/GReservaNuevaApagado.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Nueva Reserva"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/GReservaNuevaEncendido.png"/>
@@ -289,6 +290,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/GReservaCancelarApagado.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Cancelar Reserva"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/GReservaCancelarEncendido.png"/>
@@ -309,6 +311,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/modificar-apagado.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Guardar Cambios"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/modificar-encendido.png"/>
@@ -329,6 +332,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/InicioSalirApagado(2).png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Inicio"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/InicioSalirEncendido (1).png"/>
@@ -349,6 +353,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/buscarApagado.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Buscar"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/buscarEncendido.png"/>
@@ -379,6 +384,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/buscarApagado.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Buscar"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/buscarEncendido.png"/>
@@ -421,6 +427,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/HistorialApagado.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Historial"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/HistorialEncendido.png"/>

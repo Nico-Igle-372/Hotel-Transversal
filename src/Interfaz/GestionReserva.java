@@ -137,6 +137,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         }
 
         botonNueva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GReservaNuevaApagado.png"))); // NOI18N
+        botonNueva.setToolTipText("Nueva Reserva");
         botonNueva.setContentAreaFilled(false);
         botonNueva.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GReservaNuevaEncendido.png"))); // NOI18N
         botonNueva.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GReservaNuevaEncendido.png"))); // NOI18N
@@ -148,6 +149,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         });
 
         botonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GReservaCancelarApagado.png"))); // NOI18N
+        botonCancelar.setToolTipText("Cancelar Reserva");
         botonCancelar.setContentAreaFilled(false);
         botonCancelar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GReservaCancelarEncendido.png"))); // NOI18N
         botonCancelar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GReservaCancelarEncendido.png"))); // NOI18N
@@ -159,6 +161,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         });
 
         botonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificar-apagado.png"))); // NOI18N
+        botonModificar.setToolTipText("Guardar Cambios");
         botonModificar.setContentAreaFilled(false);
         botonModificar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificar-encendido.png"))); // NOI18N
         botonModificar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificar-encendido.png"))); // NOI18N
@@ -170,6 +173,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         });
 
         botonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InicioSalirApagado(2).png"))); // NOI18N
+        botonSalir.setToolTipText("Inicio");
         botonSalir.setContentAreaFilled(false);
         botonSalir.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InicioSalirEncendido (1).png"))); // NOI18N
         botonSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InicioSalirEncendido (1).png"))); // NOI18N
@@ -181,6 +185,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         });
 
         botonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarApagado.png"))); // NOI18N
+        botonBuscar.setToolTipText("Buscar");
         botonBuscar.setContentAreaFilled(false);
         botonBuscar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarEncendido.png"))); // NOI18N
         botonBuscar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarEncendido.png"))); // NOI18N
@@ -200,6 +205,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         });
 
         BotonBuscarDni.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarApagado.png"))); // NOI18N
+        BotonBuscarDni.setToolTipText("Buscar");
         BotonBuscarDni.setContentAreaFilled(false);
         BotonBuscarDni.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarEncendido.png"))); // NOI18N
         BotonBuscarDni.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarEncendido.png"))); // NOI18N
@@ -228,6 +234,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         jLabel6.setText("Ver");
 
         BotonHistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HistorialApagado.png"))); // NOI18N
+        BotonHistorial.setToolTipText("Historial");
         BotonHistorial.setContentAreaFilled(false);
         BotonHistorial.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HistorialEncendido.png"))); // NOI18N
         BotonHistorial.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HistorialEncendido.png"))); // NOI18N

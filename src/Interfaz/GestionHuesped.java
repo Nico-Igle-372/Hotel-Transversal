@@ -99,6 +99,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         jTextoEstado.setEditable(false);
 
         jBotonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarApagado.png"))); // NOI18N
+        jBotonBuscar.setToolTipText("Buscar");
         jBotonBuscar.setContentAreaFilled(false);
         jBotonBuscar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarEncendido.png"))); // NOI18N
         jBotonBuscar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarEncendido.png"))); // NOI18N
@@ -120,6 +121,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         });
 
         botonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HuespedGestionApagado.png"))); // NOI18N
+        botonGuardar.setToolTipText("Nuevo Huesped");
         botonGuardar.setContentAreaFilled(false);
         botonGuardar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuarioChicoEncendido-PhotoRoom (1) (1).png"))); // NOI18N
         botonGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuarioChicoEncendido-PhotoRoom (1) (1).png"))); // NOI18N
@@ -131,6 +133,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         });
 
         botonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificar-apagado.png"))); // NOI18N
+        botonModificar.setToolTipText("Guardar Cambios");
         botonModificar.setContentAreaFilled(false);
         botonModificar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificar-encendido.png"))); // NOI18N
         botonModificar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificar-encendido.png"))); // NOI18N
@@ -142,6 +145,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         });
 
         botonLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiarApagado.png"))); // NOI18N
+        botonLimpiar.setToolTipText("Limpiar");
         botonLimpiar.setContentAreaFilled(false);
         botonLimpiar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiarEncendido.png"))); // NOI18N
         botonLimpiar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiarEncendido.png"))); // NOI18N
@@ -153,6 +157,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         });
 
         botonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InicioSalirApagado(2).png"))); // NOI18N
+        botonSalir.setToolTipText("Inicio");
         botonSalir.setContentAreaFilled(false);
         botonSalir.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InicioSalirEncendido (1).png"))); // NOI18N
         botonSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InicioSalirEncendido (1).png"))); // NOI18N
@@ -164,6 +169,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         });
 
         botonAltaBaja.setText("Estado");
+        botonAltaBaja.setToolTipText("Modificar Estado");
         botonAltaBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAltaBajaActionPerformed(evt);

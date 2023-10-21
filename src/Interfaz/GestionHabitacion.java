@@ -107,6 +107,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(TablaHabitacion);
 
         BotonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarApagado.png"))); // NOI18N
+        BotonBuscar.setToolTipText("Buscar");
         BotonBuscar.setContentAreaFilled(false);
         BotonBuscar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarEncendido.png"))); // NOI18N
         BotonBuscar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarEncendido.png"))); // NOI18N
@@ -118,6 +119,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         });
 
         BotonAltaBaja.setText("Estado");
+        BotonAltaBaja.setToolTipText("Modificar Estado");
         BotonAltaBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonAltaBajaActionPerformed(evt);
@@ -125,6 +127,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         });
 
         BotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InicioSalirApagado(2).png"))); // NOI18N
+        BotonSalir.setToolTipText("Inicio");
         BotonSalir.setContentAreaFilled(false);
         BotonSalir.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InicioSalirEncendido (1).png"))); // NOI18N
         BotonSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InicioSalirEncendido (1).png"))); // NOI18N
@@ -136,6 +139,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         });
 
         BotonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/NuevaHabitacionGestionApagado.png"))); // NOI18N
+        BotonGuardar.setToolTipText("Nueva Habitación");
         BotonGuardar.setContentAreaFilled(false);
         BotonGuardar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/NuevaHabitacionGestionEncendido2.png"))); // NOI18N
         BotonGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/NuevaHabitacionGestionEncendido2.png"))); // NOI18N
@@ -147,6 +151,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         });
 
         BotonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificar-apagado.png"))); // NOI18N
+        BotonModificar.setToolTipText("Guardar Cambios");
         BotonModificar.setContentAreaFilled(false);
         BotonModificar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificar-encendido.png"))); // NOI18N
         BotonModificar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificar-encendido.png"))); // NOI18N
@@ -158,6 +163,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         });
 
         botonPrecio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cambiarPrecioGHabiApagadp.png"))); // NOI18N
+        botonPrecio.setToolTipText("Cambiar Precio");
         botonPrecio.setContentAreaFilled(false);
         botonPrecio.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cambiarPrecioGestionHabi.png"))); // NOI18N
         botonPrecio.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cambiarPrecioGestionHabi.png"))); // NOI18N
