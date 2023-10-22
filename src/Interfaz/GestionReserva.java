@@ -781,12 +781,12 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             tableColumn6.setMaxWidth(115);
             tableHeader.repaint();
             
-            Dimension min = new Dimension();
-            min.setSize(60, 1500);
-            tablaReserva.setMinimumSize(min);
-            Dimension max = new Dimension();
-            max.setSize(2147483647, 5700);
-            tablaReserva.setMaximumSize(max);
+//            Dimension min = new Dimension();
+//            min.setSize(60, 1500);
+//            tablaReserva.setMinimumSize(min);
+//            Dimension max = new Dimension();
+//            max.setSize(2147483647, 5700);
+//            tablaReserva.setMaximumSize(max);
         }
         tablaReserva.setDefaultEditor(Object.class, null);
         for (int i = 0; i < tablaReserva.getColumnCount(); i++) {
