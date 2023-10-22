@@ -5,10 +5,16 @@ import AccesoADatos.ABMReserva;
 import Entidades.Habitacion;
 import Entidades.Reserva;
 import Entidades.TipoHabitacion;
+import java.awt.Component;
 import java.time.LocalDate;
 import java.util.List;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 public class GestionHabitacion extends javax.swing.JInternalFrame {
 
@@ -16,6 +22,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
     ABMReserva ABMR = new ABMReserva();
 
     private final DefaultTableModel modeloT = new DefaultTableModel() {
+        @Override
         public boolean isCellEditable(int fila, int colum) {
             return false;
         }
@@ -32,7 +39,6 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         limpiarT();
         activarDesactivarBuscar();
         activarDesactivarPrecio();
-
     }
 
     @SuppressWarnings("unchecked")
@@ -193,9 +199,6 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(BotonGuardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -230,8 +233,9 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                                 .addComponent(TextoNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(BotonBuscar)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
             .addComponent(titulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,8 +262,8 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                     .addComponent(labelEstado)
                     .addComponent(BotonAltaBaja))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPrecio)
                     .addComponent(jTextoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -386,7 +390,6 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Ingrese un precio mayor a 0");
             }
-
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingrese valores numericos");
         }
@@ -479,12 +482,37 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
     }
 
     private void armarCabecera() {
-        modeloT.addColumn("Nombre");
-        modeloT.addColumn("Capacidad");
-        modeloT.addColumn("Cantidad de Camas");
-        modeloT.addColumn("Tipo de Camas");
-        modeloT.addColumn("Precio Por Noche");
+        modeloT.setColumnCount(5);
         TablaHabitacion.setModel(modeloT);
+        TablaHabitacion.setRowHeight(65);
+        JTableHeader tableHeader = TablaHabitacion.getTableHeader();
+        TableColumnModel tableColumnModel = tableHeader.getColumnModel();
+        TableColumn tableColumn = tableColumnModel.getColumn(0);
+        tableColumn.setHeaderValue("Nombre");
+        tableColumn.setMinWidth(107);
+        tableColumn.setMaxWidth(107);
+        TableColumn tableColumn1 = tableColumnModel.getColumn(1);
+        tableColumn1.setHeaderValue("Capacidad");
+        tableColumn1.setMinWidth(117);
+        tableColumn1.setMaxWidth(117);
+        TableColumn tableColumn2 = tableColumnModel.getColumn(2);
+        tableColumn2.setHeaderValue("N° Camas");
+        tableColumn2.setMinWidth(108);
+        tableColumn2.setMaxWidth(108);
+        TableColumn tableColumn3 = tableColumnModel.getColumn(3);
+        tableColumn3.setHeaderValue("Tipo Camas");
+        tableColumn3.setMinWidth(127);
+        tableColumn3.setMaxWidth(127);
+        TableColumn tableColumn4 = tableColumnModel.getColumn(4);
+        tableColumn4.setHeaderValue("Precio");
+              
+        DefaultTableCellRenderer centrado = new DefaultTableCellRenderer();
+        centrado.setHorizontalAlignment(JLabel.CENTER);
+        centrado.setVerticalAlignment(JLabel.TOP);
+        
+        for (int i = 0; i < TablaHabitacion.getColumnCount(); i++) {
+            TablaHabitacion.getColumnModel().getColumn(i).setCellRenderer(centrado);
+        }
     }
 
     private void limpiarT() {
@@ -497,7 +525,11 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
     }
 
     public void cargarDatos(TipoHabitacion tH) {
-        modeloT.addRow(new Object[]{tH.getNombre(), tH.getCapacidad(), tH.getCantCamas(), tH.getTipoCamas(), tH.getPrecioNoche()});
+        String nombre = "<html><div align=center>" + tH.getNombre();
+        String tipoCamas = "<html><div align=center>" + tH.getTipoCamas();
+        modeloT.addRow(new Object[]{nombre, tH.getCapacidad(), tH.getCantCamas(), tipoCamas, tH.getPrecioNoche()});
+        TablaHabitacion.setAlignmentX(0);
+        TablaHabitacion.getRowHeight(0);
     }
 
     private void redondearCajasDeTexto() {
@@ -509,33 +541,31 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
     }
 
     private boolean verificaHabitacion() {
-        try{
-            return Integer.parseInt(TextoNumero.getText()) > 0 
-                && Integer.parseInt(TextoNumero.getText()) < 201 &&
-                TextoNumero.getText().matches("[0-9]*");
-        }catch(NumberFormatException e){
-            
+        try {
+            return Integer.parseInt(TextoNumero.getText()) > 0
+                    && Integer.parseInt(TextoNumero.getText()) < 201
+                    && TextoNumero.getText().matches("[0-9]*");
+        } catch (NumberFormatException e) {
         }
         return false;
     }
-    
 
-    private void activarDesactivarBuscar(){
-        if(verificaHabitacion()){
+    private void activarDesactivarBuscar() {
+        if (verificaHabitacion()) {
             BotonBuscar.setEnabled(true);
             BotonGuardar.setEnabled(true);
             BotonModificar.setEnabled(true);
-        }else{
+        } else {
             BotonBuscar.setEnabled(false);
             BotonGuardar.setEnabled(false);
             BotonModificar.setEnabled(false);
         }
     }
-    
-    private void activarDesactivarPrecio(){
-        if(!(jTextoPrecio.getText().isEmpty())&& jTextoPrecio.getText().matches("[0-9]*[,.]?")){
+
+    private void activarDesactivarPrecio() {
+        if (!(jTextoPrecio.getText().isEmpty()) && jTextoPrecio.getText().matches("[0-9]*[,.]?")) {
             botonCambiarPrecio.setEnabled(true);
-        }else{
+        } else {
             botonCambiarPrecio.setEnabled(false);
         }
     }
