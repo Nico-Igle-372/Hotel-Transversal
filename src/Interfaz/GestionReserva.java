@@ -6,6 +6,7 @@ import AccesoADatos.ABMReserva;
 import Entidades.Habitacion;
 import Entidades.Huesped;
 import Entidades.Reserva;
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.sql.Date;
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -40,6 +41,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         activarDesactivarNuevo();
         activarDesactivarModificar();
         activarDesactivarCancelar();
+        textoFechasNoEditable();
     }
 
     @SuppressWarnings("unchecked")
@@ -185,7 +187,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         });
 
         botonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarApagado.png"))); // NOI18N
-        botonBuscar.setToolTipText("Buscar");
+        botonBuscar.setToolTipText("Buscar Habitacion\n    Disponible");
         botonBuscar.setContentAreaFilled(false);
         botonBuscar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarEncendido.png"))); // NOI18N
         botonBuscar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarEncendido.png"))); // NOI18N
@@ -205,7 +207,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         });
 
         BotonBuscarDni.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarApagado.png"))); // NOI18N
-        BotonBuscarDni.setToolTipText("Buscar");
+        BotonBuscarDni.setToolTipText("Buscar Reservas\n   del Huesped");
         BotonBuscarDni.setContentAreaFilled(false);
         BotonBuscarDni.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarEncendido.png"))); // NOI18N
         BotonBuscarDni.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarEncendido.png"))); // NOI18N
@@ -570,11 +572,8 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BotonBuscarDniActionPerformed
 
     private void BotonHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonHistorialActionPerformed
-
         limpiarT();
-
         if (titulo.getText().equals("Gestión Reserva")) {
-
             titulo.setText("HISTORIAL");
             textoCantPers.setVisible(false);
             jDFechaEgreso.setVisible(false);
@@ -589,14 +588,13 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             jLabel4.setVisible(false);
             jLabel5.setVisible(false);
             jLabel6.setVisible(false);
+            BotonHistorial.setToolTipText("Gestion Reserva");
             BotonHistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reserva-pequeño(apagado).png")));
             BotonHistorial.setContentAreaFilled(false);
             BotonHistorial.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reserva.pequeño.encendido.png")));
             BotonHistorial.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reserva.pequeño.encendido.png")));
         } else {
-
             titulo.setText("Gestión Reserva");
-
             textoCantPers.setVisible(true);
             jDFechaEgreso.setVisible(true);
             jDFechaIngreso.setVisible(true);
@@ -610,6 +608,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             jLabel4.setVisible(true);
             jLabel5.setVisible(true);
             jLabel6.setVisible(true);
+            BotonHistorial.setToolTipText("Historial");
             BotonHistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HistorialApagado.png")));
             BotonHistorial.setContentAreaFilled(false);
             BotonHistorial.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HistorialEncendido.png")));
@@ -869,11 +868,8 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 return false;
             }
         } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
-
             return false;
-
         }
-
     }
 
     private void activarDesactivarBuscarDni() {
@@ -916,5 +912,12 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         } else {
             botonCancelar.setEnabled(false);
         }
+    }
+
+    private void textoFechasNoEditable() {
+        JTextFieldDateEditor textoIngreso = (JTextFieldDateEditor) jDFechaIngreso.getDateEditor();
+        textoIngreso.setEditable(false);
+        JTextFieldDateEditor textoEgreso = (JTextFieldDateEditor) jDFechaEgreso.getDateEditor();
+        textoEgreso.setEditable(false);
     }
 }

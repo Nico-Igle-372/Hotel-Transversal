@@ -99,7 +99,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         jTextoEstado.setEditable(false);
 
         jBotonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarApagado.png"))); // NOI18N
-        jBotonBuscar.setToolTipText("Buscar");
+        jBotonBuscar.setToolTipText("Buscar Huesped");
         jBotonBuscar.setContentAreaFilled(false);
         jBotonBuscar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarEncendido.png"))); // NOI18N
         jBotonBuscar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarEncendido.png"))); // NOI18N
