@@ -419,6 +419,8 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                             ABMR.crearReserva(res);
                             ABMHabi.ocuparHabitacion(res.getHabitacion().getidHabitacion());
                             modeloTabla.removeRow(tablaReserva.getSelectedRow());
+                            botonModificar.setEnabled(false);
+                            botonNueva.setEnabled(false);
                         } else {
                             JOptionPane.showMessageDialog(null, "El huesped no se encuentra registrado");
                         }
@@ -461,10 +463,12 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 Reserva res = ABMR.buscarPorId((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0));
                 LocalDate hoy = LocalDate.now();
                 LocalDate ingresoActual = res.getFechaEntrada();
+                LocalDate egresoActual = res.getFechaSalida();
                 int cantPersonas = Integer.parseInt(textoCantPers.getText());
                 LocalDate ingreso = jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 LocalDate egreso = jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                if ((ingresoActual.equals(ingreso) || hoy.isBefore(ingreso)) && egreso.isAfter(hoy)) {
+                if ((ingresoActual.equals(ingreso) || hoy.isBefore(ingreso)) && egreso.isAfter(hoy) &&
+                       egreso.isAfter(egresoActual) && (egresoActual.isEqual(hoy) || egresoActual.isAfter(hoy))) {
                     if (comprobarFechas(ingreso, egreso)) {
                         res.setCantPersonas(cantPersonas);
                         res.setFechaEntrada(ingreso);
@@ -571,7 +575,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                     cargarTablaR(res);
                 }
                 actualizaAltoFilas();
-                tablaReserva.setRowHeight(tablaReserva.getRowHeight() * 9/4);
+                tablaReserva.setRowHeight(tablaReserva.getRowHeight() * 9 / 4);
             }
 
         } catch (NumberFormatException e) {
@@ -785,12 +789,12 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             tableColumn6.setMaxWidth(125);
             tableHeader.repaint();
 
-            Dimension min = new Dimension();
-            min.setSize(1000, 3500);
-            tablaReserva.setMinimumSize(min);
-            Dimension max = new Dimension();
-            max.setSize(150000, 5700);
-            tablaReserva.setMaximumSize(max);
+//            Dimension min = new Dimension();
+//            min.setSize(1000, 3500);
+//            tablaReserva.setMinimumSize(min);
+//            Dimension max = new Dimension();
+//            max.setSize(150000, 5700);
+//            tablaReserva.setMaximumSize(max);
         }
         tablaReserva.setRowHeight(28);
         tablaReserva.setDefaultEditor(Object.class, null);
@@ -847,8 +851,9 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         for (Habitacion habi : habitaciones) {
             List<Reserva> reservas = ABMR.buscarPorHabitacion(habi);
             for (Reserva res : reservas) {
-                if (hoy.equals(res.getFechaSalida())) {
+                if (hoy.equals(res.getFechaSalida()) || hoy.isAfter(res.getFechaSalida())) {
                     ABMHabi.liberarHabitacion(habi.getidHabitacion());
+                    ABMR.cancelarReserva(res.getIdReserva());
                 }
             }
         }

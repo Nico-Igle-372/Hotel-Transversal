@@ -38,6 +38,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         limpiarT();
         activarDesactivarBuscar();
         activarDesactivarPrecio();
+        actualizar();
     }
 
     @SuppressWarnings("unchecked")
@@ -326,6 +327,8 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                     h.settipoHabitacion(ABMHabi.buscarTipoHabitacionPorNombre(ComboTipoH.getSelectedItem() + ""));
                     h.setEstado(false);
                     ABMHabi.crearHabitacion(h);
+                    BotonGuardar.setEnabled(false);
+                    BotonModificar.setEnabled(false);
                 } else {
                     JOptionPane.showMessageDialog(null, "Ya existe una habitacion con ese número");
                 }
@@ -504,7 +507,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         tableColumn3.setMaxWidth(127);
         TableColumn tableColumn4 = tableColumnModel.getColumn(4);
         tableColumn4.setHeaderValue("Precio");
-              
+
         DefaultTableCellRenderer centrado = new DefaultTableCellRenderer();
         centrado.setHorizontalAlignment(JLabel.CENTER);
         centrado.setVerticalAlignment(JLabel.TOP);
@@ -563,6 +566,29 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
             botonCambiarPrecio.setEnabled(true);
         } else {
             botonCambiarPrecio.setEnabled(false);
+        }
+    }
+    
+    private void actualizar() {
+        LocalDate hoy = LocalDate.now();
+        List<Habitacion> habitaciones = ABMHabi.listaDesocupadas();
+        for (Habitacion habi : habitaciones) {
+            List<Reserva> reservas = ABMR.buscarPorHabitacion(habi);
+            for (Reserva res : reservas) {
+                if (hoy.equals(res.getFechaEntrada())) {
+                    ABMHabi.ocuparHabitacion(habi.getidHabitacion());
+                }
+            }
+        }
+        habitaciones = ABMHabi.listaOcupadas();
+        for (Habitacion habi : habitaciones) {
+            List<Reserva> reservas = ABMR.buscarPorHabitacion(habi);
+            for (Reserva res : reservas) {
+                if (hoy.equals(res.getFechaSalida()) || hoy.isAfter(res.getFechaSalida())) {
+                    ABMHabi.liberarHabitacion(habi.getidHabitacion());
+                    ABMR.cancelarReserva(res.getIdReserva());
+                }
+            }
         }
     }
 }

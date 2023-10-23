@@ -365,6 +365,8 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                         hues.setEstado(true);
                         if (hues.getIdHuesped() == 0) {
                             ABMHues.guardarHuesped(hues);
+                            botonGuardar.setEnabled(false);
+                            botonModificar.setEnabled(false);
                         } else {
                             JOptionPane.showMessageDialog(null, "Ya existe un huesped con ese DNI");
                         }
@@ -422,8 +424,8 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextoApellidoKeyReleased
 
     private void jTextoDireccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoDireccionKeyReleased
-       desactivarEstado();
-       activarDesactivarGM();
+        desactivarEstado();
+        activarDesactivarGM();
         activaDesactivaLimpiar();
     }//GEN-LAST:event_jTextoDireccionKeyReleased
 
@@ -434,8 +436,8 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextoCorreoKeyReleased
 
     private void jTextoCelularKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoCelularKeyReleased
-       desactivarEstado();
-       activarDesactivarGM();
+        desactivarEstado();
+        activarDesactivarGM();
         activaDesactivaLimpiar();
     }//GEN-LAST:event_jTextoCelularKeyReleased
 
@@ -496,30 +498,31 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         return !(jTextoDni.getText().isEmpty() || jTextoNombre.getText().isEmpty() || jTextoApellido.getText().isEmpty()
                 || jTextoDireccion.getText().isEmpty() || jTextoCorreo.getText().isEmpty() || jTextoCelular.getText().isEmpty());
     }
-    
+
     private boolean verificaAlgunVacio() {
         return !(jTextoDni.getText().isEmpty() && jTextoNombre.getText().isEmpty() && jTextoApellido.getText().isEmpty()
                 && jTextoDireccion.getText().isEmpty() && jTextoCorreo.getText().isEmpty() && jTextoCelular.getText().isEmpty());
     }
-    
+
     private boolean verificaNombreApellido() {
-        return jTextoNombre.getText().matches("^([A-Z]{1}[a-z]+[ ]?){1,2}$") 
+        return jTextoNombre.getText().matches("^([A-Z]{1}[a-z]+[ ]?){1,2}$")
                 && jTextoApellido.getText().matches("^([A-Z]{1}[a-z]+[ ]?){1,2}$");
     }
 
     private boolean verificaCorreo() {
         return jTextoCorreo.getText().matches("[-\\w\\.]+@\\D+\\.\\D{3}+");
     }
-    
-    private boolean verificarDni(){
-        return jTextoDni.getText().matches("[0-9]*")&&jTextoDni.getText().length()<11&&jTextoDni.getText().length() > 6;
+
+    private boolean verificarDni() {
+        return jTextoDni.getText().matches("[0-9]*") && jTextoDni.getText().length() < 11 && jTextoDni.getText().length() > 6;
     }
-    private boolean verificarDireccion(){
+
+    private boolean verificarDireccion() {
         return jTextoDireccion.getText().matches("(\\w+[ ]?\\w*){1,6}");
     }
-    
-    private boolean verificarCelular(){
-        return jTextoCelular.getText().matches("[0-9]*")&&jTextoCelular.getText().length()>=6;
+
+    private boolean verificarCelular() {
+        return jTextoCelular.getText().matches("[0-9]*") && jTextoCelular.getText().length() >= 6;
     }
 
     private void desactivarEstado() {
@@ -527,29 +530,31 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         jTextoEstado.setVisible(false);
         botonAltaBaja.setVisible(false);
     }
-    private void activarDesactivarBuscar(){
-        if(!verificarDni()){
+
+    private void activarDesactivarBuscar() {
+        if (!verificarDni()) {
             jBotonBuscar.setEnabled(false);
-        }else{
+        } else {
             jBotonBuscar.setEnabled(true);
         }
     }
-    private void activarDesactivarGM(){
-        if(verificaVacios()&&verificaNombreApellido()&&verificaCorreo()
-                &&verificarDni()&&verificarCelular()&&verificarDireccion()){
+
+    private void activarDesactivarGM() {
+        if (verificaVacios() && verificaNombreApellido() && verificaCorreo()
+                && verificarDni() && verificarCelular() && verificarDireccion()) {
             botonGuardar.setEnabled(true);
             botonModificar.setEnabled(true);
-        }else{
+        } else {
             botonGuardar.setEnabled(false);
             botonModificar.setEnabled(false);
         }
     }
-    
-private void activaDesactivaLimpiar(){
-    if (verificaAlgunVacio()) {
-        botonLimpiar.setEnabled(true);
-    }else{
-        botonLimpiar.setEnabled(false);
+
+    private void activaDesactivaLimpiar() {
+        if (verificaAlgunVacio()) {
+            botonLimpiar.setEnabled(true);
+        } else {
+            botonLimpiar.setEnabled(false);
+        }
     }
-}
 }

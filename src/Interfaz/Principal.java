@@ -42,7 +42,7 @@ public class Principal extends javax.swing.JFrame {
         jBotonHuesped.setForeground(new java.awt.Color(255, 255, 255));
         jBotonHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/HuespedPrincipalApagdo.png"))); // NOI18N
         jBotonHuesped.setText("Huesped");
-        jBotonHuesped.setToolTipText("Huesped");
+        jBotonHuesped.setToolTipText("Gestión de\n Huespedes");
         jBotonHuesped.setContentAreaFilled(false);
         jBotonHuesped.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBotonHuesped.setIconTextGap(8);
@@ -63,6 +63,7 @@ public class Principal extends javax.swing.JFrame {
         jBotonHabitacion.setForeground(new java.awt.Color(255, 255, 255));
         jBotonHabitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/habitacionPequeñaApagada.png"))); // NOI18N
         jBotonHabitacion.setText("Habitación");
+        jBotonHabitacion.setToolTipText("Gestión de\nHabitaciones");
         jBotonHabitacion.setBorderPainted(false);
         jBotonHabitacion.setContentAreaFilled(false);
         jBotonHabitacion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -82,6 +83,7 @@ public class Principal extends javax.swing.JFrame {
         jBotonReserva.setForeground(new java.awt.Color(255, 255, 255));
         jBotonReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reserva-pequeño(apagado).png"))); // NOI18N
         jBotonReserva.setText("Reserva");
+        jBotonReserva.setToolTipText("Gestión de\nReservas");
         jBotonReserva.setContentAreaFilled(false);
         jBotonReserva.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBotonReserva.setIconTextGap(8);
@@ -98,6 +100,7 @@ public class Principal extends javax.swing.JFrame {
         jBotonSalir.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
         jBotonSalir.setForeground(new java.awt.Color(204, 204, 204));
         jBotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconoSalirApagado.png"))); // NOI18N
+        jBotonSalir.setToolTipText("Salir");
         jBotonSalir.setContentAreaFilled(false);
         jBotonSalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBotonSalir.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono-salir-encendido.png"))); // NOI18N
@@ -193,6 +196,10 @@ public class Principal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jBotonSalirActionPerformed
+
     private void jBotonReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonReservaActionPerformed
         if (contador == 0) {
             contador++;
@@ -204,21 +211,6 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBotonReservaActionPerformed
 
-    private void jBotonHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonHuespedActionPerformed
-        if (contador == 0) {
-            contador++;
-            GestionHuesped ghu = new GestionHuesped();
-            ghu.setVisible(true);
-            ghu.setLocation(450, 1);
-            escritorio.add(ghu);
-            escritorio.moveToFront(ghu);
-        }
-    }//GEN-LAST:event_jBotonHuespedActionPerformed
-
-    private void jBotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonSalirActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_jBotonSalirActionPerformed
-
     private void jBotonHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonHabitacionActionPerformed
         if (contador == 0) {
             contador++;
@@ -229,6 +221,17 @@ public class Principal extends javax.swing.JFrame {
             escritorio.moveToFront(gha);
         }
     }//GEN-LAST:event_jBotonHabitacionActionPerformed
+
+    private void jBotonHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonHuespedActionPerformed
+        if (contador == 0) {
+            contador++;
+            GestionHuesped ghu = new GestionHuesped();
+            ghu.setVisible(true);
+            ghu.setLocation(450, 1);
+            escritorio.add(ghu);
+            escritorio.moveToFront(ghu);
+        }
+    }//GEN-LAST:event_jBotonHuespedActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
