@@ -417,7 +417,6 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                         } else {
                             JOptionPane.showMessageDialog(null, "El huesped no se encuentra registrado");
                         }
-
                     } else {
                         JOptionPane.showMessageDialog(null, "Revise las fechas seleccionadas");
                     }
@@ -457,14 +456,11 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 Reserva res = ABMR.buscarPorId((int) tablaReserva.getValueAt(tablaReserva.getSelectedRow(), 0));
                 LocalDate hoy = LocalDate.now();
                 LocalDate ingresoActual = res.getFechaEntrada();
-
                 int cantPersonas = Integer.parseInt(textoCantPers.getText());
                 LocalDate ingreso = jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 LocalDate egreso = jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 if ((ingresoActual.equals(ingreso) || hoy.isBefore(ingreso)) && egreso.isAfter(hoy)) {
-
                     if (comprobarFechas(ingreso, egreso)) {
-
                         res.setCantPersonas(cantPersonas);
                         res.setFechaEntrada(ingreso);
                         res.setFechaSalida(egreso);
@@ -507,7 +503,6 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "Revise las fechas seleccionadas");
                 }
-
             } catch (NumberFormatException | NullPointerException ex) {
                 JOptionPane.showMessageDialog(null, "Complete todos los campos");
             } catch (ArrayIndexOutOfBoundsException ex) {
@@ -526,11 +521,9 @@ public class GestionReserva extends javax.swing.JInternalFrame {
 
     private void RHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RHabitacionesActionPerformed
         limpiarT();
-
         if (RHabitaciones.isSelected()) {
             RReservas.setSelected(false);
             armarCabecera();
-
         }
         activarDesactivarCancelar();
         activarDesactivarModificar();
@@ -539,22 +532,18 @@ public class GestionReserva extends javax.swing.JInternalFrame {
 
     private void RReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RReservasActionPerformed
         limpiarT();
-
         if (RReservas.isSelected()) {
             RHabitaciones.setSelected(false);
             armarCabecera();
-
         }
         activarDesactivarCancelar();
         activarDesactivarModificar();
         activarDesactivarNuevo();
-
     }//GEN-LAST:event_RReservasActionPerformed
 
     private void BotonBuscarDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarDniActionPerformed
         try {
             if (titulo.getText().equals("Gestión Reserva")) {
-
                 RReservas.setSelected(true);
                 RHabitaciones.setSelected(false);
                 activarDesactivarCancelar();
@@ -815,7 +804,6 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 res.getHabitacion().getidHabitacion(), res.getHabitacion().gettipoHabitacion().getNombre(), res.getFechaEntrada(),
                 res.getFechaSalida(), res.getImporteTotal()});
         }
-        
     }
 
     private void limpiarT() {
