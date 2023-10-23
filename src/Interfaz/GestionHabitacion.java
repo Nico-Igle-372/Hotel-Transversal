@@ -491,20 +491,20 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         TableColumnModel tableColumnModel = tableHeader.getColumnModel();
         TableColumn tableColumn = tableColumnModel.getColumn(0);
         tableColumn.setHeaderValue("Nombre");
-        tableColumn.setMinWidth(107);
-        tableColumn.setMaxWidth(107);
+        tableColumn.setMinWidth(75);
+        tableColumn.setMaxWidth(75);
         TableColumn tableColumn1 = tableColumnModel.getColumn(1);
         tableColumn1.setHeaderValue("Capacidad");
-        tableColumn1.setMinWidth(117);
-        tableColumn1.setMaxWidth(117);
+        tableColumn1.setMinWidth(85);
+        tableColumn1.setMaxWidth(85);
         TableColumn tableColumn2 = tableColumnModel.getColumn(2);
         tableColumn2.setHeaderValue("N° Camas");
-        tableColumn2.setMinWidth(108);
-        tableColumn2.setMaxWidth(108);
+        tableColumn2.setMinWidth(75);
+        tableColumn2.setMaxWidth(75);
         TableColumn tableColumn3 = tableColumnModel.getColumn(3);
         tableColumn3.setHeaderValue("Tipo Camas");
-        tableColumn3.setMinWidth(127);
-        tableColumn3.setMaxWidth(127);
+        tableColumn3.setMinWidth(95);
+        tableColumn3.setMaxWidth(95);
         TableColumn tableColumn4 = tableColumnModel.getColumn(4);
         tableColumn4.setHeaderValue("Precio");
 
