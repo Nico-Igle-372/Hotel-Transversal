@@ -8,6 +8,7 @@ import Entidades.Huesped;
 import Entidades.Reserva;
 import java.awt.Component;
 import com.toedter.calendar.JTextFieldDateEditor;
+import java.awt.Dimension;
 import java.sql.Date;
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -570,7 +571,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                     cargarTablaR(res);
                 }
                 actualizaAltoFilas();
-                tablaReserva.setRowHeight(tablaReserva.getRowHeight() * 4);
+                tablaReserva.setRowHeight(tablaReserva.getRowHeight() * 9/4);
             }
 
         } catch (NumberFormatException e) {
@@ -784,13 +785,14 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             tableColumn6.setMaxWidth(125);
             tableHeader.repaint();
 
-//            Dimension min = new Dimension();
-//            min.setSize(60, 1500);
-//            tablaReserva.setMinimumSize(min);
-//            Dimension max = new Dimension();
-//            max.setSize(2147483647, 5700);
-//            tablaReserva.setMaximumSize(max);
+            Dimension min = new Dimension();
+            min.setSize(1000, 3500);
+            tablaReserva.setMinimumSize(min);
+            Dimension max = new Dimension();
+            max.setSize(150000, 5700);
+            tablaReserva.setMaximumSize(max);
         }
+        tablaReserva.setRowHeight(28);
         tablaReserva.setDefaultEditor(Object.class, null);
     }
 
@@ -947,20 +949,19 @@ public class GestionReserva extends javax.swing.JInternalFrame {
 
     private void centralizar() {
         centrado.setHorizontalAlignment(JLabel.CENTER);
-        centrado.setVerticalAlignment(JLabel.TOP);
+        centrado.setVerticalAlignment(JLabel.CENTER);
         for (int columna = 0; columna < tablaReserva.getColumnCount(); columna++) {
             tablaReserva.getColumnModel().getColumn(columna).setCellRenderer(centrado);
         }
     }
 
     private void actualizaAltoFilas() {
-        tablaReserva.setRowHeight(20);
         for (int fila = 0; fila < tablaReserva.getRowCount(); fila++) {
             int altoFila = tablaReserva.getRowHeight();
-            centrado.setVerticalAlignment(JLabel.TOP);
             Component comp = (Component) tablaReserva.prepareRenderer(centrado, fila, 1);
             altoFila = Math.max(altoFila, comp.getPreferredSize().height);
             tablaReserva.setRowHeight(fila, altoFila);
+            centrado.setVerticalAlignment(JLabel.TOP);
         }
     }
 }
