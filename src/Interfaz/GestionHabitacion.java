@@ -508,9 +508,8 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         DefaultTableCellRenderer centrado = new DefaultTableCellRenderer();
         centrado.setHorizontalAlignment(JLabel.CENTER);
         centrado.setVerticalAlignment(JLabel.TOP);
-        
-        for (int i = 0; i < TablaHabitacion.getColumnCount(); i++) {
-            TablaHabitacion.getColumnModel().getColumn(i).setCellRenderer(centrado);
+        for (int columna = 0; columna < TablaHabitacion.getColumnCount(); columna++) {
+            TablaHabitacion.getColumnModel().getColumn(columna).setCellRenderer(centrado);
         }
     }
 
