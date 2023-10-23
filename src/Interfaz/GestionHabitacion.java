@@ -5,7 +5,6 @@ import AccesoADatos.ABMReserva;
 import Entidades.Habitacion;
 import Entidades.Reserva;
 import Entidades.TipoHabitacion;
-import java.awt.Component;
 import java.time.LocalDate;
 import java.util.List;
 import javax.swing.JLabel;
@@ -528,8 +527,6 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         String nombre = "<html><div align=center>" + tH.getNombre();
         String tipoCamas = "<html><div align=center>" + tH.getTipoCamas();
         modeloT.addRow(new Object[]{nombre, tH.getCapacidad(), tH.getCantCamas(), tipoCamas, tH.getPrecioNoche()});
-        TablaHabitacion.setAlignmentX(0);
-        TablaHabitacion.getRowHeight(0);
     }
 
     private void redondearCajasDeTexto() {
