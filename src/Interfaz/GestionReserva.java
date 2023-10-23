@@ -6,16 +6,15 @@ import AccesoADatos.ABMReserva;
 import Entidades.Habitacion;
 import Entidades.Huesped;
 import Entidades.Reserva;
+import java.awt.Component;
 import com.toedter.calendar.JTextFieldDateEditor;
-import java.awt.Dimension;
 import java.sql.Date;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.ZoneId;
-
 import java.util.List;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -27,7 +26,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     ABMReserva ABMR = new ABMReserva();
     ABMHabitacion ABMHabi = new ABMHabitacion();
     ABMHuesped ABMHues = new ABMHuesped();
-
+    DefaultTableCellRenderer centrado = new DefaultTableCellRenderer();
     DefaultTableModel modeloTabla = new DefaultTableModel() {
         public boolean isCellEditable() {
             return false;
@@ -136,9 +135,13 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tablaReserva);
         if (tablaReserva.getColumnModel().getColumnCount() > 0) {
             tablaReserva.getColumnModel().getColumn(0).setResizable(false);
+            tablaReserva.getColumnModel().getColumn(0).setHeaderValue("Title 1");
             tablaReserva.getColumnModel().getColumn(1).setResizable(false);
+            tablaReserva.getColumnModel().getColumn(1).setHeaderValue("Title 2");
             tablaReserva.getColumnModel().getColumn(2).setResizable(false);
+            tablaReserva.getColumnModel().getColumn(2).setHeaderValue("Title 3");
             tablaReserva.getColumnModel().getColumn(3).setResizable(false);
+            tablaReserva.getColumnModel().getColumn(3).setHeaderValue("Title 4");
         }
 
         botonNueva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GReservaNuevaApagado.png"))); // NOI18N
@@ -376,6 +379,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         RReservas.setSelected(false);
         RHabitaciones.setSelected(true);
         armarCabecera();
+        centralizar();
         try {
             int cantPersonas = Integer.parseInt(textoCantPers.getText());
             LocalDate ingreso = jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -544,26 +548,31 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     private void BotonBuscarDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarDniActionPerformed
         try {
             if (titulo.getText().equals("Gestión Reserva")) {
+                limpiarT();
                 RReservas.setSelected(true);
                 RHabitaciones.setSelected(false);
                 activarDesactivarCancelar();
                 armarCabecera();
+                centralizar();
                 List<Reserva> listaRes = ABMR.buscarPorHuesped(Integer.parseInt(TextoDNI.getText().replace(".", "")));
-                limpiarT();
                 for (Reserva res : listaRes) {
                     cargarTablaR(res);
                 }
-
+                actualizaAltoFilas();
             } else {
+                limpiarT();
                 RReservas.setSelected(true);
                 RHabitaciones.setSelected(false);
                 armarCabecera();
+                centralizar();
                 List<Reserva> listaRes = ABMR.buscarTodasPorHuesped(Integer.parseInt(TextoDNI.getText().replace(".", "")));
-                limpiarT();
                 for (Reserva res : listaRes) {
                     cargarTablaR(res);
                 }
+                actualizaAltoFilas();
+                tablaReserva.setRowHeight(tablaReserva.getRowHeight() * 4);
             }
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingrese un DNI valido");
         }
@@ -683,9 +692,6 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void armarCabecera() {
-        DefaultTableCellRenderer centrado = new DefaultTableCellRenderer();
-        centrado.setHorizontalAlignment(SwingConstants.CENTER);
-        
         if (titulo.getText().equals("Gestión Reserva")) {
             if (RHabitaciones.isSelected()) {
                 modeloTabla.setColumnCount(4);
@@ -715,16 +721,20 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 TableColumnModel tableColumnModel = tableHeader.getColumnModel();
                 TableColumn tableColumn = tableColumnModel.getColumn(0);
                 tableColumn.setHeaderValue("Id");
-                tableColumn.setMinWidth(50);
-                tableColumn.setMaxWidth(50);
+                tableColumn.setMinWidth(55);
+                tableColumn.setMaxWidth(55);
                 TableColumn tableColumn1 = tableColumnModel.getColumn(1);
                 tableColumn1.setHeaderValue("Huesped");
+                tableColumn1.setMinWidth(165);
+                tableColumn1.setMaxWidth(165);
                 TableColumn tableColumn2 = tableColumnModel.getColumn(2);
                 tableColumn2.setHeaderValue("Habitacion");
                 tableColumn2.setMinWidth(120);
                 tableColumn2.setMaxWidth(120);
                 TableColumn tableColumn3 = tableColumnModel.getColumn(3);
                 tableColumn3.setHeaderValue("Tipo de Habitacion");
+                tableColumn3.setMinWidth(210);
+                tableColumn3.setMaxWidth(210);
                 TableColumn tableColumn4 = tableColumnModel.getColumn(4);
                 tableColumn4.setHeaderValue("Ingreso");
                 tableColumn4.setMinWidth(125);
@@ -735,8 +745,8 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 tableColumn5.setMaxWidth(125);
                 TableColumn tableColumn6 = tableColumnModel.getColumn(6);
                 tableColumn6.setHeaderValue("Total");
-                tableColumn6.setMinWidth(115);
-                tableColumn6.setMaxWidth(115);
+                tableColumn6.setMinWidth(125);
+                tableColumn6.setMaxWidth(125);
                 tableHeader.repaint();
             }
         } else {
@@ -750,12 +760,16 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             tableColumn.setMaxWidth(90);
             TableColumn tableColumn1 = tableColumnModel.getColumn(1);
             tableColumn1.setHeaderValue("Huesped");
+            tableColumn1.setMinWidth(120);
+            tableColumn1.setMaxWidth(130);
             TableColumn tableColumn2 = tableColumnModel.getColumn(2);
             tableColumn2.setHeaderValue("Habitacion");
             tableColumn2.setMinWidth(120);
             tableColumn2.setMaxWidth(120);
             TableColumn tableColumn3 = tableColumnModel.getColumn(3);
             tableColumn3.setHeaderValue("Tipo de Habitacion");
+            tableColumn3.setMinWidth(210);
+            tableColumn3.setMaxWidth(210);
             TableColumn tableColumn4 = tableColumnModel.getColumn(4);
             tableColumn4.setHeaderValue("Ingreso");
             tableColumn4.setMinWidth(125);
@@ -766,10 +780,10 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             tableColumn5.setMaxWidth(125);
             TableColumn tableColumn6 = tableColumnModel.getColumn(6);
             tableColumn6.setHeaderValue("Total");
-            tableColumn6.setMinWidth(115);
-            tableColumn6.setMaxWidth(115);
+            tableColumn6.setMinWidth(125);
+            tableColumn6.setMaxWidth(125);
             tableHeader.repaint();
-            
+
 //            Dimension min = new Dimension();
 //            min.setSize(60, 1500);
 //            tablaReserva.setMinimumSize(min);
@@ -778,9 +792,6 @@ public class GestionReserva extends javax.swing.JInternalFrame {
 //            tablaReserva.setMaximumSize(max);
         }
         tablaReserva.setDefaultEditor(Object.class, null);
-        for (int i = 0; i < tablaReserva.getColumnCount(); i++) {
-            tablaReserva.getColumnModel().getColumn(i).setCellRenderer(centrado);
-        }
     }
 
     private void cargarTabla(LocalDate ingreso, LocalDate egreso, Habitacion habi) {
@@ -789,20 +800,20 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     }
 
     private void cargarTablaR(Reserva res) {
-        String estado = "";
+        String estado;
         if (res.isEstado()) {
             estado = "activa";
         } else {
             estado = "inactiva";
         }
+        String huesped = "<html><div align=center>" + res.getHuesped().getNombre() + " " + res.getHuesped().getApellido();
+        String tipoH = "<html><div align=center>" + res.getHabitacion().gettipoHabitacion().getNombre();
         if (titulo.getText().equals("Gestión Reserva")) {
-            modeloTabla.addRow(new Object[]{res.getIdReserva(), res.getHuesped().getNombre() + " " + res.getHuesped().getApellido(),
-                res.getHabitacion().getidHabitacion(), res.getHabitacion().gettipoHabitacion().getNombre(), res.getFechaEntrada(),
-                res.getFechaSalida(), res.getImporteTotal()});
+            modeloTabla.addRow(new Object[]{res.getIdReserva(), huesped, res.getHabitacion().getidHabitacion(),
+                tipoH, res.getFechaEntrada(), res.getFechaSalida(), res.getImporteTotal()});
         } else {
-            modeloTabla.addRow(new Object[]{estado, res.getHuesped().getNombre() + " " + res.getHuesped().getApellido(),
-                res.getHabitacion().getidHabitacion(), res.getHabitacion().gettipoHabitacion().getNombre(), res.getFechaEntrada(),
-                res.getFechaSalida(), res.getImporteTotal()});
+            modeloTabla.addRow(new Object[]{estado, huesped, res.getHabitacion().getidHabitacion(),
+                tipoH, res.getFechaEntrada(), res.getFechaSalida(), res.getImporteTotal()});
         }
     }
 
@@ -907,9 +918,13 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     }
 
     private void activarDesactivarModificar() {
-        if (verificarHuesped() && verificarAunMasFechas() && tablaReserva.getSelectedRow() != -1
-                && RReservas.isSelected()) {
-            botonModificar.setEnabled(true);
+        if (titulo.getText().equals("Gestión Reserva")) {
+            if (verificarHuesped() && verificarAunMasFechas() && tablaReserva.getSelectedRow() != -1
+                    && RReservas.isSelected()) {
+                botonModificar.setEnabled(true);
+            } else {
+                botonModificar.setEnabled(false);
+            }
         } else {
             botonModificar.setEnabled(false);
         }
@@ -928,5 +943,24 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         textoIngreso.setEditable(false);
         JTextFieldDateEditor textoEgreso = (JTextFieldDateEditor) jDFechaEgreso.getDateEditor();
         textoEgreso.setEditable(false);
+    }
+
+    private void centralizar() {
+        centrado.setHorizontalAlignment(JLabel.CENTER);
+        centrado.setVerticalAlignment(JLabel.TOP);
+        for (int columna = 0; columna < tablaReserva.getColumnCount(); columna++) {
+            tablaReserva.getColumnModel().getColumn(columna).setCellRenderer(centrado);
+        }
+    }
+
+    private void actualizaAltoFilas() {
+        tablaReserva.setRowHeight(20);
+        for (int fila = 0; fila < tablaReserva.getRowCount(); fila++) {
+            int altoFila = tablaReserva.getRowHeight();
+            centrado.setVerticalAlignment(JLabel.TOP);
+            Component comp = (Component) tablaReserva.prepareRenderer(centrado, fila, 1);
+            altoFila = Math.max(altoFila, comp.getPreferredSize().height);
+            tablaReserva.setRowHeight(fila, altoFila);
+        }
     }
 }
