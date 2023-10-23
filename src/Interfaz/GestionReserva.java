@@ -572,7 +572,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                     cargarTablaR(res);
                 }
                 actualizaAltoFilas();
-                tablaReserva.setRowHeight(tablaReserva.getRowHeight() * 9 / 4);
+//                tablaReserva.setRowHeight(tablaReserva.getRowHeight() * 9 / 4);
             }
 
         } catch (NumberFormatException e) {
