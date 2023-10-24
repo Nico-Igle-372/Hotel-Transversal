@@ -4,6 +4,9 @@ package Main;
 import Interfaz.Principal;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatGruvboxDarkMediumIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatHiberbeeDarkIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatMonokaiProIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatXcodeDarkIJTheme;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -13,8 +16,8 @@ public class HotelTransversal {
 
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
-            FlatGruvboxDarkMediumIJTheme.setup();
-
+            FlatHiberbeeDarkIJTheme.setup();
+//FlatXcodeDarkIJTheme
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Falló al iniciar FlatLaf");
         }
