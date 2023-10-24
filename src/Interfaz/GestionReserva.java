@@ -976,7 +976,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         TableColumnModel jTableColumnModel = tablaReserva.getColumnModel();
         int tW = jTableColumnModel.getTotalColumnWidth();
         int cantCols = jTableColumnModel.getColumnCount();
-        System.out.println(tW);
+//        System.out.println(tW);
         for (int i = 0; i < cantCols; i++) {
             column = jTableColumnModel.getColumn(i);
             int pWidth = Math.round(anchoColuPorcen[i] * tW);
