@@ -491,23 +491,24 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         TableColumnModel tableColumnModel = tableHeader.getColumnModel();
         TableColumn tableColumn = tableColumnModel.getColumn(0);
         tableColumn.setHeaderValue("Nombre");
-        tableColumn.setMinWidth(75);
-        tableColumn.setMaxWidth(75);
+//        tableColumn.setMinWidth(75);
+//        tableColumn.setMaxWidth(75);
         TableColumn tableColumn1 = tableColumnModel.getColumn(1);
         tableColumn1.setHeaderValue("Capacidad");
-        tableColumn1.setMinWidth(85);
-        tableColumn1.setMaxWidth(85);
+//        tableColumn1.setMinWidth(85);
+//        tableColumn1.setMaxWidth(85);
         TableColumn tableColumn2 = tableColumnModel.getColumn(2);
         tableColumn2.setHeaderValue("N° Camas");
-        tableColumn2.setMinWidth(75);
-        tableColumn2.setMaxWidth(75);
+//        tableColumn2.setMinWidth(75);
+//        tableColumn2.setMaxWidth(75);
         TableColumn tableColumn3 = tableColumnModel.getColumn(3);
         tableColumn3.setHeaderValue("Tipo Camas");
-        tableColumn3.setMinWidth(95);
-        tableColumn3.setMaxWidth(95);
+//        tableColumn3.setMinWidth(95);
+//        tableColumn3.setMaxWidth(95);
         TableColumn tableColumn4 = tableColumnModel.getColumn(4);
         tableColumn4.setHeaderValue("Precio");
-
+        float[] anchoColumnaPorcentaje = {0.16f, 0.205f, 0.185f, 0.23f, 0.18f};
+        resizeColumnas(anchoColumnaPorcentaje);
         DefaultTableCellRenderer centrado = new DefaultTableCellRenderer();
         centrado.setHorizontalAlignment(JLabel.CENTER);
         centrado.setVerticalAlignment(JLabel.TOP);
@@ -568,7 +569,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
             botonCambiarPrecio.setEnabled(false);
         }
     }
-    
+
     private void actualizar() {
         LocalDate hoy = LocalDate.now();
         List<Habitacion> habitaciones = ABMHabi.listaDesocupadas();
@@ -589,6 +590,18 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                     ABMR.cancelarReserva(res.getIdReserva());
                 }
             }
+        }
+    }
+
+    private void resizeColumnas(float[] anchoColuPorcen) {
+        TableColumn column;
+        TableColumnModel jTableColumnModel = TablaHabitacion.getColumnModel();
+        int tW = jTableColumnModel.getTotalColumnWidth();
+        int cantCols = jTableColumnModel.getColumnCount();
+        for (int i = 0; i < cantCols; i++) {
+            column = jTableColumnModel.getColumn(i);
+            int pWidth = Math.round(anchoColuPorcen[i] * tW);
+            column.setPreferredWidth(pWidth);
         }
     }
 }
