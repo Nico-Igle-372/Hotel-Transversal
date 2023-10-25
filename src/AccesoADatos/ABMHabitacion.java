@@ -48,7 +48,7 @@ public class ABMHabitacion {
             ps.setInt(1, idH);
             int registro = ps.executeUpdate();
             if (registro != 1) {
-                JOptionPane.showMessageDialog(null, "Esa habitacion no existe");
+               
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al ocupar la habitacion");

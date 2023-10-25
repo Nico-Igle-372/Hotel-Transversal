@@ -559,6 +559,9 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 for (Reserva res : listaRes) {
                     cargarTablaR(res);
                 }
+                if (listaRes.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No hay reservas de ese Huesped");
+                }
                 actualizaAltoFilas();
             } else {
                 limpiarT();
@@ -570,12 +573,14 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 for (Reserva res : listaRes) {
                     cargarTablaR(res);
                 }
+                if (listaRes.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No hay reservas de ese Huesped");
+                }
                 actualizaAltoFilas();
-//                tablaReserva.setRowHeight(tablaReserva.getRowHeight() * 9 / 4);
             }
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Ingrese un DNI valido");
+            JOptionPane.showMessageDialog(null, "Ingrese un DNI válido");
         }
     }//GEN-LAST:event_BotonBuscarDniActionPerformed
 
