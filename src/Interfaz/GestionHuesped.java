@@ -540,13 +540,29 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     }
 
     private void activarDesactivarGM() {
-        if (verificaVacios() && verificaNombreApellido() && verificaCorreo()
-                && verificarDni() && verificarCelular() && verificarDireccion()) {
-            botonGuardar.setEnabled(true);
-            botonModificar.setEnabled(true);
-        } else {
-            botonGuardar.setEnabled(false);
-            botonModificar.setEnabled(false);
+        try {
+            if (verificaVacios() && verificaNombreApellido() && verificaCorreo()
+                    && verificarDni() && verificarCelular() && verificarDireccion()) {
+                Huesped hues = ABMHues.buscarHuesped(Integer.parseInt(jTextoDni.getText()));
+                if (hues.getDni() != Integer.parseInt(jTextoDni.getText())) {
+                    botonModificar.setEnabled(false);
+                    botonGuardar.setEnabled(true);
+                } else {
+                    botonGuardar.setEnabled(false);
+                    if (hues.getNombre().equals(jTextoNombre.getText()) && hues.getApellido().equals(jTextoApellido.getText())
+                            && hues.getDomicilio().equals(jTextoDireccion.getText()) && hues.getCorreo().equals(jTextoCorreo.getText())
+                            && hues.getCelular() == Long.parseLong(jTextoCelular.getText())) {
+                        botonModificar.setEnabled(false);
+                    } else {
+                        botonModificar.setEnabled(true);
+                    }
+                }
+            } else {
+                botonGuardar.setEnabled(false);
+                botonModificar.setEnabled(false);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("error activa mod nueva");
         }
     }
 

@@ -387,6 +387,8 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         } catch (NumberFormatException | NullPointerException | DateTimeException e) {
             JOptionPane.showMessageDialog(null, "Error en busqueda de habitaciones para reservar");
         }
+        activarDesactivarCancelar();
+        activarDesactivarModificar();
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevaActionPerformed
@@ -845,7 +847,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             LocalDate hoy = LocalDate.now();
             LocalDate ingreso = jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate egreso = jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            if ((ingresoActual.equals(ingreso) || hoy.isBefore(ingreso)) && egreso.isAfter(hoy)) {
+            if ((ingresoActual.equals(ingreso) || hoy.isBefore(ingresoActual)) && egreso.isAfter(hoy)) {
                 return verificarFechas();
             } else {
                 return false;
