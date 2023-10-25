@@ -36,7 +36,7 @@ public class ABMHuesped {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 huesped.setIdHuesped(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Huesped guardado");
+                
             } else {
                 JOptionPane.showMessageDialog(null, "No se puede obtener el id");
             }
@@ -132,7 +132,7 @@ public class ABMHuesped {
             if (registro == 0) {
                 JOptionPane.showMessageDialog(null, "No se encontro el huesped");
             } else {
-                JOptionPane.showMessageDialog(null, " Huesped eliminado junto a sus reservas");
+                
             }
             ps.close();
         } catch (SQLException ex) {
@@ -150,7 +150,7 @@ public class ABMHuesped {
             if (registro == 0) {
                 JOptionPane.showMessageDialog(null, "No se encontro el huesped");
             } else {
-                JOptionPane.showMessageDialog(null, " Huesped reingresado");
+                
             }
             ps.close();
         } catch (SQLException ex) {

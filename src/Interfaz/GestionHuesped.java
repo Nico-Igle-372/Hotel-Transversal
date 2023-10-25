@@ -291,8 +291,10 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                     for (Reserva res : reservas) {
                         ABMR.cancelarReserva(res.getIdReserva());
                     }
+                    JOptionPane.showMessageDialog(null, " Huesped eliminado junto a sus reservas");
                     botonAltaBaja.setText("Alta");
                 } else {
+                    JOptionPane.showMessageDialog(null, " Huesped reingresado");
                     ABMHues.altaHuesped(hues.getDni());
                     botonAltaBaja.setText("Baja");
                 }
@@ -367,6 +369,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                             ABMHues.guardarHuesped(hues);
                             botonGuardar.setEnabled(false);
                             botonModificar.setEnabled(false);
+                            JOptionPane.showMessageDialog(null, "Huesped guardado");
                         } else {
                             JOptionPane.showMessageDialog(null, "Ya existe un huesped con ese DNI");
                         }

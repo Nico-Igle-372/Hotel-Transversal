@@ -412,6 +412,7 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                             modeloTabla.removeRow(tablaReserva.getSelectedRow());
                             botonModificar.setEnabled(false);
                             botonNueva.setEnabled(false);
+                            JOptionPane.showMessageDialog(null, "Reserva generada");
                         } else {
                             JOptionPane.showMessageDialog(null, "El huesped no se encuentra registrado");
                         }

@@ -329,6 +329,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                     ABMHabi.crearHabitacion(h);
                     BotonGuardar.setEnabled(false);
                     BotonModificar.setEnabled(false);
+                    JOptionPane.showMessageDialog(null, "Habitacion creada");
                 } else {
                     JOptionPane.showMessageDialog(null, "Ya existe una habitacion con ese número");
                 }
@@ -405,6 +406,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
             } else {
                 habi.settipoHabitacion(ABMHabi.buscarTipoHabitacionPorNombre(ComboTipoH.getSelectedItem() + ""));
                 ABMHabi.modificarHabitacion(habi, habi.gettipoHabitacion().getIdTipo());
+                 JOptionPane.showMessageDialog(null, "Habitacion modificada");
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingrese un numero de habitacion existente");

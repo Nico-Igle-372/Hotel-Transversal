@@ -82,7 +82,7 @@ public class ABMReserva {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 reserva.setIdReserva(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Reserva generada");
+                
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo crear la reserva");
             }
