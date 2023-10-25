@@ -831,7 +831,8 @@ public class GestionReserva extends javax.swing.JInternalFrame {
         try {
             LocalDate ingreso = jDFechaIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate egreso = jDFechaEgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            return comprobarFechas(ingreso, egreso);
+            LocalDate hoy = LocalDate.now();
+            return (comprobarFechas(ingreso, egreso) && (hoy.isBefore(ingreso) || hoy.isEqual(ingreso)));
         } catch (NullPointerException e) {
             return false;
         }
