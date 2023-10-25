@@ -37,7 +37,9 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         cargarTipoH();
         limpiarT();
         activarDesactivarBuscar();
+        activarDesactivarNueva();
         activarDesactivarPrecio();
+        activarDesactivarModificar();
         actualizar();
     }
 
@@ -305,12 +307,14 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Ingrese un numero de habitacion valido");
         }
+        activarDesactivarNueva();
     }//GEN-LAST:event_BotonBuscarActionPerformed
 
     private void ComboTipoHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboTipoHActionPerformed
         TipoHabitacion tH = ABMHabi.buscarTipoHabitacionPorNombre(ComboTipoH.getSelectedItem() + "");
         limpiarT();
         cargarDatos(tH);
+        activarDesactivarModificar();
     }//GEN-LAST:event_ComboTipoHActionPerformed
 
     private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
@@ -450,6 +454,8 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
 
     private void TextoNumeroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextoNumeroKeyReleased
         activarDesactivarBuscar();
+        activarDesactivarModificar();
+        activarDesactivarNueva();
     }//GEN-LAST:event_TextoNumeroKeyReleased
 
     private void jTextoPrecioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextoPrecioKeyReleased
@@ -547,12 +553,43 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
     private void activarDesactivarBuscar() {
         if (verificaHabitacion()) {
             BotonBuscar.setEnabled(true);
-            BotonGuardar.setEnabled(true);
-            BotonModificar.setEnabled(true);
         } else {
             BotonBuscar.setEnabled(false);
+        }
+    }
+
+    private void activarDesactivarNueva() {
+        if (verificaHabitacion()) {
+            Habitacion habi = ABMHabi.buscarHabitacion(Integer.parseInt(TextoNumero.getText()));
+            if (habi.getidHabitacion() == Integer.parseInt(TextoNumero.getText())) {
+                BotonGuardar.setEnabled(false);
+            } else {
+                BotonGuardar.setEnabled(true);
+            }
+        } else {
             BotonGuardar.setEnabled(false);
-            BotonModificar.setEnabled(false);
+        }
+    }
+
+    private void activarDesactivarModificar() {
+        try {
+            if (verificaHabitacion()) {
+                Habitacion habi = ABMHabi.buscarHabitacion(Integer.parseInt(TextoNumero.getText()));
+                if (habi.getidHabitacion() != 0) {
+                    TipoHabitacion tipoH = habi.gettipoHabitacion();
+                    if (tipoH.getNombre().equals(ComboTipoH.getSelectedItem())) {
+                        BotonModificar.setEnabled(false);
+                    } else {
+                        BotonModificar.setEnabled(true);
+                    }
+                }else{
+                    BotonModificar.setEnabled(false);
+                }
+            } else {
+                BotonModificar.setEnabled(false);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("error desactiva modif");
         }
     }
 
