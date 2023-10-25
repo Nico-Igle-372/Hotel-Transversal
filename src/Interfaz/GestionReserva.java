@@ -749,7 +749,6 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             tableColumn6.setHeaderValue("Total");
             float[] anchoColumnaPorcentaje = {0.0757f, 0.1915f, 0.1000f, 0.2050f, 0.1244f, 0.1244f, 0.1464f};
             resizeColumns(anchoColumnaPorcentaje);
-            tablaReserva.setSize(tablaReserva.getWidth(), tablaReserva.getHeight()*2);
             tableHeader.repaint();
         }
         tablaReserva.setRowHeight(28);
