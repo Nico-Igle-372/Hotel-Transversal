@@ -427,7 +427,8 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                     List<Reserva> reservas = ABMR.buscarPorHabitacion(habi);
                     if (reservas.isEmpty()) {
                         ABMHabi.liberarHabitacion(habi.getidHabitacion());
-                    }
+                         JOptionPane.showMessageDialog(null, "Habitación reincorporada");
+                    }else{
                     for (Reserva res : reservas) {
                         if ((hoy.equals(res.getFechaEntrada()) || hoy.isAfter(res.getFechaEntrada()))
                                 && (hoy.equals(res.getFechaSalida()) || hoy.isBefore(res.getFechaSalida()))) {
@@ -438,12 +439,15 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                         JOptionPane.showMessageDialog(null, "No se puede trabajar en una habitacion ocupada");
                     } else {
                         ABMHabi.liberarHabitacion(habi.getidHabitacion());
+                         JOptionPane.showMessageDialog(null, "Habitación liberada");
+                    }
                     }
                 } else {
                     ABMHabi.ocuparHabitacion(habi.getidHabitacion());
+                     JOptionPane.showMessageDialog(null, "Habitación fuera de servicio");
                 }
                 habi = ABMHabi.buscarHabitacion(Integer.parseInt(TextoNumero.getText()));
-                TextoEstado.setText(habi.isEstado() ? "Ocupada" : "Libre");
+                TextoEstado.setText(habi.isEstado() ? (ocupada!=0 ? "Ocupada":"Fuera de servicio") : "Libre");
                 BotonAltaBaja.setText(habi.isEstado() ? "Alta" : "Baja");
             }
 
