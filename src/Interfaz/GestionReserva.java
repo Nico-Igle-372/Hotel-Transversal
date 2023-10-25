@@ -8,7 +8,6 @@ import Entidades.Huesped;
 import Entidades.Reserva;
 import java.awt.Component;
 import com.toedter.calendar.JTextFieldDateEditor;
-import java.awt.Dimension;
 import java.sql.Date;
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -703,22 +702,15 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 TableColumnModel tableColumnModel = tableHeader.getColumnModel();
                 TableColumn tableColumn = tableColumnModel.getColumn(0);
                 tableColumn.setHeaderValue("Habitacion");
-//                tableColumn.setMinWidth(120);
-//                tableColumn.setMaxWidth(120);
                 TableColumn tableColumn1 = tableColumnModel.getColumn(1);
                 tableColumn1.setHeaderValue("Tipo de Habitacion");
-//                tableColumn1.setMinWidth(200);
-//                tableColumn1.setMaxWidth(250);
                 TableColumn tableColumn2 = tableColumnModel.getColumn(2);
                 tableColumn2.setHeaderValue("N° Camas");
-//                tableColumn2.setMinWidth(140);
-//                tableColumn2.setMaxWidth(140);
                 TableColumn tableColumn3 = tableColumnModel.getColumn(3);
                 tableColumn3.setHeaderValue("Total");
-//                tableColumn3.setMinWidth(120);
-//                tableColumn3.setMaxWidth(300);
                 float[] anchoColumnaPorcentaje = {0.15f, 0.35f, 0.15f, 0.35f};
                 resizeColumns(anchoColumnaPorcentaje);
+                tableHeader.repaint();
             } else {
                 modeloTabla.setColumnCount(7);
                 tablaReserva.setModel(modeloTabla);
@@ -726,32 +718,18 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 TableColumnModel tableColumnModel = tableHeader.getColumnModel();
                 TableColumn tableColumn = tableColumnModel.getColumn(0);
                 tableColumn.setHeaderValue("Id");
-//                tableColumn.setMinWidth(55);
-//                tableColumn.setMaxWidth(55);
                 TableColumn tableColumn1 = tableColumnModel.getColumn(1);
                 tableColumn1.setHeaderValue("Huesped");
-//                tableColumn1.setMinWidth(125);
-//                tableColumn1.setMaxWidth(125);
                 TableColumn tableColumn2 = tableColumnModel.getColumn(2);
                 tableColumn2.setHeaderValue("Habitacion");
-//                tableColumn2.setMinWidth(65);
-//                tableColumn2.setMaxWidth(65);
                 TableColumn tableColumn3 = tableColumnModel.getColumn(3);
                 tableColumn3.setHeaderValue("Tipo de Habitacion");
-//                tableColumn3.setMinWidth(140);
-//                tableColumn3.setMaxWidth(140);
                 TableColumn tableColumn4 = tableColumnModel.getColumn(4);
                 tableColumn4.setHeaderValue("Ingreso");
-//                tableColumn4.setMinWidth(85);
-//                tableColumn4.setMaxWidth(85);
                 TableColumn tableColumn5 = tableColumnModel.getColumn(5);
                 tableColumn5.setHeaderValue("Egreso");
-//                tableColumn5.setMinWidth(85);
-//                tableColumn5.setMaxWidth(85);
                 TableColumn tableColumn6 = tableColumnModel.getColumn(6);
                 tableColumn6.setHeaderValue("Total");
-//                tableColumn6.setMinWidth(100);
-//                tableColumn6.setMaxWidth(100);
                 float[] anchoColumnaPorcentaje = {0.0206f, 0.1915f, 0.0951f, 0.2650f, 0.1244f, 0.1244f, 0.1464f};
                 resizeColumns(anchoColumnaPorcentaje);
                 tableHeader.repaint();
@@ -763,37 +741,21 @@ public class GestionReserva extends javax.swing.JInternalFrame {
             TableColumnModel tableColumnModel = tableHeader.getColumnModel();
             TableColumn tableColumn = tableColumnModel.getColumn(0);
             tableColumn.setHeaderValue("estado");
-//            tableColumn.setMinWidth(60);
-//            tableColumn.setMaxWidth(60);
             TableColumn tableColumn1 = tableColumnModel.getColumn(1);
             tableColumn1.setHeaderValue("Huesped");
-//            tableColumn1.setMinWidth(125);
-//            tableColumn1.setMaxWidth(125);
             TableColumn tableColumn2 = tableColumnModel.getColumn(2);
             tableColumn2.setHeaderValue("Habitacion");
-//            tableColumn2.setMinWidth(65);
-//            tableColumn2.setMaxWidth(65);
             TableColumn tableColumn3 = tableColumnModel.getColumn(3);
             tableColumn3.setHeaderValue("Tipo de Habitacion");
-//            tableColumn3.setMinWidth(140);
-//            tableColumn3.setMaxWidth(140);
             TableColumn tableColumn4 = tableColumnModel.getColumn(4);
             tableColumn4.setHeaderValue("Ingreso");
-//            tableColumn4.setMinWidth(85);
-//            tableColumn4.setMaxWidth(85);
             TableColumn tableColumn5 = tableColumnModel.getColumn(5);
             tableColumn5.setHeaderValue("Egreso");
-//            tableColumn5.setMinWidth(85);
-//            tableColumn5.setMaxWidth(85);
             TableColumn tableColumn6 = tableColumnModel.getColumn(6);
             tableColumn6.setHeaderValue("Total");
-//            tableColumn6.setMinWidth(90);
-//            tableColumn6.setMaxWidth(90);
-
-            float[] anchoColumnaPorcentaje = {0.0806f, 0.1915f, 0.0951f, 0.2050f, 0.1244f, 0.1244f, 0.1464f};
+            float[] anchoColumnaPorcentaje = {0.0757f, 0.1915f, 0.1000f, 0.2050f, 0.1244f, 0.1244f, 0.1464f};
             resizeColumns(anchoColumnaPorcentaje);
             tableHeader.repaint();
-
         }
         tablaReserva.setRowHeight(28);
         tablaReserva.setDefaultEditor(Object.class, null);
@@ -970,18 +932,14 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     }
 
     private void resizeColumns(float[] anchoColuPorcen) {
-        // Use TableColumnModel.getTotalColumnWidth() if your table is included in a JScrollPane
-//        int tW = tablaReserva.getWidth();
         TableColumn column;
         TableColumnModel jTableColumnModel = tablaReserva.getColumnModel();
         int tW = jTableColumnModel.getTotalColumnWidth();
         int cantCols = jTableColumnModel.getColumnCount();
-//        System.out.println(tW);
         for (int i = 0; i < cantCols; i++) {
             column = jTableColumnModel.getColumn(i);
             int pWidth = Math.round(anchoColuPorcen[i] * tW);
             column.setPreferredWidth(pWidth);
-//            System.out.println(pWidth);
         }
     }
 }

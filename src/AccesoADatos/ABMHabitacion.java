@@ -2,7 +2,6 @@ package AccesoADatos;
 
 import Entidades.Habitacion;
 import Entidades.TipoHabitacion;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,8 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ABMHabitacion {
@@ -114,7 +111,7 @@ public class ABMHabitacion {
         }
         return tipoH;
     }
-    
+
     public TipoHabitacion buscarTipoHabitacionPorNombre(String nombreTH) {
         TipoHabitacion tipoH = new TipoHabitacion();
         String sql = "SELECT * FROM tipodehabitacion WHERE tipodehabitacion.nombreTipo= ?";
@@ -137,7 +134,7 @@ public class ABMHabitacion {
         }
         return tipoH;
     }
-    
+
     public Habitacion buscarHabitacion(int idH) {
         Habitacion habi = new Habitacion();
         String sql = "SELECT * FROM habitacion WHERE idHabitacion = ?";
@@ -198,15 +195,15 @@ public class ABMHabitacion {
         }
         return habitaciones;
     }
-    
-    public List<Habitacion> listaOcupadas(){
+
+    public List<Habitacion> listaOcupadas() {
         List<Habitacion> ocupadas = new ArrayList<>();
         String sql = "SELECT * FROM habitacion WHERE estado = 1";
         PreparedStatement ps = null;
         try {
             ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Habitacion habi = new Habitacion();
                 habi.setIdHabitacion(rs.getInt("idHabitacion"));
                 TipoHabitacion tipoH = buscarTipoHabitacion(rs.getInt("idTipoHabitacion"));
@@ -220,15 +217,15 @@ public class ABMHabitacion {
         }
         return ocupadas;
     }
-    
-    public List<Habitacion> listaDesocupadas(){
+
+    public List<Habitacion> listaDesocupadas() {
         List<Habitacion> desocupadas = new ArrayList<>();
         String sql = "SELECT * FROM habitacion WHERE estado = 0";
         PreparedStatement ps = null;
         try {
             ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Habitacion habi = new Habitacion();
                 habi.setIdHabitacion(rs.getInt("idHabitacion"));
                 TipoHabitacion tipoH = buscarTipoHabitacion(rs.getInt("idTipoHabitacion"));
@@ -242,16 +239,16 @@ public class ABMHabitacion {
         }
         return desocupadas;
     }
-    
-    public List<TipoHabitacion> listarTipoH(){
-       List<TipoHabitacion> tipoHabitaciones= new ArrayList<>();
-       String sql="SELECT * FROM `tipodehabitacion` WHERE 1";
-       PreparedStatement ps=null;
+
+    public List<TipoHabitacion> listarTipoH() {
+        List<TipoHabitacion> tipoHabitaciones = new ArrayList<>();
+        String sql = "SELECT * FROM `tipodehabitacion` WHERE 1";
+        PreparedStatement ps = null;
         try {
-            ps=conn.prepareStatement(sql);
-            ResultSet rs=ps.executeQuery();
-            while(rs.next()){
-                TipoHabitacion tipoH=new TipoHabitacion();
+            ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                TipoHabitacion tipoH = new TipoHabitacion();
                 tipoH.setIdTipo(rs.getInt("idTipoHabitacion"));
                 tipoH.setNombre(rs.getString("nombreTipo"));
                 tipoH.setCapacidad(rs.getInt("capacidad"));
@@ -264,6 +261,6 @@ public class ABMHabitacion {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al listar los tipos de habitación");
         }
-       return tipoHabitaciones;
+        return tipoHabitaciones;
     }
 }

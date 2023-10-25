@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class ABMHuesped {
+
     private Connection conn = null;
 
     public ABMHuesped() {
@@ -25,7 +26,7 @@ public class ABMHuesped {
         try {
             ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, huesped.getNombre());
-            ps.setString(2,huesped.getApellido());
+            ps.setString(2, huesped.getApellido());
             ps.setInt(3, huesped.getDni());
             ps.setString(4, huesped.getDomicilio());
             ps.setString(5, huesped.getCorreo());
@@ -48,7 +49,6 @@ public class ABMHuesped {
     public List<Huesped> listarHuespedes() {
         List<Huesped> huespedes = new ArrayList<>();
         String sql = "SELECT * FROM `huesped` WHERE estado=1";
-
         PreparedStatement ps = null;
         try {
             ps = conn.prepareStatement(sql);
@@ -121,7 +121,7 @@ public class ABMHuesped {
         }
         return h;
     }
-    
+
     public void bajaHuesped(int dni) {
         String sql = "UPDATE `huesped` SET `estado`=0 WHERE dni=? ";
         PreparedStatement ps = null;
