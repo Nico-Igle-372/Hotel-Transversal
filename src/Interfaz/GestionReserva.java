@@ -561,8 +561,9 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 }
                 if (listaRes.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No hay reservas de ese Huesped");
+                } else {
+                    actualizaAltoFilas();
                 }
-                actualizaAltoFilas();
             } else {
                 limpiarT();
                 RReservas.setSelected(true);
@@ -575,10 +576,10 @@ public class GestionReserva extends javax.swing.JInternalFrame {
                 }
                 if (listaRes.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No hay reservas de ese Huesped");
+                } else {
+                    actualizaAltoFilas();
                 }
-                actualizaAltoFilas();
             }
-
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingrese un DNI válido");
         }
@@ -928,11 +929,24 @@ public class GestionReserva extends javax.swing.JInternalFrame {
 
     private void actualizaAltoFilas() {
         for (int fila = 0; fila < tablaReserva.getRowCount(); fila++) {
-            int altoFila = tablaReserva.getRowHeight();
+            int altoFilaOriginal = tablaReserva.getRowHeight();
+            System.out.println(altoFilaOriginal);
+            int altoFila = altoFilaOriginal;
+            String texto = (String) tablaReserva.getValueAt(fila, 1);
+            System.out.println("texto: "+ texto);
+            int largoTexto = texto.length()-24;
+            System.out.println("largo" + largoTexto);
             Component comp = (Component) tablaReserva.prepareRenderer(centrado, fila, 1);
             altoFila = Math.max(altoFila, comp.getPreferredSize().height);
-            tablaReserva.setRowHeight(fila, altoFila);
             centrado.setVerticalAlignment(JLabel.TOP);
+            if (largoTexto > 17) {
+                if (largoTexto > 31) {
+                    altoFila = altoFila * 3;
+                } else {
+                    altoFila = altoFila * 2;
+                }
+            }
+            tablaReserva.setRowHeight(fila, altoFila);
         }
     }
 
