@@ -30,7 +30,7 @@ public class ABMHabitacion {
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                JOptionPane.showMessageDialog(null, "Habitacion creada");
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Habitacion no creada");
             }
@@ -48,7 +48,7 @@ public class ABMHabitacion {
             ps.setInt(1, idH);
             int registro = ps.executeUpdate();
             if (registro != 1) {
-                JOptionPane.showMessageDialog(null, "Esa habitacion no existe");
+               
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al ocupar la habitacion");
@@ -63,7 +63,7 @@ public class ABMHabitacion {
             ps.setInt(1, idH);
             int registro = ps.executeUpdate();
             if (registro != 1) {
-                JOptionPane.showMessageDialog(null, "Esa habitacion no existe");
+               
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al liberar la habitacion");
@@ -79,7 +79,7 @@ public class ABMHabitacion {
             ps.setInt(2, habi.getidHabitacion());
             int registro = ps.executeUpdate();
             if (registro > 0) {
-                JOptionPane.showMessageDialog(null, "Habitacion modificada");
+               
             } else {
                 JOptionPane.showMessageDialog(null, "Habitacion no encontrada (?)");
             }

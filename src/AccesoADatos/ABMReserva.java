@@ -80,7 +80,7 @@ public class ABMReserva {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 reserva.setIdReserva(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Reserva generada");
+                
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo crear la reserva");
             }
@@ -110,10 +110,10 @@ public class ABMReserva {
                 res.setImporteTotal(rs.getDouble("importeTotal"));
                 res.setEstado(rs.getBoolean("estado"));
             } else {
-                JOptionPane.showMessageDialog(null, "No se encontro reserva");
+                
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al buscar la reserva");
+          
         }
         return res;
     }
@@ -126,7 +126,7 @@ public class ABMReserva {
             ps.setInt(1, idR);
             ps.executeUpdate();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al cancelar la reserva");
+            
         }
     }
 
@@ -138,7 +138,7 @@ public class ABMReserva {
             ps.setInt(1, idR);
             ps.executeUpdate();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al cancelar la reserva");
+            
         }
     }
 
@@ -166,11 +166,9 @@ public class ABMReserva {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al buscar la reserva");
+            
         }
-        if (reservas.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No hay reservas de ese Huesped");
-        }
+       
         return reservas;
     }
 
@@ -198,44 +196,7 @@ public class ABMReserva {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al buscar la reserva");
-        }
-        if (reservas.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No hay reservas de ese Huesped");
-        }
-        return reservas;
-    }
-
-    public List<Reserva> buscarPorFechas(LocalDate entrada, LocalDate salida) {
-        List<Reserva> reservas = new ArrayList<>();
-        String sql = "SELECT * FROM reserva WHERE estado = 1 AND "
-                + "(? BETWEEN fechaEntrada AND fechaSalida OR "
-                + "? BETWEEN fechaEntrada AND fechaSalida)";
-        PreparedStatement ps = null;
-        try {
-            ps = conn.prepareStatement(sql);
-            ps.setDate(1, Date.valueOf(entrada));
-            ps.setDate(2, Date.valueOf(salida));
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Reserva res = new Reserva();
-                res.setIdReserva(rs.getInt("idReserva"));
-                Huesped hues = ABMHues.buscarHuespedPorId(rs.getInt("idHuesped"));
-                res.setHuesped(hues);
-                Habitacion habi = ABMH.buscarHabitacion(rs.getInt("idHabitacion"));
-                res.setHabitacion(habi);
-                res.setCantPersonas(rs.getInt("cantPersonas"));
-                res.setFechaEntrada(rs.getDate("fechaEntrada").toLocalDate());
-                res.setFechaSalida(rs.getDate("fechaSalida").toLocalDate());
-                res.setImporteTotal(rs.getDouble("importeTotal"));
-                res.setEstado(rs.getBoolean("estado"));
-                reservas.add(res);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al buscar reserva");
-        }
-        if (reservas.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No hay reservas de ese Huesped");
+           
         }
         return reservas;
     }
@@ -262,7 +223,7 @@ public class ABMReserva {
                 reservas.add(res);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No hay reservas para esa habitación");
+            
         }
         return reservas;
     }
@@ -275,7 +236,7 @@ public class ABMReserva {
         return montoTotal;
     }
 
-    public void modificarReserva(Reserva res) { // para la interfaz grafica, recordar ver problemas de fechas que choquen entre la reserva modificada y reservas ya hechas anteriores
+    public void modificarReserva(Reserva res) {
         String sql = "UPDATE reserva SET idHabitacion = ? , idHuesped = ?, cantPersonas = ?, "
                 + "fechaEntrada = ?, fechaSalida = ?, importeTotal = ? WHERE idReserva = ?";
         PreparedStatement ps = null;
@@ -288,13 +249,9 @@ public class ABMReserva {
             ps.setDate(5, Date.valueOf(res.getFechaSalida()));
             ps.setDouble(6, res.getImporteTotal());
             ps.setInt(7, res.getIdReserva());
-            int registro = ps.executeUpdate();
-            if (registro == 0) {
-                JOptionPane.showMessageDialog(null, "No se pudo modificar la reserva");
-            }
+            ps.executeUpdate();
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al modificar la reserva");
         }
     }
 }

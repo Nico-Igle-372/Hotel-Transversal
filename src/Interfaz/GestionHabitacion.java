@@ -333,6 +333,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                     ABMHabi.crearHabitacion(h);
                     BotonGuardar.setEnabled(false);
                     BotonModificar.setEnabled(false);
+                    JOptionPane.showMessageDialog(null, "Habitacion creada");
                 } else {
                     JOptionPane.showMessageDialog(null, "Ya existe una habitacion con ese número");
                 }
@@ -409,6 +410,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
             } else {
                 habi.settipoHabitacion(ABMHabi.buscarTipoHabitacionPorNombre(ComboTipoH.getSelectedItem() + ""));
                 ABMHabi.modificarHabitacion(habi, habi.gettipoHabitacion().getIdTipo());
+                JOptionPane.showMessageDialog(null, "Habitacion modificada");
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingrese un numero de habitacion existente");
@@ -425,24 +427,30 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                     List<Reserva> reservas = ABMR.buscarPorHabitacion(habi);
                     if (reservas.isEmpty()) {
                         ABMHabi.liberarHabitacion(habi.getidHabitacion());
-                    }
-                    for (Reserva res : reservas) {
-                        if ((hoy.equals(res.getFechaEntrada()) || hoy.isAfter(res.getFechaEntrada()))
-                                && (hoy.equals(res.getFechaSalida()) || hoy.isBefore(res.getFechaSalida()))) {
-                            ocupada++;
-                        }
-                    }
-                    if (ocupada != 0) {
-                        JOptionPane.showMessageDialog(null, "No se puede trabajar en una habitacion ocupada");
+                        JOptionPane.showMessageDialog(null, "Habitación reincorporada");
                     } else {
-                        ABMHabi.liberarHabitacion(habi.getidHabitacion());
+                        for (Reserva res : reservas) {
+                            if ((hoy.equals(res.getFechaEntrada()) || hoy.isAfter(res.getFechaEntrada()))
+                                    && (hoy.equals(res.getFechaSalida()) || hoy.isBefore(res.getFechaSalida()))) {
+                                ocupada++;
+                            }
+                        }
+                        if (ocupada != 0) {
+                            JOptionPane.showMessageDialog(null, "No se puede trabajar en una habitacion ocupada");
+                        } else {
+                            ABMHabi.liberarHabitacion(habi.getidHabitacion());
+                            JOptionPane.showMessageDialog(null, "Habitación liberada");
+                        }
                     }
                 } else {
                     ABMHabi.ocuparHabitacion(habi.getidHabitacion());
+                    JOptionPane.showMessageDialog(null, "Habitación fuera de servicio");
                 }
                 habi = ABMHabi.buscarHabitacion(Integer.parseInt(TextoNumero.getText()));
-                TextoEstado.setText(habi.isEstado() ? "Ocupada" : "Libre");
+                TextoEstado.setText(habi.isEstado() ? (ocupada != 0 ? "Ocupada" : "Fuera de servicio") : "Libre");
                 BotonAltaBaja.setText(habi.isEstado() ? "Alta" : "Baja");
+            } else {
+                JOptionPane.showMessageDialog(null, "Esa habitacion no existe");
             }
 
         } catch (NumberFormatException e) {
@@ -580,7 +588,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                     } else {
                         BotonModificar.setEnabled(true);
                     }
-                }else{
+                } else {
                     BotonModificar.setEnabled(false);
                 }
             } else {
