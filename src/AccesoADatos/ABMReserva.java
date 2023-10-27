@@ -31,7 +31,7 @@ public class ABMReserva {
         String sql = "SELECT * FROM habitacion WHERE idHabitacion IN "
                 + "(SELECT habitacion.idHabitacion from habitacion join tipodehabitacion ON "
                 + "(habitacion.idTipoHabitacion = tipodehabitacion.idTipoHabitacion) "
-                + "WHERE capacidad >= ?) AND (habitacion.estado = 0 OR idHabitacion NOT IN "
+                + "WHERE capacidad >= ?) AND (idHabitacion NOT IN "
                 + "(SELECT habitacion.idHabitacion FROM habitacion JOIN reserva ON "
                 + "(reserva.idHabitacion = habitacion.idHabitacion)  "
                 + "WHERE ? BETWEEN fechaEntrada AND fechaSalida "
