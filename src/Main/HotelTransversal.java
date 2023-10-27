@@ -5,6 +5,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHiberbeeDarkIJTheme;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class HotelTransversal {
 
@@ -13,7 +14,7 @@ public class HotelTransversal {
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
             FlatHiberbeeDarkIJTheme.setup();
-        } catch (Exception ex) {
+        } catch (UnsupportedLookAndFeelException ex) {
             JOptionPane.showMessageDialog(null, "Falló al iniciar FlatLaf");
         }
 
