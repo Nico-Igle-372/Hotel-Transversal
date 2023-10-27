@@ -930,12 +930,9 @@ public class GestionReserva extends javax.swing.JInternalFrame {
     private void actualizaAltoFilas() {
         for (int fila = 0; fila < tablaReserva.getRowCount(); fila++) {
             int altoFilaOriginal = tablaReserva.getRowHeight();
-            System.out.println(altoFilaOriginal);
             int altoFila = altoFilaOriginal;
             String texto = (String) tablaReserva.getValueAt(fila, 1);
-            System.out.println("texto: "+ texto);
             int largoTexto = texto.length()-24;
-            System.out.println("largo" + largoTexto);
             Component comp = (Component) tablaReserva.prepareRenderer(centrado, fila, 1);
             altoFila = Math.max(altoFila, comp.getPreferredSize().height);
             centrado.setVerticalAlignment(JLabel.TOP);
