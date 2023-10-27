@@ -565,7 +565,6 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                 botonModificar.setEnabled(false);
             }
         } catch (NumberFormatException e) {
-            System.out.println("error activa mod nueva");
         }
     }
 

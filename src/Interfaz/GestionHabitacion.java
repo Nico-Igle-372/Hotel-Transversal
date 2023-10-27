@@ -595,7 +595,6 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                 BotonModificar.setEnabled(false);
             }
         } catch (NumberFormatException e) {
-            System.out.println("error desactiva modif");
         }
     }
 
